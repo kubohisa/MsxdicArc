@@ -1,6 +1,6 @@
 # msxdic. freeware archives.
 
-https://castid.link/
+https://msxdic.org/
 
 MSXのフリーウェアをWEBMSXで体験できるウェブ”msxdic.”で使っているフリーウェアのディスクイメージのアーカイブです。ディスクイメージは、なるべく、こちらからダウンロードをお願いします
 

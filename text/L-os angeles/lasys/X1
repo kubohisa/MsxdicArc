@@ -1,0 +1,30 @@
+;
+;	L-os Angeles for X1/turbo/Z
+;
+;	Programmed by
+;
+;	Gaku Nakagawa as Larn M.R.(Lovers)
+;
+VH	EQU	1
+VL	EQU	$39	;v1.39
+;
+	OFFSET	$8000
+;
+	$INCLUDE	X1IOCS
+	$INCLUDE	LOS
+	$INCLUDE	X1IO
+	$INCLUDE	X1DMA
+	$INCLUDE	LWORK
+	$INCLUDE	LJUMP
+	$INCLUDE	LCOMMAND
+	$INCLUDE	LDEVICE
+	$INCLUDE	X1IO2
+	$INCLUDE	X1INIT
+;
+	OFFSET	$8000+$2700-DMA
+	ORG	DMA
+;
+CPU2:
+;
+	$CHAIN		X1CPU
+

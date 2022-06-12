@@ -1,0 +1,367 @@
+;
+;	L-os Angeles X1IO
+;
+POKE@:
+	EX	DE,HL
+POKE@1:
+	LD	A,(DE)
+	INC	DE
+	CALL	#POKE
+	INC	HL
+	DEC	BC
+	LD	A,B
+	OR	C
+	JR	NZ,POKE@1
+	RET
+;
+PEEK@:
+	EX	DE,HL
+PEEK@1:
+	CALL	#PEEK
+	INC	HL
+	LD	(DE),A
+	INC	DE
+	DEC	BC
+	LD	A,B
+	OR	C
+	JR	NZ,PEEK@1
+	RET
+;
+RDFAT:
+	PUSH	IY
+	CALL	RDFAT0
+	POP	IY
+	RET
+;
+TAB:
+	LD	A,(@XYADR)
+	SUB	B
+	CCF
+	RET	C
+;
+TAB1:
+	CALL	#PRNTS
+	INC	A
+	JR	NZ,TAB1
+	RET
+;
+CHGDRV:
+	PUSH	HL
+	PUSH	IY
+	CALL	CHGDRV0
+	LD	A,(#DSK)
+	POP	IY
+	POP	HL
+	RET
+;
+CHGDRV0:
+	CP	$40
+	RET	C
+	CALL	Z,#RDVSW
+;
+	LD	L,A
+	CALL	#DEVADX
+	RET	C
+;
+	CALL	#MOTOFF
+	LD	A,L
+	CALL	#CAP
+	LD	(#DSK),A
+;
+	DI
+	LD	(SPPAT2+1),SP
+;
+	LD	SP,IY
+;
+	POP	HL
+	POP	HL
+	LD	(#DRDC+1),HL
+;
+	POP	HL
+	LD	(#DWTC+1),HL
+;
+	POP	HL
+	LD	(CLSPAT+1),HL	;ADDCL
+;
+	POP	HL		;MAXCL
+	LD	A,L
+	LD	(CLPAT2+1),A
+	LD	A,H
+	LD	(CLPAT1+1),A
+;
+	POP	HL		;H=MAXDIR L=FDMODE
+	LD	A,L
+	OR	$FE
+	LD	(FDMODE+1),A
+	RLCA
+	LD	(FSPAT+1),A
+	LD	A,H
+	LD	(RTEPAT+1),A
+;
+	POP	HL
+	LD	A,L
+	LD	(#MXTRK),A
+	LD	A,H
+	LD	(#MSEC),A
+;
+	POP	HL
+	LD	H,0
+	LD	(#FATPS),HL
+;
+	POP	HL
+	LD	A,H
+	LD	(SECPAT+1),A
+	XOR	A		;CF=0 É ÀÒ
+	LD	H,A
+	LD	(#DIRPS),HL
+;
+	POP	HL
+	LD	A,H
+	LD	(#DRIVE),A
+;
+	POP	HL
+	LD	(#MOTOFF+1),HL
+;
+	POP	HL
+	LD	(#GNCL+1),HL
+;
+	POP	HL
+	LD	(#SNCL+1),HL
+;
+SPPAT2:	LD	SP,0
+	EI
+	RET
+;
+CSR:
+	LD	HL,(@XYADR)
+	RET
+;
+NL:
+	PUSH	AF
+	CALL	@NL
+	POP	AF
+	RET
+;
+COLOR:
+	LD	(@COLORF),A
+	RET
+;
+LOC:
+	LD	(@XYADR),HL
+	AND	A		;CF=0
+	RET
+;
+WIDCH:
+	CALL	@WIDCH
+	LD	A,(@WIDTH)
+	LD	(#WIDTH),A
+	RET
+;
+KYBFC:
+	PUSH	HL
+	LD	HL,0
+	LD	($0EA6),HL
+	POP	HL
+	RET
+;
+KYBFS:
+	PUSH	BC
+	PUSH	DE
+	PUSH	HL
+	LD	BC,$0EA8
+	LD	E,A
+	CALL	@KYBFS
+	XOR	A
+	LD	($0EA5),A
+	POP	HL
+	POP	DE
+	POP	BC
+	RET
+;
+POKE:
+	PUSH	BC
+	PUSH	AF
+	LD	C,L
+	LD	A,H
+	ADD	A,$40
+	LD	B,A
+	POP	AF
+	OUT	(C),A
+	POP	BC
+	RET
+;
+PEEK:
+	PUSH	BC
+	LD	C,L
+	LD	A,H
+	ADD	A,$40
+	LD	B,A
+	IN	A,(C)
+	POP	BC
+	RET
+;
+CINIT:
+	LD	A,(#WK1FD0)
+	RES	4,A
+;
+S1FD0:
+	PUSH	BC
+	LD	BC,$1FD0
+	OUT	(C),A
+	LD	(#WK1FD0),A
+	POP	BC
+	RET
+;
+SEEK:
+	LD	B,16
+	LD	A,(#MSEC)
+	LD	C,A
+	XOR	A
+	EX	DE,HL
+DIV1:
+	ADD	HL,HL
+	ADC	A,A
+	CP	C
+	JR	C,DIV2
+	SUB	C
+	INC	L
+DIV2:
+	DJNZ	DIV1
+;
+SECPAT:	ADD	A,$01		;¶·¶´
+	LD	D,L	;¼®³(TRACK)
+DIV3:
+	LD	E,A	;±ÏØ
+	SRL	D	;CYLINDER
+	SBC	A,A
+	AND	$10	;SIDE
+	LD	C,A
+;
+	LD	A,(#DRIVE)
+	CP	4
+	CCF
+	RET	C
+	OR	C
+	LD	(MOPAT+1),A	;Ó°À°µÌÃÞ°À
+	LD	BC,$0FFC
+	OR	$80		;Ó°À°µÝ
+	OUT	(C),A
+;
+	CALL	SETMODE
+	RET	C
+;
+	LD	HL,(#DRIVE)
+	LD	H,$1F
+	LD	A,(HL)		;LD A,$1F00+DRIVE NUMBER
+	INC	A		;A=$FF ¼ØÝÀÞÌÒ²
+	CALL	Z,FDCRES	;Ø½Ä±
+	LD	A,(HL)
+	LD	C,$F9
+	OUT	(C),A		;¹ÞÝ»Þ² É ¼ØÝÀÞ
+	SUB	D
+	RET	Z		;¼°¸ Å¼
+;
+	LD	A,(#ISEC)
+	LD	C,A
+;
+	LD	A,(#MXTRK)	;Ï¯¸½¼ØÝÀÞ
+	DEC	A
+	CP	D		;µ°ÊÞ°¼ØÝÀÞ
+	RET	C
+;
+	CP	C		;Å²¿Þ³ 2DD É ÀÒ É ¼®Ø
+	JR	C,SETM2
+	LD	A,B		;B=$0F
+	IN	A,($FE)		;2HD mode for 2DD seek
+SETM2:
+	LD	A,B
+	IN	A,($FD)		;MFM mode
+;
+	CALL	DELAY0		;wait100Ï²¸ÛSEC
+;
+	LD	C,$FB
+	OUT	(C),D
+	LD	(HL),D
+	LD	C,$18		;¼°¸
+FDCCMD2:
+	LD	A,(#SEEKSP)
+FSPAT:	AND	$FF
+	OR	C
+;
+FDCCMD:
+	CALL	COMSET
+;
+\FDCPAT:LD	A,(FDCPAT+1)
+	AND	$20		;×²Ä¥ÃÞ°À ×²Ä¥Ä×¯¸
+	INC	A
+;
+SST:
+	LD	C,0
+SST1:
+	DEC	C		; 4
+	JR	NZ,SST1		;12 *256 /4 =Ô¸ 1ms
+	DEC	A
+	JR	NZ,SST1
+;
+	INC	A
+	CALL	READY
+SETMODE:
+	LD	A,B		;B=$0F
+FDMODE:	IN	A,($FF)		;ÌÛ¯Ëß°Ó°ÄÞ(2D/2HD)¶·¶´
+;
+	LD	A,B
+	IN	A,($FD)		;MFM mode
+;
+	CALL	DELAY0		;Í¯ÄÞ¾Ú¸ÄÀ²Ñ
+	LD	A,$81
+READY:
+	LD	(WAITA+1),A
+	PUSH	HL
+	LD	C,$F8
+	LD	H,C
+READY2:
+	IN	A,(C)
+WAITA:	AND	$81		;NOT READY,BUSY
+	JR	Z,READYE
+	EX	(SP),HL		;wait
+	EX	(SP),HL		; //
+	DEC	HL
+	LD	A,H
+	OR	L
+	JR	NZ,READY2
+	SCF
+READYE:
+	POP	HL
+	RET
+;
+FDCRES:
+	LD	(HL),A		;A=0
+	LD	C,A
+	JR	FDCCMD2
+;
+SECSET:
+	LD	BC,$0FFA
+	OUT	(C),E
+COMSET:
+	LD	C,$F8
+	OUT	(C),A
+DELAY0:
+	LD	A,26
+DELAY:
+	DEC	A
+	JR	NZ,DELAY
+	RET
+;
+FDMOFF:
+	PUSH	AF
+	PUSH	BC
+	LD	BC,$0FFC	;Ó°À°µÌ
+MOPAT:	LD	A,$00		;¶·¶´
+	OUT	(C),A
+	POP	BC
+	POP	AF
+	RET
+;
+RETRY:	DB	5
+;
+

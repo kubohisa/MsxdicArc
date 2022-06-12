@@ -1,0 +1,25 @@
+;
+;	L-os Angeles for MSX-DOS
+;
+;	Programmed by
+;
+;	Gaku Nakagawa as Larn M.R.(Lovers)
+;
+;
+VH	EQU	1
+VL	EQU	$39	;v1.39
+;
+	OFFSET	$8000
+;
+	$INCLUDE	MDDOS
+	$INCLUDE	LOS
+	$INCLUDE	MDETC
+	$INCLUDE	MDIO
+	$INCLUDE	MDDISK
+	$INCLUDE	MDINIT
+	$INCLUDE	LWORK
+	$INCLUDE	LJUMP
+	$INCLUDE	LCOMMAND
+	$CHAIN		LDEVICE
+;
+

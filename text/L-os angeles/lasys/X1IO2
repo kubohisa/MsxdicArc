@@ -1,0 +1,36 @@
+;
+;	L-os Angeles IO2
+;
+	ORG	$23E0
+;
+GETL:
+	CALL	@GETL
+	RET	NC
+	LD	A,$1B
+	LD	(DE),A
+	INC	DE
+	XOR	A
+	LD	(DE),A
+	DEC	DE
+	RET
+;
+GETKY:
+	LD	A,(@KEY)
+	OR	A
+	JP	NZ,#KYBFC
+	RET
+;
+SCRN:
+	PUSH	HL
+	PUSH	BC
+	CALL	@VRCALC
+	LD	C,L
+	LD	B,H
+	IN	A,(C)
+	POP	BC
+	POP	HL
+	RET
+;
+DEVE:
+;
+

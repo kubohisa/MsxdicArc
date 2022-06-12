@@ -1,0 +1,119 @@
+　　　Ｌ－ｏｓ　Ａｎｇｅｌｅｓ
+
+　　　　ＬＡの新しいコールを使ったサンプルプログラム
+
+
+　　ＬＡのオリジナルサブルーチンを使ったサンプルプログラムです。
+　　使われている新しいサブルーチンの解説です。
+
+
+-	-	-	-	-	-	-	-	-	-
+
+＃ＦＧＥＴＣ　　ファイルから１バイト入力　　　　破壊：ＡＦ
+
+　　Ａレジスタにファイルから１バイト入力します。
+
+　　フラグは
+　　デバイスエラーがあった場合はＣＦ＝１，ＺＦ＝１となります。
+　　読み込むデータがなくなったらＣＦ＝１，ＺＦ＝０となります。
+
+-	-	-	-	-	-	-	-	-	-
+
+＃ＮＲＯＰＥＮ　次のファイルのオープン　　　　　破壊：ＡＦ ＢＣ ＤＥ ＨＬ
+
+  　ワイルドカードを使った場合の次のファイルをオープンします。
+　　＃ＲＯＰＥＮは最初のファイルのオープンになります。
+
+　　フラグはデバイスエラーがあった場合はＣＦ＝１、ＺＦ＝１となります。
+　　検索するファイルがなくなるとＣＦ＝１、ＺＦ＝０となります。
+
+　　基本的に
+
+　　　　CALL　　#FILE
+　　　　RET　　 C
+　　　　CALL　　#ROPEN
+LOOP1:　RET　　 C
+;
+　　　　＃ＲＤＤ等の処理
+　　　　　　　　･
+　　　　　　　　･
+;
+　　　　CALL　　#FILE
+　　　　RET　　 C
+　　　　CALL　　#NROPEN
+　　　　JP　　　LOOP1
+
+　　こういう感じで使って下さい。
+
+-	-	-	-	-	-	-	-	-	-
+-	-	-	-	-	-	-	-	-	-
+
+　　＃ＦＩＬＥを呼んだあと（＃ＷＩＬＤ）が０で無い場合は
+　　ワイルドカードを使ってます
+
+;
+;　　　 TYPE　　SAMPLE PROGRAM
+;
+#LTNL　 EQU　　 $1FEE
+#FPRINT EQU　　 $1F9D
+#FILE　 EQU　　 $1FA3
+#PAUSE　EQU　　 $1FC7
+#PRINT　EQU　　 $1FF4
+#ROPEN　EQU　　 $2009
+#NROPEN EQU　　 $209D
+#FGETC　EQU　　 $2070
+#KYBFC　EQU　　 $20D0　　　　　 ;ＯＨＭなら$INCLUDE LA.DEFとすると
+;
+#IBFAD　EQU　　 $1F74　　　　　 ;以上省略可能
+;
+　　　　OFFSET　$C000-$3000
+　　　　ORG　　 $3000
+;
+START:　LD　　　(DEBUFFA),DE
+　　　　LD　　　IX,(#IBFAD)
+
+;
+　　　　CALL　　#FILE
+　　　　RET　　 C
+　　　　CALL　　#ROPEN　　　　　;最初のファイルのオープン
+;
+TYPE1:　JR　　　C,TYPEBK
+;
+　　　　LD　　　A,(IX+1+$0B)　　;ファイル属性チェック
+　　　　AND　　 $1F　　　　　　 ;通常ファイルでないならパス
+　　　　JR　　　NZ,TYPE5
+;
+　　　　LD　　　A,(IX+1+$10)　　;ＬＡバイナリ形式チェック
+　　　　CP　　　$A0　　　　　　 ;＄Ａ０＝バイナリ形式ならパス
+　　　　JR　　　Z,TYPE5
+;
+　　　　CALL　　#FPRINT　　　　 ;ファイル名の表示
+　　　　CALL　　#LTNL
+;
+TYPE3:　CALL　　#FGETC　　　　　;ファイルから１バイト入力
+　　　　JR　　　C,TYPE4　　　　 ;CF=1 ZF=1...ERROR,CF=1 ZF=0...EOF
+　　　　CP　　　$1A　　　　　　 ;for MS-DOS
+　　　　JR　　　Z,TYPE5
+　　　　CP　　　$0A　　　　　　 ;for MS-DOS
+　　　　JR　　　Z,TYPE3
+　　　　CALL　　#PRINT　　　　　;１文字表示
+　　　　CALL　　#PAUSE　　　　　;ポーズ処理
+　　　　DW　　　TYPEBK
+　　　　JR　　　TYPE3
+;
+TYPE4:　RET　　 Z　　　　　　　 ;ZF=1 ... ERROR
+;
+TYPE5:　LD　　　DE,(DEBUFFA)　　;ワイルドカード対応の処理
+　　　　CALL　　#FILE
+　　　　RET　　 C
+　　　　CALL　　#NROPEN　　　　 ;次のファイルのオープン
+　　　　JR　　　TYPE1
+;
+TYPEBK: CALL　　#KYBFC　　　　　;処理の中止　キーバッファのクリア
+　　　　AND　　 A
+　　　　RET
+;
+DEBUFFA:DW　　　0
+;
+eof
+

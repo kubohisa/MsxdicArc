@@ -1,0 +1,244 @@
+;
+;	L-os Angeles INIT
+;
+	ORG	$2400
+;
+INIT:
+	LD	SP,(#STKAD)
+;
+	LD	HL,#HOT
+	LD	(#USR),HL
+	LD	A,$CD
+	LD	HL,$09A1
+	LD	($010F),A
+	LD	($0110),HL
+;
+	LD	BC,$1FC4
+	LD	A,$0C
+	OUT	(C),A
+;
+	LD	C,$C0
+	DB	$ED,$71
+;
+	INC	C
+	LD	A,40
+	OUT	(C),A
+;
+	INC	C
+	DB	$ED,$71
+;
+	INC	C
+	DB	$ED,$71
+;
+	LD	C,$C5
+	DB	$ED,$71
+;
+TEXT:
+	LD	C,$B0
+	LD	A,$80
+	OUT	(C),A
+	LD	D,7
+	LD	C,$B9
+	LD	HL,TEXTDT
+TEXT1:
+	INC	B
+	OUTI
+	INC	C
+	DEC	D
+	JR	NZ,TEXT1
+	LD	BC,$1FB0
+	DB	$ED,$71
+;
+	LD	C,$C4
+	DB	$ED,$71
+;
+	LD	BC,$1A01	;printer init
+	IN	A,(C)
+	BIT	3,A
+	JR	Z,PRN
+	LD	C,$03
+	LD	A,$0F
+	OUT	(C),A
+PRN:
+	LD	A,$E6
+	CALL	@COMOUT
+	CALL	@IN49SB
+	CALL	@IN49SB
+	CP	$01
+	JR	Z,NORMAL
+	LD	BC,$3FD0
+	OUT	(C),C
+	LD	A,$37
+	OUT	($D0),A
+	IN	A,(C)
+	CP	C
+	JR	Z,INIT0
+NORMAL:
+	LD	HL,$2700	;for normal X1
+	LD	DE,CPU
+	LD	BC,CPUE-CPU
+	LDIR
+;
+	LD	HL,\VER
+	LD	(#VER+1),HL
+	LD	HL,\DRD
+	LD	(#DRD+1),HL
+	LD	HL,\DWT
+	LD	(#DWT+1),HL
+	LD	HL,\WTTRK
+	LD	(#WTTRK+1),HL
+	LD	HL,\RDFAT
+	LD	(#RDFAT+1),HL
+	LD	HL,\DRDW
+	LD	(#DRDW+1),HL
+	LD	HL,\DWTW
+	LD	(#DWTW+1),HL
+;
+	LD	HL,DWTPAT+1
+	LD	(\FDCPAT+1),HL
+INIT0:
+	LD	A,$1F
+	IN	A,($F0)
+	RRCA
+	JR	C,INIT1
+	CALL	#VER
+	BIT	0,L
+	JR	Z,INIT1
+;
+	LD	HL,CRTCD
+	LD	DE,$DD
+	LD	BC,20
+	LDIR
+	LD	A,3
+	CALL	#S1FD0
+;
+INIT1:
+	CALL	$09A1
+
+	LD	A,80
+	CALL	#WIDCH
+;
+	CALL	#MPRNT
+	DB	"¥L-os Angeles for X1",0
+	CALL	#VER
+	BIT	0,L
+	LD	A,"/"
+	CALL	Z,#PRINT
+	CALL	#MPRNT
+	DB	"turbo version ",0
+	LD	A,(#LVER)
+	ADD	A,"0"
+	CALL	#PRINT
+	LD	A,"."
+	CALL	#PRINT
+	LD	A,(#LVER+1)
+	CALL	#PRTHX
+	CALL	#MPRNT
+	DB	$0D,"¥by Gaku Nakagawa as Larn M.R.(Lovers)",13
+	DB	"Ok",$0D,0
+;
+	BIT	0,L
+	JR	Z,INITN1
+	LD	A,($FF8C)
+	LD	HL,(#M2HD)
+	CP	2
+	JR	Z,INIT2
+INITN1:
+	LD	HL,(#M2D)
+INIT2:
+	LD	(INIPAT+1),HL
+;
+	LD	A,"A"
+INIT3:
+	PUSH	AF
+	CALL	#DEVADX
+	PUSH	IY
+	POP	DE
+INIPAT:	LD	HL,M2D
+	LD	BC,18
+	LDIR
+;
+	LD	(IY+!DEVNO),$87
+;
+	LD	HL,(#MTOFFA)
+	LD	(IY+!MOTOFF),L
+	LD	(IY+!MOTOFF+1),H
+;
+	LD	HL,(#GNCLA)
+	LD	(IY+!GNCL),L
+	LD	(IY+!GNCL+1),H
+;
+	LD	HL,(#SNCLA)
+	LD	(IY+!SNCL),L
+	LD	(IY+!SNCL+1),H
+;
+	LD	(IY+!SDIR),0
+	LD	(IY+!SDIR+1),0
+;
+	LD	(IY+!NAME),"F"
+	LD	(IY+!NAME+1),"D"
+	LD	(IY+!NAME+2),"D"
+	POP	AF
+	ADD	A,"0"-"A"
+	LD	(IY+!NAME+3),A
+	SUB	"0"
+	LD	(IY+!UNITNO),A
+	ADD	A,"A"
+	INC	A
+	CP	MAXDRV+$41
+	JR	C,INIT3
+;
+	LD	A,"E"
+;
+INIT4:
+	PUSH	AF
+	CALL	#DEVADX
+	LD	(IY),0
+	LD	(IY+!UNITNO),0
+	LD	(IY+!DEVNO),7
+	LD	(IY+!NAME),$20
+	LD	(IY+!NAME+1),$20
+	LD	(IY+!NAME+2),$20
+	POP	AF
+	INC	A
+	CP	MAXDRV+$41
+	JR	C,INIT4
+;
+	LD	A,($FF87)
+	AND	3
+	ADD	A,"A"
+	LD	(AUTODV),A
+	CALL	#SDVSW
+	CALL	#CHGDRV
+	CALL	FDMOFF
+;
+	LD	HL,#HOT
+	PUSH	HL
+	CALL	#KYBFC
+	LD	A,$E6
+	CALL	@COMOUT
+	CALL	@IN49SB
+	CALL	@IN49SB
+	CP	3
+	RET	Z
+	CP	$1B
+	RET	Z
+;
+	LD	HL,AUTOD
+	LD	DE,(#KBFAD)
+	LD	BC,AUTOE-AUTOD
+	LDIR
+	LD	DE,(#KBFAD)
+	JP	#CEXE
+;
+AUTOD:	DB	"COMMAND "
+AUTODV:	DB	"A:",0
+AUTOE:
+;
+TEXTDT:	DB	$03,$0C,$0F,$30,$33,$3C,$3F
+;
+CRTCD:	DB	$35,$28,$2D,$84,$1B,$00,$19,$1A,$00,$0F
+	DB	$00,$00,$00,$00,$00,$00,$6B,$50,$59,$88
+;
+INITE:
+

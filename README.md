@@ -28,6 +28,10 @@ Q:　SII ANIMEって使っても良いの？
 
 A:　Twitterにて作者様から、著作権を放棄するつもりは無いけど無料で使っても良いとの趣旨の発言をうかがってますので。SII ANIMEは、パブリックドメインなフリーウェアだと思います
 
+Q:　古いディスク・イメージファイルが残っていて、今のディスク・イメージファイルが使えません
+
+A:　WEBMSXはJavascriptで動いているため、ブラウザのキャッシュ削除の対象にならない場合があります。ブラウザのスーパー・キャッシュ削除機能を使うと削除できます。Windows版Chromeの場合は[Shift]+[F5]です
+
 Q:　「MSX」は、どこの商標ですか？
 
 A:　'MSX' is a trademark of the MSX Licensing Corporation.

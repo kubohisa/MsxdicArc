@@ -4,4 +4,4 @@
 
 ・ smallc-321.lzh
 
-　Small-C Japanese Future Forum Community Edition.
+　Small-C Japanese Future Forum Community Edition.(with ANSI-C)

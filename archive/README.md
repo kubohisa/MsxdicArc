@@ -1,7 +1,6 @@
-・ cpm2.2Binary.dsk
+・ cpm2.2Binary.dsk　…　cp/m unofficalにあるcp/m80 2.2のコマンド集
 
-　cp/m unofficalにあるcp/m80 2.2のコマンド集
+・ smallc-321.lzh　…　Small-C Japanese Future Forum Community Edition.(with ANSI-C)
 
-・ smallc-321.lzh
-
-　Small-C Japanese Future Forum Community Edition.(with ANSI-C)
+・ smallmac.dsk　…　Small MACRO Assemblerのソースリストと実行ファイル
+ 

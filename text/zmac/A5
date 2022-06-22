@@ -1,0 +1,255 @@
+.he                                Appendix A5 - ZMAC Error Messages
+.fo                                                              # 
+.TC Appendix A5 - Error Messages.................#
+                       ZMAÃ ERROÒ MESSAGES
+
+
+NOÎ-FATAÌ ERRORS„ arå identifieä iî thå PRÎ filå anä oî thå 
+consolå bù onå oæ thå followinç erroò codes‹ aó thå firsô 
+characteò iî thå line® Iæ thå erroò loç filå ió enabled¬ thå samå 
+erroò codå wilì alsï bå thå firsô entrù iî thå linå iî thå file® 
+Statemenô lineó witè erroró wilì usuallù noô generatå valiä 
+objecô code® Aî attempô tï Loaä (witè MLOAD© oò Linë aî objecô 
+filå foò whicè erroò messageó havå beeî issueä ió verù likelù tï 
+eliciô furtheò complaintó froí thå loader/linkeò anä ió almosô 
+certaiî tï producå aî unusablå .COÍ oò binarù file.
+
+Erroò Codå               Whaô iô Means:
+
+.pm 1
+.lm 16
+     A     Argumenô Error® Aî invaliä argumenô oò expressioî waó 
+               encountereä iî thå Operanä field.
+
+     B     Balancå Error® IF¬ ELSE¬ anä ENDIÆ statementó arå noô 
+               matcheä oò á MACRÏ ¯ ENDÍ paiò ió noô matched® 
+               Looë foò á placå wherå onå oæ theså elementó ió 
+               missing.
+
+     C     Characteò error® Á characteò (sucè aó á controì 
+               character© ió presenô wherå iô ió noô allowed.
+
+     D     Duplicatå symboì error® Onlù thoså occurrenceó afteò 
+               thå firsô arå markeä aó aî error® Changå thå namå 
+               foò thå seconä occurrencå tï resolvå thå conflict.
+
+     E     Expressioî error® Thå expressioî iî thå operanä fielä 
+               cannoô bå computed® Seå thå chapteò titleä 
+               'Expressions§ iæ thå causå ió noô obvious.
+
+     I     Inserô error® Thå specifieä INCLUDÅ filå cannoô bå 
+               founä oò thå alloweä nestinç leveì haó beeî 
+               exceeded.
+
+.cp 4
+     K     Keyworä error® Á registeò namå haó beeî useä iî thå 
+               LABEÌ fielä anä wilì causå ambiguitù iæ useä iî 
+               thå operanä fielä aó aî argument.
+
+     M     Mode error® Aî impropeò addressinç modå occurred® 
+               Checë foò aî expressioî thaô useó aî Externaì iî 
+               aî illegaì context.
+
+     O     Opcodå error® Therå ió somethinç iî thå Opcodå fielä 
+               thaô ió noô recognized® Looë foò á missinç taâ oò 
+               otheò formaô probleí iæ iô isn'ô jusô á typo.
+
+.cp 7Š     P     Phaså error® Á labeì haó á differenô valuå iî pasó ² 
+               thaî iô haä iî pasó 1® Á MACLIÂ-includeä filå maù 
+               contaiî codå generatinç statementó iî á pasó ± 
+               onlù processinç mode® Conditionaì (IF...ENDIF© 
+               codå whicè assembleó durinç onlù onå oæ thå twï 
+               passeó maù alsï bå tï blame.
+
+.cp 6
+     S     The famouó SYNTAØ error® Thå statemenô ió ilì-formeä 
+               anä ió noô recognizablå tï thå assembler® Looë foò 
+               delimiteró thaô arå ouô oæ placå anä foò 
+               characteró thaô arå invaliä iî thå intendeä 
+               context.
+
+.cp 5
+     T     Too manù COMMOÎ blockó havå beeî defined® Onlù 1² 
+               commoî blockó arå alloweä iî additioî tï /BLANK¯ 
+               oò uî-nameä Common® You'lì havå tï deletå thoså iî 
+               excess.
+
+     U     Undefineä symbol® Á symboì iî thå operanä fielä haó 
+               neveò beeî defined® Checë foò á spellinç oò 
+               typographicaì erroò iî thå symboì name.
+
+.cp 7
+     V     Valuå error® Aî argumenô iî thå operanä fielä ió ouô 
+               oæ itó alloweä range® Thå mosô commoî causå ió á 
+               relativå jumğ tï á targeô thaô ió toï faò away» 
+               diä yoõ inserô somå ne÷ codå betweeî thå two¿ 
+               Displacemenô argumentó foò thå IØ anä IÙ registeró 
+               caî alsï eliciô thió error.
+
+     W     Warning® Therå ió somethinç questionablå abouô thå 
+               currenô statement® Thió messagå occuró foò HD6418° 
+               oò Z18° instructionó wheî thå .Z8° pseudï-oğ ió iî 
+               effect.
+.lm 1
+.pm 0
+.paŠ                        ZMAÃ FATAÌ ERRORS
+
+FATAÌ ERRORS„ causå thå assemblù tï bå aborteä withouô generatioî 
+oæ aî objecô module® Thå erroò loç file¬ iæ enabled¬ IÓ generateä 
+anä containó á recorä oæ erroró uğ tï thå Fataì One® Fataì Erroró 
+causå aî aborô becauså thå assembleò ió lackinç vitaì informatioî 
+oò resourceó tï continuå oò becauså á controì structurå likå aî 
+IÆ clauså oò á MACRÏ ió incomplete® Onå oæ thå followinç messageó 
+wilì bå senô tï thå consolå wheî á fataì erroò occurs.
+
+<FN>.<TYP¾ NOÔ FOUND
+
+Thå filespeã iî thå commanä linå oò iî aî INCLUDÅ statemenô 
+cannoô bå found® Checë foò spellinç erroró oò wronç D/Õ speã iî 
+eitheò case® Iæ youò commanä linå ió compleø anä á gooä candidatå 
+foò typos¬ consideò makinç aî aliaó oò submiô filå tï invokå thå 
+assembly.
+
+INVALIÄ OPTIOÎ SPECIFICATION
+
+Onå oò morå oæ thå commanä linå optionó ió perceiveä aó invalid® 
+Onå causå ió forgettinç tï separatå thå optionó witè commaó oò 
+spaces.
+
+.cp 7
+MORÅ THAÎ ¸ IÆ LEVELÓ PENDING....
+
+Diä yoõ leavå ouô aî ENDIF¿ Thå linå numbeò reporteä ió thaô 
+wherå thå nintè nesteä IÆ clauså starts® Onlù ¸ nestinç leveló 
+arå provided® Youò codå wilì bå mucè morå readablå iæ nestinç 
+leveló dï noô exceeä ¶ oò · levels.
+
+UNTERMINATEÄ IF!
+
+Thå enä oæ thå filå haó beeî reacheä withouô findinç á terminaì 
+ENDIF® Afteò verifyinç thaô thå ENDIÆ ió reallù there¬ looë foò 
+otheò noî-fataì erroò messageó thaô maù indicatå codå thaô waó 
+neveò produced.
+
+.CP 10
+MEMORÙ FULL....
+
+Therå ió nï rooí lefô foò thå assembleró internaì tables® Yoõ caî 
+makå morå spacå bù a© avoidinç uså oæ thå PRÎ file¬ anä b© uså 
+ZCNFÇ tï reducå filå buffeò sizeó tï thå barå minimum® Thå onlù 
+otheò recourså ió tï breaë thå sourcå filå uğ intï smalleò fileó 
+whicè wilì lateò bå combineä bù thå linker® Don'ô bå misleä intï 
+tryinç INCLUDÅ files¡ Sourcå witè INcludeä fileó ió logicallù thå 
+samå aó iæ thå thå fileó werå physicallù present.
+
+UNTERMINATEÄ MACRO.....
+
+Thå ENDÍ statemenô ió missinç froí á MACRÏ definition¬ oò aî 
+erranô IÆ clauså haó causeä thå ENDÍ tï bå ignored.
+
+.cp 7ŠLOCAÌ LABEÌ LIMIÔ EXCEEDED
+
+Allowancå ió madå foò á granä totaì oæ 9,99¹ locaì labeló foò 
+macros® Looë foò wayó tï simplifù thå macroó tï avoiä pushinç thå 
+limit® Alsï looë foò wayó tï breaë thå prograí uğ intï linkeä 
+moduleó tï avoiä runninç ouô oæ memory!
+
+.cp 6
+MACRÏ NESTEÄ PASÔ 1¶ LEVELS....
+
+ZMAÃ provideó foò nestinç oæ macroó tï á maximuí oæ 1¶ levels® 
+There'ó probablù aî easieò waù tï codå thå functioî iæ yoõ arå 
+usinç thaô manù levels!
+
+MACRÏ DEFINITIOÎ INSIDÅ AÎ INLINÅ MACRO....
+
+Macroó maù noô bå defineä withiî thå inlinå macrosº REPT¬ IRPC¬ 
+anä IRP.
+
+.he                 Appendix A5 - ZML Error Messages
+.paŠ                     ZMÌ ERROÒ MESSAGES
+
+
+Can'ô finä filå <filespec>
+
+Checë thå directorù iî thå filespec® Ió thå filå reallù there¿ Á 
+'typo§ iî thå filenamå ió á commoî causå foò thió error.
+
+Invaliä optioî specification!
+
+Thå linkeò haó á probleí parsinç thå commanä line® Iæ therå ió nï 
+mistakå (á typo¬ foò example© iî thå option¬ theî perhapó therå 
+ió á missinç delimiter.
+
+Sourcå filespeã erroò ­ wildcarä oò baä DIR:!
+
+1)Wildcardó arå noô recognizeä iî filenames.
+2)Ió thå DUº oò DIRº portioî oæ thå filespeã correct?
+
+<filespec¾ ió aî invaliä REÌ file!
+
+Onå oæ thå sourcå fileó oî thå commanä linå ió noô á REÌ filå iî 
+thå formaô thaô thå linkeò recognizes® Diä yoõ leavå ouô á 
+delimiteò iî thå commanä line¿ Wronç filå specified?
+
+Memorù full!
+
+Thå linë procesó cannoô bå completeä becauså thå binarù imagå 
+wilì noô fiô iî availablå memorù (TPÁ space)® Trù reducinç thå 
+numbeò oæ globaì symboló bù combininç multiplå REÌ files¬ oò 
+rearranginç thå sourcå tï producå severaì smalleò ruî-timå codå 
+moduleó whicè caî bå independentlù loaded® Iæ yoõ arå usinç á 
+"fulì-up¢ ZCPR³ operatinç system¬ yoõ caî gaiî somå extrá rooí bù 
+installinç aî operatinç systeí witè mosô systeí moduleó excluded.
+
+.cp 4
+Reaä error!
+
+Therå ió somethinç wronç witè á filå whicè preventó iô froí beinç 
+properlù read® Trù reassembly¬ preferablù froí bacë-uğ files.
+
+Multiplå maiî modules!
+
+Checë thå ENÄ statemenô oî eacè oæ youò modules® Thå argumenô 
+followinç ENÄ specifieó aî obligatorù startinç address¬ anä aô 
+leasô twï oæ thå moduleó contaiî sucè á specification® Deletå thå 
+one(s© thaô arå inappropriatå anä reassemble® Thå linkeò haó nï 
+waù oæ choosinç whicè onå tï use.
+
+Librarù searcè limiô exceeded!
+
+Nï morå thaî teî librarieó caî bå specifieä iî assembler.REQUESÔ 
+statements® Iæ youò maiî sourcå filå ió innocent¬ looë 
+in.INCLUDÅ fileó foò librarù requestó thaô yoõ maù havå 
+overlooked.
+ŠUndefineä symbols
+
+Symboì name(s© listeä havå beeî referenceä viá EXTERNAÌ iî onå oò 
+morå oæ thå moduleó buô arå nowherå declareä PUBLIÃ oò GLOBAL® Á 
+commoî causå foò thió erroò ió failurå tï includå á REÌ formaô 
+librarù iî thå invokinç commanä line® Á seconä causå ió thå 
+inclusioî oæ unreferenceä externaló iî onå oæ thå assemblù sourcå 
+files® ZMAÃ caî bå configureä tï ignorå unreferenceä externals® 
+Otherwise¬ requireó reassemblù oæ thå module(s© containinç thå 
+nameó afteò addinç appropriatå PUBLIÃ declarations.
+
+Duplicatå symbols
+
+Symboì names(s© listeä havå beeî madå PUBLIÃ iî morå thaî onå oæ 
+thå moduleó beinç linked® You'lì havå tï reassemblå aô leasô onå 
+oæ thå moduleó witè duplicateä nameó changeä oò removeä froí thå 
+lisô oæ PUBLIÃ oò GLOBAÌ declarations.
+
+***Overlappinç segments***
+
+Thió messagå typicallù occuró wheî yoõ havå assigneä thå loaä 
+addresó oæ onå oò morå segmentó witè commanä linå options® Makå 
+surå yoõ havå stateä thå addresseó accuratelù anä iî HEX.
+
+.CP 6
+Internaì Error
+
+Thió messagå shoulä neveò occur® Iæ iô does¬ pleaså documenô thå 
+circumstanceó anä reporô them® Uså thå registration/buç reporô 
+forí (oò á copy© iî thió manual.
+.paŠ

@@ -1,0 +1,78 @@
+.OP
+
+                        TABLÅ OÆ CONTENTS
+
+.LM 11
+          1® INTRODUCTION..............................1
+             Installation..............................2
+             Invocation................................3
+             ZCPR3/33/34...............................5
+             Commanä Linå Options......................5
+
+          2® ASSEMBLEÒ ¦ LINKEÒ INTRODUCTION...........9
+             Thå Assembly/Linë Process.................10
+             HEØ anä REÌ Objecô files..................11
+
+          3® FILÅ FORMATSº Sourcå Files................15
+             Labeì Field...............................16
+             Thå Operatoò Field........................17
+             Thå Operanä Field.........................18
+             Thå Commenô Field.........................20
+             FILÅ FORMATSº Outpuô Files................21
+             Thå Assemblù Listing......................21
+             Thå Symboì Tablå Listing..................23
+             Thå Erroò Logginç File....................24
+
+          4® EXPRESSIONS...............................25
+             Numbers...................................25
+             Characteò Constants.......................26
+             Symboló anä Labels........................28
+             Thå Locatioî Counter......................28
+             Operatoró ¦ operatoò precedence...........30
+             Expressioî Restrictions...................32
+             Predictinç Relocatability.................35
+
+          5® PSEUDÏ-OPÓ (Assembleò Directives).........37
+
+          6® RELOCATIOÎ ¦ RELOCATIOÎ BASES.............51
+             Relocation................................51
+             Relocatioî Bases..........................54
+
+          7® MACRÏ PROCESSING..........................57
+             Thå Forí oæ Macros........................58
+             Thå Macrï Pseudï-ops......................59
+             Macrï Operators...........................60
+             Inlinå (RPT© Macros.......................61
+             Storeä Macros.............................64
+             Definitioî anä Nesting....................64
+             Macrï Invocation..........................65
+             Macrï Expansioî rules.....................67
+
+.PAŠ          8® LINKINÇ WITÈ ZML..........................69
+             Invocation................................69
+             Relocatioî Bases¬ Loaä Order..............72
+             Uninitializeä datá .......................74
+             PRÌ anä SPÒ files.........................74
+             RSØ typå files............................76
+             $MEMRÙ implementation.....................77
+             ZMÌ Commanä Syntax........................77
+             Filå Speã Optionó (Table).................79
+             Optionó (Table)...........................79
+             Formaì Syntaø (Table).....................80
+             Options¬ fulì description.................81
+             Changinç Configuration....................84
+
+          9® OPTIOÎ CONFIGURATION......................85
+             Invokinç ZCNFG............................85
+             ZMAÃ Options..............................87
+             ZMÌ Options...............................92
+
+                            APPENDICES
+
+          Appendiø A± ­ Glossary.......................95
+          Appendiø A² ­ References.....................97
+          Appendiø A³ ­ REÌ objecô Format..............100
+          Appendiø A´ ­ Opcodes........................104
+          Appendiø Aµ ­ Erroò Messages.................108
+.LM 1
+.PAŠ

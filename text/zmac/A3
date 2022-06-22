@@ -1,0 +1,181 @@
+.he                                  Appendix A3 - REL object Format
+.fo                                                              # 
+.TC Appendix A3 - REL object Format..............#
+
+             Formaô oæ ZMAÃ Relocatablå Objecô Files
+
+Thió sectioî describeó thå formaô oæ thå relocatablå objecô fileó 
+emitteä bù ZMAÃ anä useä aó inpuô tï ZMÌ anä otheò linkeró 
+thaô procesó thió formaô (commonlù knowî aó thå Microsofô REÌ 
+format)®  Thió informatioî ió includeä herå aó á reference® Iô ió 
+noô needeä aó á normaì parô oæ ZMAÃ oò ZMÌ usage.
+
+Thå Microsofô formaô consistó oæ á biô stream» fieldó withiî thå 
+biô streaí arå noô aligneä oî bytå boundaries¬ excepô aô thå enä 
+oæ á module® Eacè fielä withiî thå biô streaí ió calleä aî Item® 
+Thå leadinç bitó iî aî iteí definå thå naturå anä lengtè oæ thå 
+datá iî thå balancå oæ thå field.
+
+Therå arå twï typeó oæ itemsº absolutå anä relocatable¬ indicateä 
+bù thå firsô biô oæ thå field® Iæ thå firsô biô ió 0¬ thå nexô 
+eighô bitó arå loadeä aó aî absolutå byte® Iæ thå firsô biô ió 1¬ 
+theî thå followinç twï bitó specifù thå TYPÅ oæ thå relocatablå 
+field® Iæ thå nexô twï bitó arå 0¬ thió ió á Speciaì Linë Item® 
+Otherwiså á Relocatablå Iteí ió indicated® Eacè oæ thå possiblå 
+Linë Itemó ió illustrateä iî thå tablå oî thå nexô page.
+
+Thå REÌ biô stream‹ aó illustrateä herå ió processeä froí lefô tï 
+right® Bytå datá ió presenô iî higè-biô-firsô order® 1¶ biô datá 
+(words© arå presenô iî thå Inteì Standarä lo÷-bytå-firsô order® 
+ASCIÉ datá ió parô oæ thå biô streaí foò somå linë items» eacè 
+ascié characteò ió ¸ bitó long® Partó oæ thå biô streaí whicè arå 
+noô identifieä aó byte¬ word¬ oò ascié iî thå tablå arå calleä 
+controì bits® Iî thå table¬ fieldó withiî aî iteí arå delineateä 
+bù periodó anä thå endó oæ itemó arå indicateä bù '*'® Neitheò oæ 
+theså ió parô oæ thå format» theù arå presenô foò readabilitù 
+only.
+
+Twï oæ thå items¬ markeä 'reserved..'¬ arå noô implementeä bù 
+ZML® Iteí 100.010° ió 'reserveä foò futurå use§ bù Microsoft® 
+ZMÌ wilì emiô aî erroò messagå iæ eitheò oæ theså twï items
+occuró iî thå REÌ biô stream.
+
+
+
+                 ABSOLUTÅ ITEMÓ (firsô biô ½ 0)
+
+                'byte§ ió ¸ bitó oæ absolutå data
+
+0.byteª                 <=½ ¸ bitó oæ absolutå data
+
+
+                RELOCATABLÅ ITEMÓ (firsô biô ½ 1)
+
+              'word§ ió 1¶ bitó oæ relocatablå data
+
+100.....®               <=½ (Speciaì Linë Item¬ Seå Below)
+101.wordª               <=½ 1¶ bitó oæ codå relativå data
+110.wordª               <=½ 1¶ bitó oæ datá relativå dataŠ111.wordª               <=½ 1¶ bitó oæ commoî relativå data
+
+
+                       SPECIAÌ LINË ITEMS
+
+        'zzz§ ió á ³ biô value¬ thå numbeò of
+            byteó whicè follo÷ iî thå .ascii® field
+        'ascii§ ió á name¬ zzú characteró long
+
+100.0000.zzz.asciiª             <=½ PUBLIÃ symboì name
+100.0001.zzz.asciiª             <=½ COMMOÎ name
+100.0010.zzz.asciiª             <=½ MODULÅ name
+100.0011.zzz.asciiª             <=½ REÌ LIBRARÙ name
+
+100.0100.........®              <=½ (reserveä foò futurå use)
+
+.cp 20
+
+                 SPECIAÌ LINË ITEMÓ (continued)
+
+        yù specifieó thå applicablå relocatioî base:
+
+            0° ½ ABSOLUTÅ (relocatioî constanô ½ 0000)
+            0± ½ CODÅ Relative
+            1° ½ DATÁ Relative
+            1± ½ COMMOÎ Relativå (currenô Nameä COMMON© 
+       'size§ anä 'offset§ arå absolutå 1¶ biô numbers
+
+100.0101.yy.size.zzz.asciiª     <=½ sizå oæ nameä COMMOÎ block
+100.0110.yy.word.zzz.asciiª     <=½ externaì chain¯ nameä symbol
+100.0111.yy.word.zzz.asciiª     <=½ Publiã symboì valuå ¦ name
+100.1000.yy.offsetª             <=½ Externaì ­ offseô (reserved)
+100.1001.yy.offsetª             <=½ Externaì « offset
+100.1010.yy.sizeª               <=½ Datá segmenô size
+100.1011.yy.wordª               <=½ Seô Locatioî counter
+100.1100.yy.wordª               <=½ Chaiî addresó value
+100.1101.yy.sizeª               <=½ Codå segmenô size
+100.1110.yy.wordª               <=½ Enä oæ Module¬ entrù point
+100.1111ª                       <=½ Markó Enä oæ File
+
+.paŠ
+                  NOTEÓ FOÒ SPECIAÌ LINË ITEMS
+
+.lm 10
+.pm 1
+100.0000PUBLIÃ symbolº useä foò librarù search
+
+100.0001Selecô commoî blockº <ascii¾ ió thå namå oæ thå block.
+
+100.0010Definå modulå nameº <ascii¾ ió thå namå oæ thå module.
+
+100.0011Librarù search® Linkeò appendó <ascii>.REÌ tï thå lisô 
+         oæ sourcå fileó tï link¬ usinç onlù referenceä modules.
+ 
+100.0101Definå lengtè oæ á commoî blocë whoså namå ió <ascii¾ aó 
+         thå absolutå valuå <size>.
+
+100.0110Chaiî externalº <word¾ ió thå heaä oæ á linkeä list¬ 
+         eacè nodå oæ whicè existó iî thå addresó fielä oæ aî 
+         externaì reference®  <ascii¾ ió thå namå oæ thå externaì 
+         symbol® Thå lasô nodå (lowesô address© containó á valuå 
+         oæ absolutå zerï tï marë thå enä oæ thå chain.
+
+100.0111Definå entrù pointº <word¾ ió thå address¬ <ascii¾ thå 
+         name.
+
+100.1000Externaì minuó offsetº noô supporteä bù ZML
+
+100.1001Externaì pluó offsetº thå currenô locatioî counteò ió aî 
+         externaì referencå thaô musô bå addeä tï <offset>® Thå 
+         namå oæ thå symboì referenceä ió containeä iî <ascii>®  
+         Sincå thå referencå ió parô oæ á linkeä lisô (oæ thå 
+         chaineä external)¬ thå currenô locatioî counteò anä thå 
+         offseô valuå (<offset>© arå saved¬ anä processinç 
+         deferred¬ untiì alì chainó arå filleä iî aô thå 
+         conclusioî oæ thå linkage.
+
+100.1010Definå datá segmenô sizå aó thå absolutå valuå <size>.
+
+100.1011Seô locatioî counteò tï thå valuå oæ <word>.
+
+.cp 6
+100.1100Chaiî Internalº <word¾ ió thå heaä oæ á linkeä list® Alì 
+         nodeó iî thå chaiî arå iî thå currenô module® Eacè ió 
+         replaceä witè thå currenô valuå oæ thå locatioî counter® 
+         Useä foò resolvinç forwarä referenceó iî singlå pasó 
+         assembleró anä compilers® Likå thå Externaì Chain¬ thå 
+         lasô nodå containó absolutå zero.
+
+100.1101Definå codå segmenô sizå aó thå absolutå valuå <size>.
+
+100.1110Enä modulå (notå thió forceó inpuô tï á bytå boundary)® 
+         <word¾ containó thå entrù addresó foò thå module¬ whicè 
+         ió eitheò relativå locatioî 000° oò thå addresó giveî bù 
+         thå ENÄ statement.
+
+100.1111Enä filå (forceó á bytå boundarù anä nulì fill).
+.lm 1
+.pm 0
+Š                   RELOCATIOÎ OÆ 1¶ BIÔ VALUES
+
+'word§ valueó arå relocateä bù addinç á relocatioî constanô 
+uniquå tï thå relocatioî baså referenceä bù 'yy§ oò implieä bù 
+thå controì bitó foò Relocatablå Items® Relocatioî constants¬ RC¬ 
+foò thå fouò baseó are:
+
+.lm 11
+.pm 5
+    00 = ABSOLUTÅ ­  RÃ ½ 0000
+
+    01=CODErelative­ RÃ ½ Relocatioî Baså « cumulativå sizå 
+          oæ previouslù loadeä CODÅ segments.
+
+    10=DATArelative­ RÃ ½ Relocatioî Baså « cumulativå sizå 
+          oæ previouslù loadeä DATÁ segments.
+
+    11 = COMMOÎ relativå (currenô COMMOÎ name© ­ RÃ ½ Relocatioî 
+          Base® Doeó noô depenä oî previouslù loadeä commonó witè 
+          thå samå name.
+.lm 1
+.pm 0
+
+                             NOTES:
+.PAŠ

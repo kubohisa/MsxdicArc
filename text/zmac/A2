@@ -1,0 +1,133 @@
+.he                                         Appendix A2 - References
+.fo                                                              # 
+.TC Appendix A2 - References.....................#
+                           REFERENCES
+
+Assembler Mnemonics and CPU specific data
+
+     Title:  Z80-CPÕ Technicaì Manual
+     Pub:    Zilog¬ Inã (1976)
+             1046° Bubâ Road
+             Cupertino¬ Californiá 95014
+             phoneº (408© 446-4666
+
+     Title:  Hitaché HD6418° 8-biô Higè Integratioî CMOÓ
+             Microprocessoò Datá Book
+     Pub:    Hitaché America¬ Ltd.
+             Semiconductoò anä IÃ Saleó anä Servicå Division
+             221° O'Toolå Avenue
+             Saî Jose¬ CÁ 95131
+             phoneº (408© 942-1500
+
+Assembler & Linker principles
+
+     Titleº  Relocating Assemblers and Linkage Editors: Part 1
+     Author: Andre÷ Bender
+     Pub:    Microsystems, V4 N9, Sep 1983, p.86
+
+     Titleº  Relocatinç  Assembleró anä Linkagå Editorsº Parô 2
+     Author: Andre÷ Bender
+     Pub:    Microsystems¬ V´ N10¬ Ocô 1983¬ p.114
+
+     Titleº  Relocating Assemblers and Linkage Editors: Part 3
+     Author: Andrew Bender
+     Pub:    Microsystems, V5 N1, Jan 1984, p.120
+
+     Titleº  Structured Programming with M80
+     Author: Dennis N. Quinn
+     Pub:    Micro/Systems Journal, V1 N3, Jul/Aug 1985, p.26
+
+
+     Title:  Assemblers¬ Compilers¬ anä Prograí Translation
+     Author: Peteò Calingaert
+     Pub:    Computeò Sciencå Presó (1979)
+             1± Tafô Court
+             Rockville¬ Marylanä 20850
+     ISBN:   0-914894-23-4
+
+Programming Philosophy
+
+     Title:  Thå Mythicaì Man-Month.
+     Author: Fredericë P® Brookes¬ Jr.
+     Pubº    Addison-Wesleù Publishinç Company® (1975)
+     ISBNº   0-201-00650-2
+
+     Titleº  Writinç Interactivå Compileró anä Interpreters.
+     Authorº P.J® Brown.
+     Pubº    Johî Wileù ¦ Sons® (1979)
+     ISBNº   0-471-27609-XŠ
+CP/M Interfacing
+
+     Titleº  Thå Programmer'ó CP/Í Handbook.
+     Authorº Andù Johnson-Laird.
+     Pubº    Osbourne/McGraw-Hill® (1983)
+     ISBNº   0-88134-119-3
+
+     Titleº  Systeí Programminç undeò CP/M-80.
+     Authorº Lawrencå E® Hughes.
+     Pubº    Restoî Publishinç Co® (1983)
+     ISBNº   0-8359-7457-X
+
+     Title:  CP/Í 2.² Interfacå Guide®  
+             (alsï seå CP/Í 2.² Alteratioî Guide).
+     Pubº    Digitaì Research® (1979)
+
+ZCPR/ZRDOS/ZSDOS Interfacing
+
+     Titleº  ZCPR3¬ Thå Manual.
+     Authorº Richarä Conn.
+     Pubº    Zoetropå (1985)
+     ISBNº   0-918432-59-6
+
+     Titleº  ZCPR² Conceptó Manuaì anä ZCPR² Rationaì Manual.
+     Authorº Richarä Conn® (1983)
+     Source: viá modeí froí ZNODÅ #2¬ (213© 670-9465
+
+     Title:  CP/Í 2.² Interfacå Guide®  
+             (alsï seå CP/Í 2.² Alteratioî Guide).
+     Pubº    Digitaì Research® (1979)
+
+     Titleº  ZRDOÓ Programmer'ó Guide.
+     Authorº Dennió L® Wright® (1985)
+
+     Titleº  ZSDOÓ User'ó Guide
+     Authorº H.F® Bower¬ C.W® Cotrill¬ C® Wilson
+     Pubº    Plu*Perfecô Systemó (1988)
+             41° 23rä Street
+             Santá Monica¬ CÁ 90402¬ (213© 393-610µ (evenings)
+
+Z80 CPU programming
+
+     Titleº  Programminç thå Z80.
+     Authorº Rodneù Zaks.
+     Pubº    Sybex® (1979)
+     ISBNº   0-89588-013-X
+
+     Titleº  8080/808µ Assemblù Languagå Programming.
+     Pubº    Intel® (1979© - Manuaì Ordeò Numbeò 9800940.
+
+     Title:  CP/Í MAÃ Macrï Assemblerº 
+             Languagå Manual¯ Applicationó Guide.
+     Pubº    Digitaì Research® (1980)
+ŠProgramming and Operating System Design
+
+     Publiã Domaiî Sourcå codå listings:
+             ZCPR3¬ ZCPR33
+             ZCPRnî Utilities
+
+     Publiã Domaiî Introductioî tï Assemblù Languagå
+     programming® Aî excellenô tutoriaì iî 1° chapters.
+             MEYERTUT.LBR
+
+     Titleº  Operatinç Systeí Desigî - Thå XINÕ approach.
+     Authorº Douglaó Comer.
+     Pubº    Prentice-Hall® (1984)
+     ISBNº   0-13-637539-1
+
+     Titleº  Algorithms.
+     Authorº Roberô Sedgewick.
+     Pubº    Addison-Wesley® (1984)
+     ISBNº   0-201-06672-6
+
+.paŠ                             NOTES:
+.PAŠ

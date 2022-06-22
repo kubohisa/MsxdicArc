@@ -1,0 +1,75 @@
+.he                                           Appendix A1 - Glossary
+.fo                                                              # 
+.TC Appendix A1 - Glossary.......................#
+                            GLOSSARY
+
+.lm 13
+.pm 1
+Notation:   Interpretation:
+
+    { }     itemó iî curlù bracketó arå optional
+
+    ...     meanó thå precedinç iteí maù bå repeateä indefinitely
+
+    ( )     parentheseó grouğ itemó aó iî algebraiã notation
+
+     |      verticaì baò separateó alternatå itemó (exclusivå OR)
+
+    TXT     á sequencå oæ printablå characters® Nï spaces¬ tabs.
+
+    QTXT    TXÔ encloseä withiî singlå oò doublå quotes.
+
+    STR     á sequencå oæ printablå characteró includinç spaceó ¦ 
+            tabs
+
+    QSTR    á STÒ encloseä witè singlå oò doublå quotes® Thå 
+            quotå characteò maù bå includeä iî thå STÒ iæ iô ió 
+            immediatelù precedeä bù thå samå character.
+
+    < >     descriptioî oæ aî argument® i.e® <anù text>® Thå 
+            anglå bracketó arå noô requireä aó parô oæ thå text.
+
+     _      thå underlinå standó foò á space® Iô ió useä 
+            typicallù iî syntaø descriptionó tï distinguisè 
+            betweeî spaceó requireä bù thå syntaø anä thoså whicè 
+            arå presenô onlù tï enhancå readability® 
+
+    FN      Thå namå oæ á file® Uğ tï ¸ characters
+
+    TYP     Thå extensioî fielä iî thå fulì directorù namå oæ á 
+            file
+
+    FS      Á fulì ZCPR³ compatiblå filå specificatioî oæ thå 
+            forí [DIR:|DU:İ FÎ [.TYP]® Nï spaceó arå presenô iî á 
+            filespec® Examplesº WORK:FOO.BAÒ anä A3:GLITCH.Z80
+
+Definitions
+
+Module -    Á singlå blocë oæ Assembleò source¬ intermediatå 
+            code¬ oò machinå codå aó useä oò produceä bù 
+            assemblers¬ linkers¬ REÌ librarù managers¬ anä 
+            loaders® Intermediatå codå ió thå HEØ oò REÌ codå 
+            produceä bù thå assembleò froí sourcå statementó foò 
+            onå program® Twï oò morå REÌ moduleó caî bå 
+            concatenateä iî á singlå filå tï producå á REÌ 
+            library® Thå linkeò processeó onå oò morå REÌ moduleó 
+            tï producå aî absolutå codå module® Á loadeò likå 
+            MLOAÄ processeó HEØ moduleó tï producå aî absolutå 
+            (machine© codå module® Normally¬ thå assembleò 
+            produceó á filå containinç jusô onå module.
+ŠObject -    Á generiã terí foò HEØ oò REÌ codå modules® Alsï useä 
+            occasionallù tï describå thå machinå codå produceä bù 
+            á linker.
+
+PRN File -  Á texô listinç produceä bù aî asembleò whicè containó 
+            á representatioî oæ thå objecô codå produced¬ á copù 
+            oæ thå sourcå lines¬ anä optionallù á tablå whicè 
+            showó thå symboló defineä anä theiò values.
+
+Source File ­ Thå texô file(s© thå Assembleò readó tï producå itó 
+            outpuô files® Alsï thå REÌ file(s© inpuô tï ZML.
+
+Toggle -    tï switcè betweeî severaì mutuallù exclusivå choices® 
+
+White space ­ Spaceó oò tabó iî text.
+.paŠ

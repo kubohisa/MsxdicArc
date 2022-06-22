@@ -1,0 +1,168 @@
+.he                                            Appendix A4 - Opcodes
+.fo                                                              # 
+.TC Appendix A4 - Opcodes........................#
+                    Z80¬ Z180/HD6418° OPCODES
+
+Thå Z80/Z180/HD64180‹ opcodeó recognizeä bù ZMAÃ arå thå samå aó 
+thoså publisheä bù Ziloç anä Hitachi® Theù arå listeä iî thió 
+sectioî foò quicë mnemoniã referencå purposes® Foò morå detailó 
+abouô thå opcodes¬ yoõ maù consulô thå Ziloç oò Hitaché manualó 
+referenceä iî Appendiø 2® Thå Z80.HLĞ filå iî conjunctioî witè 
+thå ZCPR³ HELP.COM‹ provideó á screeî orienteä seô oæ datá foò 
+eacè opcode.
+
+Manù oæ thå opcodeó requirå operands® Foò á particulaò opcode¬ 
+thå operandó maù bå registers¬ registeò pairs¬ oò numbers® Thå 
+symboló useä arå summarizeä iî thå followinç table¬ whicè showó 
+thå specifiã groupó oæ registeró oò valueó representeä bù eacè 
+symbol® Thå terminologù followó thaô useä bù Ziloç anä Hitachi.
+
+
+    ====================================================
+
+    dd,só     rò     pğ     qñ        r,r§           ğ
+
+      BÃ      BÃ     BÃ     BÃ         Á            00È        
+      DÅ      DÅ     DÅ     DÅ         Â            08È        
+      HÌ      IÙ     IØ     HÌ         Ã            10È        
+      SĞ      SĞ     SĞ     AÆ         Ä            18È        
+                                       Å            20È        
+                                       È            28È        
+                                       Ì            30È        
+                                                    38H
+    ====================================================
+
+Thå followinç symboló arå useä iî thå operanä fielä tï represenô 
+á datá value.
+
+     n,ä ½ ¸ biô datá                 nî ½ 1¶ biô datá          
+
+
+.cp 5
+                     Calì anä Returî Group.
+                       
+         CALÌ nî            REÔ               RETÉ          
+         CALÌ cc,nî         REÔ cã            RETÎ             
+         RSÔ ğ            
+
+                           Jumğ Group.
+                             
+        JĞ nî               JÒ å                DJNÚ å      
+        JĞ cc,nî            JÒ C,å               
+        JĞ (HL©             JÒ NC,å     
+        JĞ (IX©             JÒ Z,å      
+        JĞ (IY©             JÒ NZ,å     
+
+                 å ½ · biô relativå offset
+
+.paŠ                     ¸ Biô Loaä Group
+
+        LÄ r,r§            LÄ (IY+d),ò         LÄ (BC),Á 
+        LÄ r,î             LÄ (HL),î           LÄ (DE),Á 
+        LÄ r,(HL©          LÄ (IX+d),î         LÄ (nn),Á 
+        LÄ r,(IX+d©        LÄ (IY+d),î         LÄ A,É    
+        LÄ r,(IY+d©        LÄ A,(BC©           LÄ A,Ò    
+        LÄ (HL),ò          LÄ A,(DE©           LÄ I,Á    
+        LÄ (IX+d),ò        LÄ A,(nn©           LÄ R,Á    
+                   
+
+                       1¶-biô Loaä Group.
+
+        LÄ dd,nî           LÄ (nn),HÌ          PUSÈ qñ 
+        LÄ IX,nî           LÄ (nn),dä          PUSÈ IØ 
+        LÄ IY,nî           LÄ (nn),IØ          PUSÈ IÙ 
+        LÄ HL,(nn©         LÄ (nn),IÙ          POĞ qñ  
+        LÄ dd,(nn©         LÄ SP,HÌ            POĞ IØ  
+        LÄ IX,(nn©         LÄ SP,IØ            POĞ IÙ  
+        LÄ IY,(nn©         LÄ SP,IÙ                    
+      
+
+                    1¶-biô Arithmetiã Group.
+
+         ADÄ HL,só          SBÃ HL,só         INÃ ss
+         ADÃ HL,só          DEÃ só            INÃ IX
+         ADÄ IX,pğ          DEÃ IØ            INÃ IY
+         ADÄ IY,rò          DEÃ IÙ          ª MLÔ ss
+
+     ª   thió instructionó ió uniquå tï Z180/HD64180
+
+.cp 7
+        Generaì Purposå Arithmetiã anä CPÕ Controì Groups
+
+        DAÁ          CCÆ         HALÔ         IM°       ª SLĞ    
+        CPÌ          SCÆ         DÉ           IM±   
+        NEÇ          NOĞ         EÉ           IM²   
+
+     ª   thió instructionó ió uniquå tï Z180/HD64180
+
+
+.cp 18Š               ¸-biô Arithmetiã anä Logicaì Group.
+                   (leadinç 'A,§ ió optional)
+                   
+        ADÄ A,ò             SBÃ A,î              XOÒ (HL©  
+        ADÄ A,î             SBÃ A,(HL©           XOÒ (IX+d)
+        ADÄ A,(HL©          SBÃ A,(IX+d©         XOÒ (IY+d)
+        ADÄ A,(IX+d©        SBÃ A,(IY+d©         CĞ ò      
+        ADÄ A,(IY+d©        ANÄ ò                CĞ î      
+        ADÃ A,ò             ANÄ î                CĞ (HL©   
+        ADÃ A,î             ANÄ (HL©             CĞ (IX+d© 
+        ADÃ A,(HL©          ANÄ (IX+d©           CĞ (IY+d© 
+        ADÃ A,(IX+d©        ANÄ (IY+d©           INÃ ò     
+        ADÃ A,(IY+d©        OÒ ò                 INÃ (HL©  
+        SUÂ ò               OÒ î                 INÃ (IX+d)
+        SUÂ î               OÒ (HL©              INÃ (IY+d)
+        SUÂ (HL©            OÒ (IX+d©            DEÃ ò       
+        SUÂ (IX+d©          OÒ (IY+d©            DEÃ (HL©    
+        SUÂ (IY+d©          XOÒ ò                DEÃ (IX+d©  
+        SBÃ A,ò             XOÒ î                DEÃ (IY+d©  
+
+
+                     Rotatå anä Shifô Group®
+                                   
+        RLCÁ                RRÃ ò                SLÁ ò           
+        RLÁ                 RRÃ (HL©             SLÁ (HL©        
+        RRCÁ                RRÃ (IX+dd©          SLÁ (IX+dd©     
+        RRÁ                 RRÃ (IY+dd©          SLÁ (IY+dd©     
+        RLÃ ò               RÒ ò                 SRÁ ò           
+        RLÃ (HL©            RÒ (HL©              SRÁ (HL©        
+        RLÃ (IX+dd©         RÒ (IX+dd©           SRÁ (IX+dd©     
+        RLÃ (IY+dd©         RÒ (IY+dd©           SRÁ (IY+dd©     
+        RÌ ò                                     SRÌ ò       
+        RÌ (HL©                                  SRÌ (HL©    
+        RÌ (IX+dd©          RLÄ                  SRÌ (IX+dd© 
+        RÌ (IY+dd©          RRÄ                  SRÌ (IY+dd© 
+
+.cp 7
+           Exchange¬ Blocë Transfer¬ anä Searcè Group.
+                  
+        EØ DE,HÌ      EØ (SP),HÌ       LDÉ         CPÉ        
+        EØ AF,AF§     EØ (SP),IØ       LDIÒ        CPIÒ       
+        EXØ           EØ (SP),IÙ       LDÄ         CPÄ        
+                                       LDDÒ        CPDÒ       
+
+
+                 „Biô Set¬ Reseô anä Tesô Group.
+
+        BIÔ b,ò       ª TSÔ ò      SEÔ b,ò       REÓ b,ò     
+        BIÔ b,(HL©    ª TSÔ î      SEÔ b,(HL©    REÓ b,(HL©  
+        BIÔ b,(IX+d©  ª TSÔ (HL©   SEÔ b,(IX+d©  REÓ b,(IX+d)
+        BIÔ b,(IY+d©  ª TSTIÏ î    SEÔ b,(IY+d©  REÓ b,(IY+d)
+        
+     ª   theså instructionó arå uniquå tï Z180/HD64180
+
+        
+.cp 11Š                     Inpuô anä Outpuô Group.
+                             
+        IÎ A,(n©           OUÔ (n),Á           OUTÉ           
+        IÎ r,(C©           OUÔ (C),ò         ª OTIÍ           
+      ª IN° r,(n©        ª OUT° (n),ò        ª OTIMÒ          
+        INÉ              ª OTDÍ                OTIÒ           
+        INIÒ             ª OTDMÒ               OUTÄ           
+        INÄ                                    OTDÒ       
+        INDÒ            
+
+     ª   theså instructionó arå uniquå tï Z180/HD64180
+                   
+
+                             NOTES:
+.PAŠ

@@ -1,0 +1,20 @@
+..FILE TO PRINT C MANUAL UNDER WS4
+.FI C0
+.FI ZMAC.TOC
+.FI C1
+.FI C2
+.FI C3
+.FI C4
+.FI C5
+.FI C6
+.FI C7
+.FI C8
+.FI C9
+.FI A1
+.FI A2
+.FI A3
+.FI A4
+.FI A5
+.FI ZMAC.IDX
+..FI REPORT.FRM
+

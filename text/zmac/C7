@@ -1,0 +1,508 @@
+.he                                               Chapter 7 - Macros
+.fo                                                              # 
+.TC 7. MACRO PROCESSING..........................#
+                        MACRÏ PROCESSING
+
+
+Á Macro‹ ió á nameä sequencå oæ assemblù languagå statementó whicè 
+ió defineä iî thå sourcå file® Thå macrï ió invokeä wheî itó namå 
+occupieó thå OPÒ fielä oæ á sourcå line® Invocatioî causeó thå 
+macrï statementó tï bå assembleä aô thió poinô beforå proceedinç 
+tï thå nexô sourcå line® 
+
+Á macrï caî havå á lisô oæ formaì parameters® Theså parameteró 
+corresponä tï partó oæ thå assemblù languagå statementó iî thå 
+macrï body® Durinç invocation¬ argumentó froí thå invokinç linå 
+replacå theiò counterpartó iî thå macrï bodù statementó beforå 
+thå statementó arå assembled® Thå statementó iî á macrï bodù caî 
+bå vieweä aó prototypå statementó whicè arå editeä beforå 
+assemblù iî accorä witè thå argumentó provideä wheî thå macrï ió 
+invoked® Thå macrï statementó coulä bå assembleä repeatedly¬ witè 
+editinç performeä durinç eacè repetition® Á singlå macrï could¬ 
+foò example¬ generatå thå sourcå codå foò á seô oæ I/Ï devicå 
+drivers® Thå referenceó listeä undeò "Z8° CPÕ Programming¢ iî 
+Appendiø ² contaiî manù exampleó oæ macrï implementation.
+
+Therå arå twï kindó oæ macrosº Inlinå anä Stored® Thå nameó oæ 
+Inlinå Macros“ arå predefineä withiî thå assembler® Thå nameó oæ 
+Storeä Macros“ arå defineä bù thå programmeò iî assemblù sourcå 
+lines® Sucè macroó arå calleä 'Stored§ becauså thå macrï 
+definitioî (sequencå oæ statements© ió storeä foò futurå 
+invocation® 
+
+.cp 13
+Macroó arå implementeä witè oæ pseudï-ops¬ operatoró uniquå tï 
+macros¬ anä normaì assemblù languagå statements® Inlinå macroó 
+ARÅ pseudï-ops® Seveî oæ thå pseudï-opó listeä iî chapteò µ arå 
+uniquå tï macroó anä macrï usage® Herå theù are¬ witè á hinô oæ 
+eacè one'ó purposå iî parentheses.
+
+     MACRÏ PSEUDÏ-OPÓ              INLINÅ MACROS
+                                                          
+    MACRÏ (definition©       REPÔ (repeaô <exp¾ times)
+    LOCAÌ (..labels©         IRPÃ (repeaô foò eacè char)
+    EXITÍ (macrï exit©       IRĞ  (repeaô foò eacè STR)
+    ENDÍ  (enä oæ macro© 
+
+Thå FORÍ oæ macroó ió discusseä iî thå nexô section® Subsequenô 
+sectionó describå Macrï Pseudï-ops¬ Operatoró Uniquå tï Macros¬ 
+Inlinå Macros¬ anä Storeä Macros.
+
+.paŠ.TC    The Form of Macros........................#
+THÅ FORÍ OÆ MACROS
+
+Macroó occuò iî thå assemblù sourcå iî twï contextsº Definitioî 
+anä Invocation® Tablå ·-± showó iî symboliã forí ho÷ macroó arå 
+encodeä iî aî assemblù sourcå file® Notå carefullù thå differencå 
+betweeî thå twï kindó oæ macros® Onå coulä saù thå definitioî oæ 
+thå Inlinå Macrï ió coincidenô witè itó invocation.
+
+================================================================
+
+                     TABLÅ ·-± MACRÏ FORMATS
+
+                        MACRÏ DEFINITION
+
+          STOREÄ MACROÓ                 INLINÅ MACROS
+
+    „ <NAME¾  MACRÏ {<dlist>ı           (noô applicable)
+             <body>
+             ENDM
+
+                        MACRÏ INVOCATION
+
+     STOREÄ MACROÓ                 INLINÅ MACROS
+
+  „ {label:ı <NAME¾ {<plist>ı      {label:ı  <INAME¾  <plist>
+                                            <body>
+                                  {label:ı   ENDM
+
+================================================================
+
+<body>ió á sequencå oæ assemblù languagå statements® Thå onlù 
+statemenô whicè ió speciaì ió MACRO» iô maù bå iî thå bodù oæ á 
+Storeä macrï buô maù NOÔ occuò iî aî Inlinå macro.
+
+<dlist>ió á lisô oæ zerï oò morå arguments¬ separateä bù commas® 
+Theså argumentó arå calleä Dummù Parameters® Theù identifù á 
+placå iî thå argumenô lisô which¬ durinç invocation¬ ió replaceä 
+bù aî actuaì argument® Dummù argumentó froí <dlist¾ arå useä iî 
+thå prototypå sourcå codå withiî <body>.
+
+<plist>ió á lisô oæ onå oò morå arguments¬ separateä bù commas® 
+Thå argumentó iî <plist¾ arå calleä Actuaì Parameters.
+
+Foò storeä macros¬ <plist¾ containó thå samå numbeò oæ argumentó 
+aó <dlist>
+
+Together¬ <plist¾ anä <body¾ controì thå sourcå codå produceä bù 
+á macro.
+
+NOTEº Thå definitioî oæ á storeä macrï musô precedå itó 
+invocatioî iî thå source.
+
+.CP 5ŠTIPº Manù macros¬ oncå defined¬ arå usefuì iî manù programs® Tï 
+avoiä transcribinç them¬ theù caî bå placeä iî á separatå filå 
+whoså filetypå extensioî ió conventionallù '.LIB'® Thió filå ió 
+theî includeä iî á particulaò assemblù witè thå MACLIÂ oò INCLUDÅ 
+statemenô neaò thå beginninç oæ thå assemblù sourcå file® 
+
+.TC    The Macro Pseudo-ops......................#
+MACRÏ PSEUDÏ-OPS
+
+ENDM
+
+Identifieó thå enä oæ á macrï definition® Thió instructioî ió 
+requireä aó thå lasô instructioî iî thå bodù oæ inlinå macroó 
+(REPT¬ IRPC¬ ¦ IRP© anä macrï definitionó (..MACRO..)® 
+
+EXITM
+
+Causeó exiô froí á macrï expansion® Normallù parô oæ á 
+conditionaì block¬ EXITM‹ terminateó expansioî oæ thå currenô 
+macro® Anù remaininç lineó oæ thå macrï bodù uğ tï thå ENDM‹ arå 
+ignored® Iæ thå currenô Macrï ió nesteä withiî anotheò (outer© 
+macro¬ expansioî oæ thå outeò macrï continues® Thå EXITÍ exitó 
+onlù froí thå currenô nestinç level® EXITÍ anä ENDÍ arå noô 
+interchangeable® Á macrï containinç aî EXITÍ statemenô musô stilì 
+bå terminateä witè aî ENDM.
+
+.cp 10
+LOCAL„    <identifier¾ û ,<identifier>...}
+
+Declareó locaì (withiî á macro© symbols® <identifier¾ ió á symboì 
+namå withiî thå bodù oæ á macro¬ includinç anù labeì foò thå ENDÍ 
+statement® Eacè timå thå macrï ió expanded¬ aî uniquå symboì ió 
+synthesizeä bù ZMAÃ foò eacè oæ thå symboló declareä LOCAL® 
+Synthetiã symboló arå oæ thå forí '??nnnn'¬ wherå nnnî rangeó 
+froí '0001§ tï '9999§ foò successivå symboì assignments.
+
+Iæ symboló arå defineä withiî á macrï withouô beinç declareä 
+LOCAL¬ theî thå seconä invocatioî oæ thå macrï wilì resulô iî 
+duplicatå symboì errors® Thå samå probleí occuró iæ labeló arå 
+defineä iî aî inlinå macro® Thå seconä iteratioî wilì causå á 
+'duplicatå symbol§ erroò foò thoså symboló noô declareä LOCAL.
+
+Thå LOCAÌ statement¬ wheî used¬ musô bå thå firsô statemenô iî 
+thå macrï body.
+
+Thå spacå allocateä foò locaì labeló ió 12· byteó foò eacè macrï 
+definition® Thå cumulativå lengtè oæ thå locaì symboló iî anù 
+individuaì macrï definitioî maù noô exceeä thió number.
+
+.cp 10ŠMACRO„   Syntaxº <name¾ MACRÏ {arç {,arg...}}
+
+Storeä Macrï definition‹ header® <name¾ musô bå present¬ anä maù 
+bå optionallù terminateä witè á colon® Thå namå giveî tï á macrï 
+ió uniquå tï thå macro¬ anä maù bå thå samå aó á defineä labeì 
+withouô causinç confusioî (tï ZMAC)® Iæ thå namå ió thå samå aó 
+onå oæ thå otheò pseudï-ops¬ theî thå macrï wilì takå precedence» 
+thå replaceä pseudï-oğ becomeó inaccessible.
+
+.cp 8
+Thå argumenô lisô ió identicaì tï <dlist¾ iî Tablå 1® Eacè 
+argumenô (arg© ió á placå-holdinç dummù argumenô whoså onlù 
+purposå ió tï establisè correspondencå betweeî locationó iî thå 
+argumenô lisô anä occurrenceó oæ thå dummù argumenô texô strinç 
+iî thå bodù oæ thå macro.
+
+.cp 5
+Storeä Macroó maù bå redefineä witè á MACRÏ statemenô whicè 
+specifieó thå namå oæ á previouslù defineä macro® Wheî á macrï ió 
+invoked¬ thå mosô recenô definitioî determineó thå kinä oæ macrï 
+expansioî thaô takeó place.
+
+.TC    Macro Operators...........................#
+OPERATORÓ UNIQUÅ TÏ MACROS
+
+Macrï implementationó maù uså thå followinç operatoró tï controì 
+thå generatioî oæ sourcå lines:
+
+     ¦  (thå concatenatioî operator)
+
+     ;» (commenô control)
+
+     Ş  (singlå characteò escape)
+
+     ¥  (numeriã evaluatioî operator)
+
+     <¾ (delimiteró foò inhibitinç evaluation)
+
+Thå operatoró listeä abovå havå meaninç onlù withiî macrï 
+argumenô listó anä macrï bodies® Theså operators¬ thå · speciaì 
+pseudï-ops¬ anä normaì assemblù languagå statementó arå useä tï 
+definå Storeä Macroó anä invokå botè Storeä anä Inlinå macros® 
+
+Thå followinç sectionó describå thå uså oæ thå seveî pseudï-opó 
+anä thå operatoró tï implemenô macros.
+
+.paŠ.TC    Inline (RPT) Macros.......................#
+INLINÅ MACROS
+
+Inlinå Macros‹ arå alsï calleä Predefineä Macros¬ Builô-iî Macros¬ 
+anä Repeaô Macros.
+
+Inlinå macroó causå ZMAÃ tï repeatedlù reaä everù linå iî <body>¬ 
+assemblinç theí tï producå objecô codå oî eacè iteration® Foò thå 
+IRĞ anä IRPÃ macros¬ thå portionó oæ <body¾ thaô matcè 
+<identifier¾ arå changed® Thus¬ thå codå produceä ió differenô 
+foò eacè iteration® Thå optionaì labeì showî precedinç thå macrï 
+invocatioî ió NOÔ parô oæ thå macrï itself® Itó valuå wilì bå thå 
+addresó oæ thå firsô linå oæ codå produceä bù thå macro® Á labeì 
+presenô aô thå ENDÍ statement¬ however¬ ió assembleä oî eacè pasó 
+througè <body¾ becauså thå assembleò musô reaä (anä assemble© 
+thaô line® Thå resultº iæ thå repetitioî counô ió greateò thaî ± 
+á phaså erroò wilì bå generateä foò labeló thaô arå noô redefineä 
+bù thå LOCAÌ pseudï-oğ oò bù concatenatioî witè thå ¦ operatoò aó 
+discusseä below.
+
+.CP 25
+REPT„     <exp>
+
+Repeaô Macro® Thå grouğ oæ statementó iî <body¾ wilì bå assembleä 
+oveò anä over® Iæ á labeì ió presenô aô thå ENDÍ statement¬ iô ió 
+reallù parô oæ <body>» iô musô bå á LOCAÌ oò concatenateä labeì 
+whicè changeó valuå witè eacè iteration® Thå numbeò oæ 
+repetitionó ió giveî bù thå valuå oæ <exp>® Alì variableó useä iî 
+thå expressioî musô havå beeî previouslù defined® (nï externaló 
+oò forwarä references)
+
+Foò example¬ thå followinç macrï wilì generatå á blocë oæ datá 
+containinç thå numberó 1...10.
+
+          .LALÌ          ;ensurå listinç iî thå PRÎ file
+     XXØ  SEÔ  ±         ;seô initiaì valuå outsidå thå macro
+          REPÔ 1°        ;;repeaô 1° times
+          DÂ   XXØ       ;;generatå á datá statement
+     XXØ  SEÔ  XXX+±     ;;incremenô thå valuå oæ XXX
+          ENDÍ           ;;terminatå thå macrï body
+
+Thió examplå illustrateó thå concept» witè aî expressioî morå 
+compleø thaî thå onå (XXX+1© shown¬ á morå usefuì seô oæ valueó 
+mighô bå produced® Foò á reallù LARGÅ blocë oæ data¬ thió kinä oæ 
+macrï caî bå á timå saver!
+
+.CP 30ŠIRPC„     <identifier>,STR
+
+Indefinitå Repeaô Characteò Macro® STÒ ió á strinç oæ characteró 
+whicè doeó noô includå whitå space® <identifier¾ ió anù valiä 
+symbol.
+
+Foò eacè characteò iî STR¬ <body¾ ió assembleä once» thuó thå 
+repetitioî counô foò thió macrï ió thå numbeò oæ characteró iî 
+STR® Beforå eacè linå oæ <body¾ ió assembled¬ anù occurrenceó oæ 
+<identifier¾ iî thå linå arå replaceä bù thå currenô characteò 
+froí STR®
+
+Thå followinç macrï invocation:
+
+      exirpcº  IRPÃ  xx,cbed
+               lä    xx,(hl©   ;;aî ignoreä comment
+               inã   hì        ;á repeateä comment
+               ENDM
+
+woulä producå thå followinç assemblù code:
+
+                lä   c,(hl)
+                inã  hì        ;á repeateä comment
+                lä   b,(hl)
+                inã  hì        ;á repeateä comment
+                lä   e,(hl)
+                inã  hì        ;á repeateä comment
+                lä   d,(hl)
+                inã  hì        ;á repeateä comment
+
+
+.CP 25ŠIRĞ      <identifier>,STÒ {,STR...}
+
+Indefinitå Repeaô Strinç Macro® Thå strategù ió verù mucè likå 
+thaô oæ thå IRPÃ macro¬ excepô thaô thå repetitioî counô ió thå 
+numbeò oæ strings¬ witè thå entirå currenô STÒ beinç substituteä 
+foò occurrenceó oæ <identifier>® Á simplå examplå ió creatioî oæ 
+á jumğ tablå likå thaô aô thå starô oæ á BIOS:
+
+      biosº     IRĞ xx,cboot,wboot,const,conin
+       xx&vº    jğ   xx
+                ENDM
+
+ woulä produce:
+
+      biosº     
+      cbootvº   jğ   cboot
+      wbootvº   jğ   wboot
+      constvº   jğ   const
+      coninvº   jğ   conin
+                ......
+
+Notå thå uså oæ thå concatenatioî operatoò (&© tï generatå labeló 
+correspondinç tï thå jumğ targets® Iæ thå labeì iî thå macrï haä 
+beeî v&xxº theî labeló likå vcbootº woulä havå beeî generated.
+.paŠ.TC    Stored Macros.............................#
+STOREÄ MACROS
+
+Aó showî iî Tablå ·-1¬ á storeä macrï ió defined¬ anä theî lateò 
+invoked¬ bù name® Froí á programminç viewpoint¬ definitioî meanó 
+writinç á blocë oæ codå likå thaô iî thå table® Invocatioî ió 
+eveî simpler® Thå followinç sectionó describå theså twï aspectó 
+iî termó oæ ho÷ texô ió beinç processeä bù ZMAC'ó macrï processoò 
+anä oæ thå effectó produceä bù thå speciaì macrï operators.
+
+.TC    Definition and Nesting....................#
+MACRÏ DEFINITIOÎ anä STORAGE
+
+Wheî thå MACRÏ instruction‹ ió encountereä iî thå OPÒ fielä oæ á 
+linå oæ input¬ ZMAÃ storeó thå namå oæ thå macrï iî itó internaì 
+tables® Alì lineó froí thaô poinô througè thå matchinç ENDÍ arå 
+processeä aó follows.
+
+.lm 4
+.pm 1
+1. Thå dummù parameteò lisô ió storeä iî á buffeò allocateä tï 
+   thå currenô macrï name.
+
+2. Labeló nameä iî thå LOCAÌ statemenô arå saveä iî á lisô whicè 
+   ió privatå tï thió macro.
+
+3. Otheò lineó froí <body¾ arå storeä iî thå samå buffeò area¬ 
+   except..
+
+4. Characteró froí ';;§ tï enä oæ linå arå noô stored® Thå doublå 
+   semicoloî startó á commenô fielä whicè ió displayeä iî thå PRÎ 
+   filå ONLÙ wherå thå macrï ió defined® Sucè commentó wilì noô 
+   appeaò iî thå listinç oæ thå macrï invocatioî becauså theù arå 
+   noô includeä iî thå storeä <body>.
+.pm 0
+.lm 1
+
+.cp 7
+MACRÏ REDEFINITION
+
+Á macrï maù bå redefined® Redefinitioî meanó thaô thå namå oæ á 
+previouslù defineä macrï ió rå-useä iî á ne÷ macrï definition® 
+Wheî thå namå ió useä tï invokå á macro¬ thå mosô recenô 
+definitioî ió thå onå thaô ió expanded.
+
+.cp 7
+NESTEÄ MACRÏ DEFINITIONS
+
+Withiî á macrï definition¬ á seconä macrï definitioî maù bå 
+written® Eacè sucè definitioî ió terminateä bù itó owî ENDM® Yoõ 
+maù nesô macroó tï á leveì oæ 16¬ wherå thå firsô nesteä macrï ió 
+aô nestinç leveì 1.
+
+Á nesteä macro‹ maù redefinå thå macrï withiî whicè iô ió nested!
+
+Inlinå macroó maù bå nesteä withiî á storeä macro® Thå converse¬ 
+however¬ ió noô allowed» á Storeä Macrï maù NOÔ bå defineä withiî 
+aî Inlinå macro.
+
+.cp 12Š.TC    Macro Invocation..........................#
+MACRÏ INVOCATION
+
+Wheî á macrï ió invoked¬ ZMAÃ takeó itó inpuô lineó froí thå 
+macroprocessoò (MP© insteaä oæ directlù froí thå sourcå file® Thå 
+MĞ iî turî takeó itó texô inpuô froí á memorù imagå oæ thå macrï 
+<body¾ alonç witè itó parameteró anä locaì labels® Inlinå macroó 
+arå storeä iî á temporarù buffeò whicè ió deallocateä wheî thå 
+repetitioî counô haó beeî completed® Storeä Macroó residå iî 
+permanentlù allocateä memory¬ wherå theù caî bå calleä repeatedlù 
+bù name® Thå imagå iî memorù ió changeä onlù wheî á macrï ió 
+redefineä (replaceä witè anotheò image).
+
+Thå MĞ copieó lineó froí <body¾ tï thå ZMAÃ inpuô routine® Durinç 
+thå transfer¬ actuaì parameteró froí thå macrï invocatioî linå 
+arå substituteä foò dummù parameteró froí <body>® Thió procesó ió 
+calleä macrï expansion® Durinç expansion¬ aî actuaì parameteò maù 
+bå modified» thereiî lieó mucè oæ thå usefulnesó oæ macros® Thå 
+followinç paragraphó describå thå macrï expansioî process‹ foò onå 
+typicaì linå oæ thå macrï body.
+
+.cp 9
+1.Thå linå froí <body¾ ió searcheä foò characteò stringó thaô 
+arå subjecô tï replacemenô bù Actuaì parameteò strings® Theù arå 
+identifieä bù searchinç foò stringó thaô matcè thoså iî dummù 
+parameteò list¬ subjecô tï certaiî texô conditions:
+
+     Thå strinç ió NOÔ á dummù parameteò if:
+.lm 12
+.pm 9
+        a) founä iî thå commenô field
+        b) precedeä bù Ş (uğ-arrow)
+        c) surroundeä bù whitå spacå oò comma¬ withiî á QSTR
+
+.pm 6
+     Thå strinç IÓ á dummù parameteò if:
+.pm 9
+        a) precedeä oò followeä bù '&'
+        b) surroundeä bù whitå spacå oò comma¬ anä NOÔ parô oæ á 
+           QSTR
+.lm 1
+.pm 0
+
+Iî thå followinç steps¬ 'dummù parameter§ meanó thoså stringó 
+whicè conforí tï thå abovå rules.
+
+2.Eacè dummù parameter‹ ió 'paireä off§ witè thå correspondinç 
+ACTUAÌ parameter‹ giveî iî thå invocatioî linå aó parô oæ <plist¾ 
+baseä oî thå correspondinç positionó oæ thå dummù anä actuaì 
+parameteò argumentó iî <dlist¾ anä <plist>® Leadinç whitå spacå 
+ió ignoreä foò thå argumentó iî botè lists.
+
+3® Dummù Arguments‹ iî lineó froí <body¾ arå replaceä witè theiò 
+correspondinç Actuaì arguments® Thió replacemenô ió calleä 
+'passinç aî argument'® Beforå passinç thå actuaì argument¬ itó 
+firsô characteò ió examined® Baseä oî thå identitù oæ thaô firsô 
+character¬ thå replacemenô takeó placå iî accorä witè onå oæ fouò 
+possiblå setó oæ rules® Threå oæ thå caseó arå identifieä bù thå 
+characteró '(singlå quote)¬ <(lefô angle)¬ anä %(percenô sign)® 
+Anù otheò initiaì characteò invokeó thå fourtè case® Tablå ·-² 
+containó thå fouò caseó oæ parameteò substitution.
+
+.CP 4Š4® Iæ á symboì iî thå labeì fielä oæ á storeä macrï linå matcheó 
+onå oæ thå symboló iî thå LOCAÌ list¬ theî iô ió replaceä witè 
+thå nexô availablå synthetiã symboì oæ thå forí '??nnnn:'.
+
+.CP 32
+================================================================
+
+               TABLÅ ·-² ACTUAÌ PARAMETEÒ PASSING
+
+CASEº Dummù parameteò Replacemenô action:
+
+„ § 
+Á quoteä string® (QSTR)® Thå string¬ includinç thå quotes¬ 
+replaceó thå dummù parameter.
+
+„ ¼ 
+Thió ió á bracketeä string® Alì characteró uğ tï thå terminatinç 
+righô brackeô (>© arå substituteä foò thå dummy® Thå openinç anä 
+closinç bracketó arå NOÔ includeä iî thå substitution® Bracketó 
+maù bå nested» nesteä <¾ pairó ARÅ includeä iî thå substitution® 
+Iæ thå Actuaì parameteò ió <<TXT>¾ theî thå strinç whicè replaceó 
+thå dummù parameteò wilì bå <TXT¾ ® Wheî righô oò lefô anglå 
+bracketó occuò withiî á quoteä strinç theù arå treateä aó normaì 
+characteró witè nï speciaì significance.
+
+„ %
+Thå sequencå oæ characteró whicè followó ió passeä tï thå 
+expressioî evaluatoò foò immediatå evaluatioî aó á 1¶ biô value® 
+Thaô valuå ió theî converteä intï itó ASCIÉ representatioî iî thå 
+currenô RADIX® Iæ thå RADIØ pseudï-oğ haó noô beeî useä tï 
+establisè á radix¬ theî thå numbeò wilì bå á Decimaì 
+representatioî (ZMAÃ defaultó tï decimal)® Thå ASCIÉ strinç 
+replaceó thå dummù parameter.
+
+<other>
+Iæ thå firsô characteò ió nonå oæ thå above¬ theî thå entirå 
+Actuaì argumenô (thå sequencå oæ characteró uğ tï thå nexô whitå 
+space¬ comma¬ oò semicolon© replaceó thå dummù argument.
+
+================================================================
+.paŠ.TC    Macro Expansion rules.....................#
+SUMMARÙ OÆ MACRÏ EXPANSIOÎ RULES
+
+Durinç macrï expansion¬ Actuaì parameteró froí <plist¾ arå 
+substituteä foò Dummù parameteró iî thå texô froí <body>.
+
+Dummù parameteró arå recognizeä anä replaceä iæ they:
+    ­ arå á strinç whicè matcheó onå oæ thå memberó oæ <dlist>
+.lm 7
+.pm 1
+AND - arå precedeä bù space¬ tab¬ oò commá anä arå followeä bù 
+      space¬ tab¬ comma¬ oò enä-oæ-line
+OÒ  ­ arå precedeä bù aî ampersanä (&)¬ eveî iî á quoteä string
+OÒ  ­ arå followeä bù aî ampersanä (&)¬ eveî iî á quoteä string
+.pm 0
+.lm 1
+
+Dummù parameteró whicè otheò wiså meeô thå abovå requirementó arå 
+noô replaceä iæ they:
+    ­ occuò iî thå commenô field
+OR  ­ arå precedeä bù aî uğ-arro÷ (^)
+OR  ­ occuò iî á quoteä strinç withouô aî ampersand
+
+Durinç replacemenô oæ dummù parameters¬ anù leadinç oò trailinç 
+'&§ arå removeä froí thå line® Aî uğ-arro÷ thaô precedeó á dummù 
+parameteò ió removed¬ anä replacemenô oæ thaô dummù bù aî actuaì 
+parameteò ió inhibited.
+
+Actuaì parameteró arå passeä iî accorä witè thå followinç rules:
+
+.lm 7
+.pm 1
+    - leadinç anä trailinç blankó arå removed
+    - quoteä stringó arå passeä intact¬ includinç thå defininç 
+      quotes
+    - arbitrarù texô withiî anglå bracketó ió passeä verbatim® 
+      Thå paiò oæ defininç lefô anä righô anglå bracketó ió 
+      discarded.
+    - á leadinç ¥ causeó immediatå evaluatioî iî thå currenô 
+      radix
+    - á leadinç uğ-arro÷ causeó thå nexô characteò tï bå passeä 
+      literallù withouô anù speciaì interpretation® Thå uğ-arro÷ 
+      ió strippeä (noô passed).
+.pm 0
+.lm 1
+
+.paŠ                             NOTES:
+.PAŠ

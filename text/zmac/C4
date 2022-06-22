@@ -1,0 +1,411 @@
+.he                                          Chapter 4 - Expressions
+.fo                                                              # 
+.TC 4. EXPRESSIONS...............................#
+                           EXPRESSIONS
+
+Thió chapteò discusseó expressions® Thå formaì notatioî foò aî 
+expression‹ ió <exp>» iô wilì frequentlù bå abbreviateä aó 'exp§ 
+iî thió manuaì (Seå Appendiø A1¬ Glossary)® Thå followinç 
+sectionó wilì discusó thå basiã elementó oæ expressionó anä thå 
+ruleó foò constructioî oæ valiä expressions® 
+
+Aî expressioî ió aî algebraiã combinatioî oæ operandó anä 
+operators® Operandó (<opa>© arå thå numbers¬ symbols¬ anä 
+characteò constants® Operatoró (<opr>© specifù arithmetic/logicaì 
+functionó tï bå performed® Thå completå lisô oæ operatoró appearó 
+iî Tablå ´-1.
+
+Herå ió á verù condenseä (anä recursive© definitioî oæ aî 
+expression:
+
+     <exp¾ ½ û {<opa>ı <opr¾ ı <opa>
+     <opa¾ ½ <num¾ ü <sym¾ ü <chaò constant¾ ü <exp>
+     <opr¾ ½ <onå oæ thå operatoò symboló froí Tablå ´-1>
+
+Thå simplesô forí oæ aî expressioî is
+     <exp¾ ½ <opa>
+wherå <opa¾ ió eitheò á number¬ á symbol¬ oò á characteò 
+constant® Iî thå followinç sections¬ wå wilì discusó theså 
+elementó oæ expressionó beforå goinç oî tï operatoró anä morå 
+compleø expressions.
+
+ELEMENTÓ OÆ EXPRESSIONS
+
+.TC    Numbers...................................#
+NUMBERS
+
+Threå kindó oæ datá whicè maù bå presenô iî thå OPÁ fielä oæ á 
+linå oæ assembleò sourceº cpõ registeò references¬ ¸ biô 
+quantities¬ anä 1¶ biô quantities® Wheî thå OPÒ fielä containó aî 
+opcodå (seå Appendiø A´ foò á lisô oæ opcodes)¬ thå OPÁ fielä 
+containó aô mosô ONÅ sucè quantitù designateä aó 'n§ oò 'nn'® 'n§ 
+ió aî ¸ biô quantitù anä 'nn§ ió á 1¶ biô quantity® Aî ¸ biô 
+quantitù haó á numeriã valuå iî thå rangå ° tï 0ffè (hexadecimaì 
+notation© whicè ió thå samå aó ° tï 25µ (decimaì notation)® Á 1¶ 
+biô quantitù haó á valuå iî thå rangå ° tï 0ffffè (° tï 65,53µ 
+decimal)® Yoõ maù substitutå á NUMBEÒ foò 'n§ oò 'nn§ whereveò 
+theù occuò iî thå argumenô tï aî opcode.
+
+Onå oæ thå followinç Radiø Indicators„ musô bå appendeä tï á 
+numbeò iæ iô ió beinç representeä iî á baså otheò thaî thå 
+currenô default:
+
+.lm 5
+    Radiø Indicatoò     RADIØ     numbeò type
+            Â              ²         binary
+            Ï              ¸         octal
+            Ñ              ¸         octal
+            Ä              1°        decimaì (normaì default)
+            È              1¶        hexadecimal
+.lm 1
+ŠTï avoiä confusion¬ thå RADIØ ió ALWAYÓ expresseä iî decimaì 
+notatioî iî thió manual® ZMAÃ bù defaulô assumeó thaô numberó arå 
+expresseä iî decimal® Thió meanó thaô yoõ don'ô havå tï appenä 
+thå 'D§ radiø indicatoò tï decimaì numbers¬ buô yoõ DÏ havå tï 
+appenä thå 'H§ tï á numbeò thaô ió intendeä tï bå hexadecimal.
+
+Thå defaulô RADIØ useä bù thå assembleò caî bå changeä bù 
+includinç á .RADIØ statemenô aó follows:
+
+          .RADIØ     î           <=½ 'n§ ió assumeä tï bå decimal
+
+Thereafter¬ untiì thå nexô .RADIØ statemenô oò thå enä oæ thå 
+program¬ thå defaulô radiø wilì bå 'n'» yoõ wilì havå tï appenä á 
+radiø indicatoò tï anù numbeò noô intendeä tï bå iî thå currenô 
+radix® Thå argumenô 'n§ foò thå .RADIØ pseudï-oğ ió noô 
+restricteä tï thå abovå fouò numbeò baseó (radixes)® Thå RADIØ 
+assignmenô caî bå anythinç froí ² tï 255® Uså oæ otheò numbeò 
+bases¬ however¬ caî bå detrimentaì tï youò mentaì health!¡ Thå 
+maximuí numbeò baså foò whicè youò terminaì wilì producå sensiblå 
+screeî outpuô ió 3¶ (digitó °-¹ ¦ letteró Á-Z).
+
+'n§ ió alwayó assumeä tï bå DECIMAÌ iî thå RADIØ statemenô sï yoõ 
+don'ô havå tï makå calculationó foò aî argumenô iî á strangå 
+numbeò base® Iæ yoõ wanô tï uså Binary¬ Octal¬ oò HEØ instead¬ 
+yoõ can» jusô adä thå trailinç Radiø operator® Therå arå noô manù 
+practicaì applicationó foò odä-balì radixes¬ buô theù comå 'free§ 
+witè thå generalizeä algorithí implementeä iî ZMAC.
+
+Thå samplå filå PRINT.Z8° containó á varietù oæ RADIØ assignmentó 
+anä demonstrateó theiò uså iî á macrï usinç thå .prinô pseudï-op® 
+Odä radixeó likå · oò ¹ wilì noô worë witè mosô otheò assemblers® 
+
+NOTÅ thaô iæ yoõ seô radiø tï aî odä baså anä forgeô tï switcè iô 
+bacë tï somethinç morå 'normal§ yoõ wilì geô somå strangå lookinç 
+assemblies!
+
+
+.TC    Character Constants.......................#
+CHARACTEÒ CONSTANTS
+
+Á characteò constant‹ ió onå oò twï ASCIÉ printablå characteró 
+encloseä iî singlå oò doublå quotes® Spaceó anä tabó arå alsï 
+alloweä aó parô oæ á characteò constant® Á characteò constanô ió 
+converteä tï á numbeò bù thå assembler® Iô caî bå useä whereveò á 
+numbeò ió alloweä iî statementó anä expressions® Thå numbeò thaô 
+thå assembleò generateó ió thå ASCIÉ valuå oæ thå character® Foò 
+example¬ 'A§ woulä generatå thå valuå 41è anä 'a§ woulä converô 
+tï 61h® Thå numberó generateä bù singlå characteró arå ¸-biô 
+quantitieó (bytes)® Wheî TWÏ characteró arå presenô insidå thå § 
+oò ¢ delimiters¬ á 1¶-biô numbeò (á word© ió generateä anä storeä 
+iî thå codå imagå iî inverteä order® Thå characteò constanô 'AB§ 
+ió converteä tï thå numbeò 4241h» thå ordeò ió reversed¡ Thió ió 
+becauså thå texô yoõ enteò ió assumeä tï bå iî 'humaî readablå 
+formº higè bytå first¬ whilå thå CPÕ expectó tï finä 1¶-biô 
+numberó storeä lo÷ bytå first.
+Š.CP 10
+Characteò constantó looë likå shorô Strings® Thå assembleò 
+distinguisheó betweeî characteò constantó anä stringó bù thå kinä 
+oæ statemenô iî whicè theù appear® Stringó arå noô alloweä iî 
+expressions¬ foò example¬ oò iî D× statements® Opcodeó (seå 
+appendiø A4© frequentlù requirå ¸-biô oò 1¶-biô arguments® Theså 
+arå numbers® Onå oò twï quoteä characteró wilì bå interpreteä aó 
+characteò constants® Herå arå somå exampleó oæ characteò 
+constantó anä thå codå produced¬ takeî froí aî actuaì assemblù 
+PRÎ listingº (Worä bytå orderº high,low)
+
+     ³         ½ 003²         var±    eqõ     '2'
+     ´         ½ 414²         var²    eqõ     'AB'
+   13°   028C§ 313²                   DEF×    '12'
+   14³   02B8§ 003°                   D×      "0"
+   15°   02CC§ 003± 313²              D×      '1','12'
+   15¶   02E4§ 020Å 020Å              D×      ADDRS1,ADDRS1
+
+
+.PAŠ.TC    Symbols and Labels........................#
+SYMBOLÓ anä LABELS
+
+Á SYMBOÌ ió á namå whicè standó foò á number® Wå ofteî speaë oæ 
+thå VALUÅ oæ á symbol® Thaô valuå ió simplù thå associateä 
+number® Á LABEÌ ió á symboì iî thå labeì fielä oæ anù assemblù 
+sourcå linå excepô EQU¬ SET¬ anä MACRÏ statements® Thió ió á finå 
+distinction¬ anä thå termó 'label§ anä 'symbol§ arå frequentlù 
+useä interchangeably® Thå characteró whicè maù bå useä iî á 
+symboì arå identicaì tï thoså listeä foò thå LABEÌ FIELÄ iî thå 
+chapteò oî Sourcå Filå Format® Herå arå somå typicaì symboì 
+names¬ froí aî actuaì assembly:
+
+***ª Symboì tablå ***ª                                      
+$LABELÙ         000Ä %LABEÌ          000Å .LABEÌ          0017
+@LABEÌ          000Â ABCDÅ           006´ ABCDEÆ          0064
+ASM$MAÃ         006³ ASMMAÃ          006² CLABEÌ          0000
+FGHIÊ           006´ Ç               00C¸ GHIJKÌ          0064
+L$ABELÚ         000Ä L%ABEÌ          000Å L.ABEÌ          0017
+L?ABEÌ          001¸ L@ABEÌ          000Â LAÂ             0000
+LABEL0·         000· LABEL0¸         000¸ LABEL0¹         0009
+LABEL¿          001¸ LABELÀ          000Â LABELX¤         000D
+LABELß          001³ L_ABEÌ          001³ Í               00C8
+QQQQQQQQQQQQQÑ  000Å QQQQQQQQQQQQQQÑ 000Æ Ó               00C8
+
+
+.TC    The Location Counter......................#
+LOCATIOÎ COUNTER
+
+Thå Locatioî Counter‹ (alsï calleä Prograí Counter© containó thå 
+addresó oæ thå codå generateä durinç assemblù oæ eacè sourcå 
+line® Á speciaì symboì ió useä tï referencå thå Locatioî Counterº 
+'$'(dollaò sign)® Iô caî bå useä likå anù otheò symbol® Wheî thå 
+Locatioî Counteò ió referenceä durinç assemblù iî absolutå mode¬ 
+iô ió absolute® Wheî referenceä durinç assemblù iî relocatablå 
+mode¬ iô ió relocatable® Withiî á PHASÅ-DEPHASÅ blocë oæ code¬ 
+thå locatioî counteò ió absolute.
+
+.CP 10
+EXAMPLES
+
+Thå sourcå foò ZCPR³ containó manù conditionallù assembleä blockó 
+oæ code® Iæ toï manù arå enabled¬ thå machinå codå produceä wilì 
+bå largeò thaî thå spacå allotteä foò thå CCĞ iî mosô systems® Tï 
+guarä againsô thió possibility¬ á labeì ió placeä aô thå 
+beginninç (usuallù ZCPR3:© oæ thå code® Aô thå enä oæ thå prograí 
+ió á statemenô like:
+
+     IÆ (¤-ZCPR3© ¾ MAXSIZ
+TOÏ MANÙ OPTIONÓ HAVÅ BEEÎ SELECTED
+     ENDIF
+
+Thå differencå betweeî thå currenô valuå oæ thå Locatioî Counteò 
+anä thå starô oæ thå prograí is¬ oæ course¬ thå length® Iæ iô ió 
+greateò thaî thaô alloweä (MAXSIZ)¬ theî ZMAÃ attemptó tï 
+assemblå thå followinç line® Sincå thaô linå ió noô á legaì inpuô 
+tï thå assembleò (it'ó NOÔ á commenô line!)¬ iô ió treateä aó aî 
+error® Thå linå ió printeä aô youò consolå aó parô oæ aî erroò Šmessagå tï alerô yoõ tï thå problem® Anotheò example:
+
+     jğ   ¤         ;thió ió aî infinitå loop¬ jumpinç tï itself
+
+
+.PAŠ.TC    Operators & operator precedence...........#
+OPERATORS
+
+Thå operatoró recognizeä iî expressionó arå illustrateä iî thå 
+followinç table® Thå symboló Á anä Â maù bå expressions® Notå 
+thaô somå operatoró arå unary» theù onlù takå onå argument® Onå 
+operator¬ NUL¬ takeó nï argumenô aô all.
+
+===============================================================
+
+                      TABLÅ ´-1¬ OPERATORS
+
+Operatoò       Arithmetiã Operatioî Performed
+
+Á  «  Â        arithmetiã sum
+Á  „­  Â        arithmetiã difference
+Á  ª  Â        unsigneä integeò multiplication
+Á  ¯  Â        unsigneä integeò division
+Á MOÄ Â        integeò remaindeò afteò A/B
+Á SHÌ Â        shifô Á lefô Â timeó witè zerï filì oî thå right
+Á SHÒ Â        shifô Á righô Â timeó witè zerï filì oî thå left
+
+Operatoò       Conditioî foò á TRUÅ valuå (elså FALSE)
+
+Á EÑ  Â        Á ió numericallù equaì tï B
+Á  ½  Â        Á ió numericallù equaì tï B
+Á LÔ  Â        Á ió numericallù lesó thaî B
+Á  ¼  Â        Á ió numericallù lesó thaî B
+Á LÅ  Â        Á ió numericallù lesó thaî oò equaì tï B
+Á <½  Â        Á ió numericallù lesó thaî oò equaì tï B
+Á GÔ  Â        Á ió greateò thaî B
+Á  ¾  Â        Á ió greateò thaî B
+Á GÅ  Â        Á ió greateò thaî oò equaì tï B
+Á >½  Â        Á ió greateò thaî oò equaì tï B
+Á NÅ  Â        Á ió NOÔ equaì tï B
+Á <¾  Â        Á ió NOÔ equaì tï B
+                    (Continueä oî nexô page)
+.PAŠ
+                      TABLÅ ´-1¬ OPERATORS
+
+Operatoò       Biô-wiså logicaì result
+
+  NOÔ Â        Alì bitó arå complemented
+Á ANÄ Â        Logicaì ANÄ oæ Á anä B
+Á  OÒ Â        Logicaì OÒ oæ Á anä B
+Á XOÒ Â        Logicaì Exclusivå OÒ oæ Á anä B
+
+Operatoò       Resulô oæ thå operation
+
+ HIGÈ Â        Samå aó Â SHÒ 8
+  LO× Â        Samå aó Â ANÄ 0FFH
+.lm 16
+.pm 1
+  NUL          Returnó TRUÅ valuå iæ thå remaindeò oæ thå currenô 
+               linå containó nothinç buô whitå space® Anythinç 
+               whicè followó thå NUÌ operatoò wilì bå ignoreä buô 
+               wilì causå á FALSÅ valuå tï bå returned® NUÌ ió 
+               usefuì foò testinç foò emptù argumentó iî macros.
+.pm 0
+.lm 1
+
+.paŠOPERATOÒ PRECEDENCE
+
+Durinç evaluatioî oæ aî expression¬ thå ordeò iî whicè operationó 
+arå performeä ió controlleä bù á precedencå rule® Thió ió 
+requireä tï avoiä ambiguity® Thå entirå expressioî ió (aô leasô 
+conceptually© scanned¬ anä thoså operationó aô thå toğ oæ thå 
+followinç lisô arå performeä first¬ followeä bù thoså nexô loweò 
+iî thå list® Operatoró oî thå samå linå havå equaì precedence» 
+thå ordeò iî whicè theù arå employeä ió theiò lefô-tï-righô 
+sequencå iî thå expression.
+
+.lm 5
+    ¨ © Û İ                          <=½ highesô precedence
+    ª ¯ MOÄ SHÌ SHR
+    « -
+    EÑ ½ LÔ ¼ LÅ <½ GÔ ¾ GÅ >½ NÅ <>
+    NOT
+    AND
+    OÒ XOR
+    HIGÈ LOW
+    NUÌ                              <=½ lowesô precedence
+.lm 1
+
+Naturally¬ aó iî algebraiã expressions¬ therå wilì bå timeó wheî 
+yoõ wanô tï controì (oò bå confidenô of© ho÷ elementó oæ thå 
+expressioî arå groupeä togetheò foò evaluation® ZMAÃ letó yoõ 
+parenthesizå expressions® Further¬ yoõ maù uså eitheò parentheseó 
+oò squarå bracketó aó yoõ please® Thió meanó thaô ZMAÃ properlù 
+processeó expressionó thaô uså thå olä ZAÓ squarå brackets® Bå 
+aware¬ however¬ oæ onå distinctionº somå opcodeó takå eitheò oæ 
+twï formó aó onå oæ theiò arguments® Thå solå distinctioî betweeî 
+instructionó likå lä hl,(nn© anä lä hl,nî ió thå seô oæ 
+parentheseó thaô surrounä onå oæ thå arguments® Here¬ squarå 
+bracketó arå NOÔ thå samå aó parentheses¡ Squarå bracketó FORCÅ 
+thå argumenô tï bå interpreteä aó aî immediatelù loadeä quantity® 
+Thå tablå belo÷ giveó exampleó oæ botè styles.
+
+     typeº lä rr,nî           typeº lä rr,(nn)
+
+     lä rr,<exp¾              lä   rr,(<exp>)
+     lä rr,1+(<exp>*<exp>©    lä   rr,(1+[<exp>*<exp>])
+     lä rr,[<exp>]
+
+
+.cp 10
+.TC    Expression Restrictions...................#
+EXPRESSIOÎ RESTRICTIONS
+
+Quantitieó useä iî expressionó havå beeî describeä aó havinç á 
+value® It'ó noô quitå thaô simple® Symboló defineä aó labeló iî 
+thå Code¬ Data¬ anä Commoî segmentó arå taggeä aó Relocatable¬ 
+whilå thoså froí thå Absolutå segmenô anä .PHASÅ blockó arå 
+taggeä Absolute® Further¬ somå symboló maù noô bå defineä iî thå 
+currenô modulå aô all® Theù arå declareä Externaì anä theiò 
+relocatabilitù ió undefined® 
+
+.cp 8ŠRelocatioî (addinç aî appropriatå constanô tï eacè relocatablå 
+quantity© ió donå bù thå linker¬ whicè getó itó informatioî froí 
+thå biô streaí thaô compriseó thå Microsofô REÌ formaô outpuô 
+file® Bù thå timå thå biô streaí ió generated¬ alì expressionó 
+musô havå beeî evaluateä tï onå oæ thå followinç formó alloweä bù 
+thå REÌ format:
+
+.pm 5
+.lm 8
+    1) á 1¶ biô valuå pluó á relocatioî baså taç (notå thaô onå 
+       oæ thå baseó ió Absolute)
+    2) á 1¶ biô valuå pluó aî Externaì tag
+    3) thå namå oæ aî externaì anä á 1¶ biô offseô tï bå added.
+    4) thå namå oæ aî externaì anä á 1¶ biô offseô tï bå 
+       subtracted.
+.lm 1
+.pm 0
+
+Therå ió nï provisioî tï pasó aî expressioî tï thå linker¡ Thus¬ 
+anù expressioî musô bå ablå tï bå reduceä aô assemblù timå tï onå 
+oæ thå abovå forms® 
+
+.paŠ.ix expression rules
+Herå arå thå ruleó foò valiä expressions® Iæ theù arå violated¬ 
+yoõ wilì bå blesseä witè aî erroò messagå anä lefô tï rå-examinå 
+youò expressioî iî thå lighô oæ theså rules.
+
+.lm 4
+.pm 1
+1)Botè operandó iî alì arithmetiã anä logicaì operationó EXCEPÔ 
+   additioî anä subtractioî musô bå absolute® Sucè arithmetiã anä 
+   logicaì operationó producå á quantitù whicè ió itselæ 
+   absolute.
+
+2)Leô Á bå aî absolutå quantity¬ Å aî externaì symbol¬ anä Ò á 
+   relocatablå symbol® Thå followinç formó arå valiä anä producå 
+   thå resultinç typeó showî aô thå right:
+.lm 1
+.pm 0
+
+     Å  «  Á        External
+     Å  ­  Á        External
+     R± ­ R²        Absolutå  (R1¬ R² iî samå relocatioî base)
+     Ò  ­  Á        Relocatable
+     Ò  «  Á        Relocatable
+
+Aî expressioî ió generallù morå compleø thaî theså ruleó imply® 
+However¬ recallinç thå recursivå definitioî oæ aî expressioî aô 
+thå beginninç oæ thió section¬ yoõ wilì realizå thaô thå ruleó 
+caî alsï bå applieä recursivelù tï seå iæ thå expressioî ió 
+valid® 
+
+Therå ió aî easieò way¬ discusseä iî Calingaert'ó booë (seå 
+References¬ Appendiø A2)¬ anä useä bù Neiì Colviî iî hió 
+documentatioî foò thå TDÌ Assembler® Thaô methoä ió explaineä anä 
+illustrateä iî thå followinç paragraphs.
+.paŠ.TC    Predicting Relocatability.................#
+PREDICTINÇ RELOCATABILITY
+
+Thå linkeò wilì adä á constanô ò tï eacè relocatablå quantity® 
+Anticipatinç thió relocation¬ rewritå youò expressioî witè ò 
+algebraicallù addeä tï eacè relocatablå symbol® Theî rå-arrangå 
+thå resultinç expressioî iî aî attempô tï factoò ouô thå r's® Iæ 
+V¬ W¬ X¬ anä Ù arå relocatable¬ theî onå mighô construcô thå 
+followinç expression:
+
+          Ù « 2*Ø -3*× +V
+
+Tï evaluatå itó relocatability¬ adä ò tï eacè relocatablå symbol:
+
+          (Y+r© « 2*(X+r© ­ 3*(W+r© « (V+r)
+
+Rearrangå tï obtaiî thå algebraiã equivalent:
+
+1© removå parentheses:
+
+          Ù « ò « 2Ø « 2ò -3× -3ò +Ö +r
+
+2© collecô termó tï get:
+
+          Ù « 2*Ø ­ 3*× « r
+
+Iî general¬ iæ ò caî bå factoreä out¬ iô maù havå á coefficient® 
+Iæ ò vanishes¬ theî thå coefficienô ió zero¬ oæ course® Thå ruleó 
+arå simpleº 
+
+iæ thå coefficienô ió 0¬ theî thå expressioî ió absolute® 
+
+Iæ thå coefficienô ió ± (thå abovå example)¬ theî thå expressioî 
+ió relocatable® 
+
+Iæ thå coefficienô ió noô ° oò 1¬ theî iô ió illegaì becauså iô 
+cannoô bå relocated.
+
+Likewise¬ iæ ò factoró ouô witè aî exponenô (otheò thaî 1)¬ thå 
+expressioî ió noô relocatable.
+.PAŠ                              NOTES
+.paŠ

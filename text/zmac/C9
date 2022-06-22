@@ -1,0 +1,429 @@
+.he                                Chapter 9 - Configuration Utility
+.fo                                                              # 
+.TC 9. OPTION CONFIGURATION......................#
+                 OPTIOÎ CONFIGURATIOÎ WITÈ ZCNFG
+
+ZCNFÇ ió á generaì purposå configuratioî utilitù whicè maù bå 
+useä tï ediô optionó iî anù prograí foò whicè á configuratioî 
+filå haó beeî constructed® It¬ alonç witè thå .CFÇ fileó thaô arå 
+parô oæ youò distributioî disk¬ provideó á menõ orienteä meanó oæ 
+reviewinç anä changinç manù parameteró thaô controì thå operatioî 
+oæ ZMAC¬ ZML¬ anä ZCNFÇ itself® Configuratioî optionó arå 
+displayeä iî onå oò morå menus® Thå currenô selectioî foò eacè 
+optioî ió displayeä aó parô oæ thå menõ information® Á HELĞ 
+screeî caî alsï bå invokeä foò assistancå iî selectinç options.
+
+ZCNFÇ ió universaì becauså iô useó aî overlaù filå tï providå thå 
+menõ layout(s)¬ Helğ screen(s)¬ anä datá specifyinç thå locatioî 
+anä naturå oæ eacè option® Aî appropriatå overlaù musô bå  
+presenô foò thå targeô program» ZCNFÇ loadó iô automaticallù oò 
+aó á resulô oæ á commanä linå specification® Althougè ZCNFÇ ió á 
+Ú-systeí utility¬ iô revertó tï CP/Í compatibilitù wheî ZCPR3ø ió 
+noô present® 
+
+.TC    Invoking ZCNFG............................#
+INVOCATION
+
+Onå oæ thå followinç commanä lineó wilì providå á helğ screeî 
+whicè explainó ho÷ tï invokå ZCNFG.
+
+.lm 5
+    ZCNFG
+    ZCNFÇ ¯                         <=½ ¿ maù replacå thå /
+    ZCNFÇ /¯                        <=½ ¿ maù replacå thå /
+.lm 1
+
+ZCNFÇ haó twï methodó oæ findinç thå overlaù fileº implieä anä 
+explicitlù declareä oî thå commanä line® Aî expliciô declaratioî 
+takeó precedencå oveò aî implieä one¬ anä useó thå implieä 
+filespeã tï providå defaultó foò unspecifieä portionó oæ thå 
+expliciô filespec.
+
+.cp 6
+Implieä filespec:„ Thå overlaù filenamå ió iî thå targeô filå oò 
+haó thå samå namå aó thå targeô filå anä ió iî thå currenô oò 
+Alternatå DÕ directory.
+
+          ZCNFÇ  FS
+
+ZMAC¬ ZML¬ anä ZCNFÇ contaiî á µ characteò strinç aô relativå 
+locatioî 0DÈ (righô afteò thå Z³ header© whicè ió uniquå tï eacè 
+program® Thaô strinç ió takeî aó thå namå portioî oæ thå implieä 
+filespec® Thå directorù portioî defaultó tï thå currenô DU¬ anä 
+thå filetypå extensioî defaultó tï .CFG® Notå thaô thå overlaù 
+fileó provideä witè ZMAÃ arå oæ thaô form.
+
+
+.CP 7ŠExpliciô filespecº Thå overlaù filå ió thå seconä filespeã iî thå 
+commanä tail® e.g.:
+
+          ZCNFÇ  FÓ ß FS
+
+whereº    FÓ ½ [DUº ü DIR:][<filename>][.<filetype>]
+
+Thå firsô filespeã (FS© defineó thå (target© prograí thaô ió tï 
+bå configured® Thå seconä filespeã defineó thå associateä overlaù 
+file® Aó implied¬ alì partó oæ botè specificationó arå optional® 
+Iæ everythinç ió omitteä thå helğ screeî wilì bå displayed® Aî 
+erroò messagå wilì bå thå rewarä oæ omittinç onlù thå firsô FS.
+
+MENÕ ANÄ INSTALLATIOÎ CONTROL
+
+Ø oò Esc„  ½ Savå changeó ¦ eXit
+
+¯ oò ?„    ½ Explaiî Menõ Options
+
+Ñ oò ^C„   ½ Quit¬ nï changeó saved
+
+¾ oò .„    ½ Nexô Menu¬ ¼ oò ,„ ½ Previouó Menu
+
+
+.PAŠ.TC    ZMAC Options..............................#
+                       ZMAÃ OPTIONS
+
+SYSTEÍ INTERFACÅ OPTIONS
+
+Z³ Msç Buffeò Offset„               (defaultº 42H)
+Z³ Systeí Filå number„              (defaultº   4)
+
+Oî thå firsô assemblù error¬ ZMAÃ setó thå prograí erroò flag® 
+Thå namå oæ thå currenô inpuô filå ió writteî intï thå systeí 
+filå buffeò numbeò specified® Thå erroò type¬ DÕ speã foò thå 
+file¬ anä thå linå numbeò iî thå filå aô thå offseô nameä abovå 
+iî thå Z³ messagå buffer.
+
+Alternatå DU„                       (defaultº  ??)
+
+Thió optioî supplieó thå DÕ tï searcè foò aî inpuô filå afteò aî 
+unsuccessfuì searcè oæ thå currenô directory® Á ¿ iî thå DÕ ió á 
+forí oæ wildcardº iô referó tï thå currenô Drivå oò User® Foò 
+example,
+
+?¸   meanó 'looë iî Useò numbeò ¸ oæ thå currenô drive'
+b¿   meanó 'looë oî Drivå Â iî thå currenô useò number'
+c¹   means¬ oæ course¬ tï searcè directorù C9º foò thå file
+
+Thå Alternatå DÕ specificatioî serveó thå samå purposå aó thå 
+ZRDOÓ PUBLIÃ Directorù function® Commonlù useä librarieó (.LIÂ 
+foò ZMAC,.REÌ foò ZML© caî bå kepô iî onå directory¬ alwayó 
+accessiblå froí anù loggeä-iî currenô directory® Theù dï NOÔ havå 
+tï bå presenô iî thå currenô DÕ tï bå referenced.
+
+Additionaì Options
+
+Ne÷ optionó maù havå beeî addeä sincå thió manuaì waó printed® 
+These¬ aó welì aó thå oneó alreadù described¬ arå explaineä iî 
+thå HELĞ screenó availablå wheî runninç ZCNFG.
+
+.cp 10
+DEFAULÔ FILETYPÅ OPTIONS
+
+Sourcå Filå type„                   (defaultº Z80)
+
+Thió filetypå extensioî wilì bå assumeä foò thå Sourcå filå beinç 
+assembled® Anù extensioî provideä iî thå commanä linå will¬ oæ 
+courså supersedå thió default® Changå iô iæ yoõ normallù uså somå 
+otheò extensioî (likå .ASÍ oò .MAC© foò youò sourcå files.
+
+INCLUDE/MACLIÂ filå type„           (defaultº LIB)
+
+Thió ió thå defaulô extensioî foò nameó giveî iî .IÎ oò MACLIÂ 
+statements® Iæ thå namå iî thå .IÎ statemenô includeó á filetypå 
+extension¬ theî thaô onå wilì takå precedence.
+
+Listinç Filå type„                  (defaultº PRN)
+
+Thió ió thå defaulô filetypå foò thå listinç file® Aî expliciô 
+filetypå iî thå Ğ optioî filespeã oî thå commanä linå supersedes.Š
+.cp 6
+Symboì tablå Filå type„             (defaultº SYM)
+
+Thió ió thå defaulô filetypå foò thå Symboì Tablå file® Aó witè 
+alì otheò defaulô filetypes¬ aî expliciô onå iî thå commanä linå 
+takeó precedence.
+
+REÌ OBJecô Filå type„               (defaultº REL)
+
+Thå objecô filå produceä iî Microsofô REÌ formaô wilì havå thió 
+filetypå extensioî bù default.
+
+HEØ OBJecô Filå type„               (defaultº HEX)
+
+Thió ió thå defaulô extensioî foò thå Inteì HEØ formaô outpuô 
+file.
+
+Erroò Loç Filå type„                (defaultº ERR)
+
+Thå defaulô extensioî foò thå Erroò Loç File® 
+
+
+I/Ï CONTROÌ OPTIONS
+
+Listinç tï Console?„                (defaultº  NO)
+
+Thió ió thå defaulô foò thå commanä linå 'C§ optioî toggle
+
+Listinç tï Disë File?„              (defaultº  NO)
+
+Thió ió thå defaulô foò thå commanä linå 'P§ optioî toggle
+
+Listinç tï Printer?„                (defaultº  NO)
+
+Thió ió thå defaulô foò thå commanä linå 'L§ optioî toggle.
+
+Generatå OBJecô File?„              (defaultº YES)
+
+Thió ió thå defaulô foò thå commanä linå 'O§ optioî toggle.
+
+Generatå Symboì File?„              (defaultº  NO)
+
+Thió ió thå defaulô foò thå commanä linå 'S§ optioî toggle.
+
+OBJecô typå (HEX/REL)„              (defaultº REL)
+
+Thió ió thå defaulô foò thå commanä linå 'H§ optioî toggle.
+Thå togglå ió betweeî HEØ anä REL¬ anä determineó thå kinä oæ 
+objecô filå producedº Microsofô REÌ format¬ oò Inteì HEØ format.
+
+Makå Erroò Loç File?„               (defaultº YES)
+
+YEÓ causeó aî erroò loç filå tï bå produceä wheî erroró occur® 
+Thió ió thå defaulô foò thå commanä linå 'E§ option.
+ŠSTOĞ iæ erroró exceeä xxx„          (defaultº xxø ½ 100)
+
+Thió optioî defineó thå numbeò oæ noî-fataì erroró thaô caî occuò 
+beforå abortinç thå currenô assembly® Á valuå oæ ° causeó erroò 
+limiô checkinç tï bå ignored» aî aborô neveò occurs.
+
+DEFAULÔ BUFFEÒ SIZES
+
+ZMAÃ employó useò configurablå filå i/ï bufferó whicè arå 
+allocateä aô ruî time® Allocatioî ió automatic® Bufferó noô 
+requireä bù defaulô settingó oò commanä taiì argumenô optionó arå 
+noô allocated® Thå spacå ió insteaä allocateä foò uså bù thå 
+memorù-residenô symboì anä Macrï tables® Wheî sucè bufferó ARÅ 
+allocated¬ theiò sizå ió thaô assigneä durinç configuration.
+
+Buffeò sizeó arå stateä iî termó oæ 12¸-bytå records® Thus¬ thå 
+defaulô sizå oæ thå Sourcå filå buffeò ió 16*128=2K® Yoõ maù 
+changå theså tï á numbeò betweeî ± anä 32® (zerï lengtè ió noô 
+allowed)® Smalleò bufferó makå rooí foò assemblù oæ largeò anä 
+morå compleø sourcå files® Largeò bufferó increaså thå speeä oæ 
+aî assemblù througè reduceä disë I/O.
+
+Sourcå Filå Buffer„                 (defaultº  16)
+
+Objecô Filå Buffer„                 (defaultº   8)
+
+Listinç Filå Buffer„                (defaultº  16)
+
+Erroò Loç Filå Buffer„              (defaultº   4)
+
+
+LISTINÇ FORMAÔ CONTROLS
+
+Forí Feeä aô Starô oæ listing?„          (defaultº  NO)
+
+Thió settinç assumeó thaô thå printeò ió aô toğ-oæ-pagå wheî thå 
+assemblù listinç starts® Iæ yoõ wanô á forí feeä beforå thå firsô 
+linå ió printed¬ changå thió tï YES.
+
+Forí Feeä aô Enä oæ listing?„            (defaultº YES)
+
+Thió settinç causeó á forí feeä afteò thå lasô linå ió printeä 
+anä avoidó leavinç thå printeò iî thå middlå oæ á page® Togglå tï 
+NÏ tï eliminatå thió formfeed.
+
+.cp 9
+Keeğ Pagå Paritù iî Listing?„            (defaultº YES)
+
+Afteò printinç ió complete¬ ZMAÃ noteó whetheò aî odä oò eveî 
+numbeò oæ pageó haó beeî printed® Iæ thå numbeò ió odd¬ theî aî 
+extrá formfeeä ió issued® Witè faî-folä paper¬ alì listingó wilì 
+theî havå thå samå orientatioî witè respecô tï thå fold® Althougè 
+thió costó oî averagå 1/² sheeô peò listing¬ thå conveniencå ió 
+harä tï beat¡ Togglå tï NÏ iæ yoõ don'ô wanô thió feature.
+
+.cp 7ŠGeô Pagå sizå froí Z³ Environment?„      (defaultº  NO)
+
+Changinç thió tï YEÓ wilì causå ZMAÃ tï retrievå thå pagå lengtè 
+anä widtè foò botè thå consolå anä thå printeò froí thå currentlù 
+selecteä oneó iî thå ZCPR³ environment® Thå defaulô lengthó anä 
+widthó belo÷ wilì theî bå ignored.
+
+Defaulô Pagå Length„                     (defaultº  66)
+
+Thå totaì lengtè oæ thå page¬ lines® ZMAÃ allowó foò toğ anä 
+bottoí margins® Thió pagå lengtè ió useä foò botè thå Printeò anä 
+thå PRÎ file.
+
+Defaulô Pagå widtè foò Lisô Device„      (defaultº  80)
+
+Thå totaì widtè iî termó oæ prinô characters® ZMAÃ allowó foò 
+margins.
+
+Defaulô Pagå widtè foò PRÎ filå Listing„ (defaultº 132)
+
+Thió numbeò specifieó thå linå lengtè foò lineó senô tï thå PRÎ 
+file® Lineó longeò thaî thió wilì bå truncateä oî thå right® Thió 
+linå lengtè anä thå onå foò thå lisô devicå (printer© worë 
+independently® Á lonç linå wilì bå truncateä aô 8° characteró 
+wheî senô tï thå printer¬ anä aô 13² characteró iî thå PRÎ file® 
+
+Includå Linå Numberó iî Listing?„        (defaultº YES)
+
+Togglå thió tï NÏ iæ yoõ wanô tï removå linå numberó froí thå 
+listing.
+
+Statemenô Sequencå (foò linå numbering)?(defaultº  NO)
+
+Separatå linå numberinç ió maintaineä foò eacè sourcå filå anä 
+linå numberó arå noô incrementeä foò macrï expansioî code®  Thuó 
+thå linå numberó corresponä tï lineó iî eacè sourcå file® Thió 
+makeó iô easù tï locatå lineó iî thå sourcå whicè maù neeä 
+changing.
+
+Changinç thió tï YEÓ wilì causå linå numberó tï bå assigneä 
+sequentiallù regardlesó oæ INCLUDEä sourcå fileó oò macrï 
+expansions.
+
+Linå Numbeò First?„                      (defaultº YES)
+
+Thió settinç causeó linå numberó tï appeaò aô thå faò lefô oæ thå 
+listing® Changinç thió tï NÏ wilì causå thå linå numberó tï bå 
+printeä betweeî thå CODÅ fielä anä thå sourcå linå field.
+
+Lisô Falså Conditionals?„                (defaultº  NO)
+
+Sourcå lineó withiî á falså conditionaì blocë wilì noô bå 
+includeä iî thå listing® Theù producå nï code® Changå thió tï YEÓ 
+iæ yoõ wanô thoså lineó listed.
+Š.cp 10
+Lisô .TITLE¬ PAGE¬ etc® statements?„     (defaultº  NO)
+
+Inclusioî oæ Lineó containinç Listinç Controì pseudï-opó iî thå 
+outpuô filå oò listinç ió inhibited® Thió ió thå samå aó iæ thå 
+.XCTÌ pseudï-oğ haä beeî invoked® (Seå .XCTÌ anä .LCTÌ iî thå 
+chapteò oî pseudï-opó foò á list© Thå EFFECÔ oæ thå hiddeî 
+pseudï-opó ió stilì present® Settinç thió tï YEÓ causeó alì thå 
+lineó containinç thoså pseudï-opó tï bå includeä iî thå listing¬ 
+anä ió equivalenô tï thå actioî oæ thå .LCTÌ instruction.
+
+.cp 10
+ Higè Bytå firsô in:
+Addresseó iî Operand„                    (defaultº YES)
+Wordó iî D× stmnts„                      (defaultº YES)
+
+Theså twï selectionó controì thå ordeò iî whicè thå higè anä lo÷ 
+byteó oæ 1¶ biô quantitieó (words© arå displayeä iî thå assemblù 
+listing® Humanó generallù likå tï seå thå higè bytå first» thå 
+actuaì ordeò oæ storagå (iå aó showî iî á memorù dump© ió lo÷ 
+bytå first® Togglå theså aó youò needó dictate.
+
+Macrï Expansionsº XALL¬ SALL¬ LALL„      (defaultº LALL)
+
+Thió ió á threå waù togglå whicè yoõ caî uså tï selecô whicè oæ 
+thå macrï listinç optionó yoõ prefeò aó default® Refeò tï thå 
+descriptionó oæ .XALL,.SALL¬ and.LALÌ iî thå chapteò oî 
+pseudï-opó tï seå iæ yoõ wanô tï changå thå defaulô setting.
+
+DEFINÅ THÅ MEANINÇ OÆ 'TRUE'
+
+Uså 1¶ BITÓ tï tesô Trueness?
+Uså LO× BIÔ tï tesô Trueness?„           (default)
+
+Aî expressioî useä iî aî IÆ (conditionaì assembly© clauså ió 
+reduceä aô assemblù timå tï á 1¶ biô binarù numbeò whicè ió 
+testeä bù onå oæ twï methodsº 1)ió iô zerï oò noî-zero¬ anä 
+2)ió iô odä oò even¿ Z/NÚ ió á 1¶ BIÔ test» odd/eveî ió 
+equivalenô tï á tesô oæ thå leasô significanô bit® Thå IÆ clauså 
+ió assembleä iæ thå tesô resultó iî á TRUÅ value¬ wherå TRUÅ ió 
+defineä aó NÚ wheî 1¶ BIÔ testinç ió beinç used¬ anä aó ODÄ (lsâ 
+½ 1© wheî LO× BIÔ ió thå tesô chosen® Iô ió importanô tï kno÷ 
+whicè conventioî ió beinç useä iî ordeò foò youò IÆ clauseó tï 
+havå predictablå behavior® Digitaì Researcè assembleró uså thå 
+LO× BIÔ methoä foò testinç values» thå Microsofô M8° assembleò 
+useó thå 1¶ BITÓ methoä (Z/NZ© foò testing.
+
+Thió optioî determineó whicè methoä ZMAÃ useó bù default® Thå twï 
+pseudï-ops.IF± and.IF1¶ (iî chapteò 5© permiô expliciô controì 
+iæ thå methoä useä froí thå assemblù source.
+
+.paŠ.TC    ZML Options...............................#
+                         ZMÌ OPTIONS
+
+DEFAULÔ FILETYPÅ OPTIONS
+
+Sourcå Filå type„                   (defaultº REL)
+
+Thå defaulô filetypå foò thå Microsofô REÌ formaô inpuô files.
+
+Executablå Filå type„               (defaultº COM)
+
+Thå defaulô filetypå foò thå binarù outpuô filå iæ itó executioî 
+addresó ió 100H® Foò fileó noô executablå aô 100H¬ thå extensioî 
+wilì bå BIN® Eitheò oæ theså ió supersedeä bù anù filetypå giveî 
+foò thå outpuô filå oî thå commanä line.
+
+Symboì Tablå Filå type„             (defaultº SYM)
+
+Thå defaulô filetypå foò thå globaì Symboì tablå file.
+
+
+I/Ï CONTROÌ OPTIONS
+
+Lisô Symboì Tablå oî Console?„      (defaultº  NO)
+
+Iæ yoõ wanô thå Globaì Symboì tablå listeä oî thå consolå bù 
+default¬ theî makå thió YES® Yoõ wilì theî benefiô bù alsï 
+turninç oî  'Pagå Consolå Display§ (below)
+
+Makå Symboì Tablå File?„            (defaultº  NO)
+
+Don'ô makå á globaì Symboì tablå filå unlesó thå commanä linå 
+optioî 'S§ ió present® Settinç thió tï YEÓ wilì causå ZMÌ tï 
+makå thå Globaì Symboì tablå bù default.
+
+Pagå Consolå Display?„              (defaultº  NO)
+
+'P§ optioî oî thå commanä linå wilì causå paginç oæ thå consolå 
+display® Thió ió onlù usefuì wheî thå Symboì tablå ió beinç senô 
+tï thå consolå oò therå ió á largå numbeò oæ unresolveä oò 
+missinç symbols.
+
+LINË OPTIONS
+
+Uninitializeä Data
+
+Thå 'U§ optioî defineó thå filì valuå thaô wilì bå presenô iî 
+uninitializeä areaó oæ thå absolutå outpuô (COÍ oò BIN© file® 
+Notå thaô thió filì valuå doeó noô oveò ridå valueó resultinç 
+froí Datá Storagå (DS© assembleò instructions¬ whicè specifù filì 
+bytes® Thió optioî ió usefuì tï providå speciaì valueó foò codå 
+thaô ió tï bå puô intï á PROÍ oò ROM.
+
+.CP 15ŠSYSTEÍ INTERFACÅ OPTIONS
+
+Thå nexô twï configuratioî options¬ thougè present¬ arå currentlù 
+noô used® Wheî Linë erroró occur¬ however¬ thå ZCPR³ prograí 
+erroò flaç ió set.
+
+Z³ Msç Buffeò Offset„               (defaultº 42H)
+
+Z³ Systeí Filå number„              (defaultº   4)
+
+Alternatå DU„                       (defaultº  ??)
+
+Thió optioî supplieó thå DÕ tï searcè foò aî inpuô filå wheî á 
+searcè oæ thå defaulô directorù haó failed® Seå thå descriptioî 
+oæ Alternatå DÕ foò ZMAÃ options® 
+
+.paŠ                             NOTES:
+
+Additionaì Options
+
+Ne÷ optionó maù havå beeî addeä sincå thió manuaì waó printed® 
+These¬ aó welì aó thå oneó alreadù described¬ arå explaineä iî 
+thå HELĞ screenó availablå wheî runninç ZCNFG.
+
+.PAŠ

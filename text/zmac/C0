@@ -1,0 +1,41 @@
+.op
+
+
+
+
+                 ZMAC RELOCATING MACRO ASSEMBLER
+                         and ZMÃ LINKER
+
+               Copyright 1988¨ 1989 by A.E. Hawley
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Trademarks∫† Z80¨† Z180¨† Zilog¨† Inc.ª† HD64180¨† Hitachiª CP/M¨ ç
+ZSID¨ DigitaÏ Research¨ Inc.
+
+                             WARNING
+
+THI”† PROGRAÕ† ANƒ† INSTRUCTIOŒ† MANUAÃ† AR≈† PROTECTEƒ† BŸ† U.SÆ ç
+COPYRIGH‘† LA◊ (TITL≈ 1∑ UNITEƒ STATE” CODE)Æ† UNAUTHORIZEƒ SALE” ç
+AND/O“ REPRODUCTIOŒ MAŸ RESUL‘ IŒ IMPRISONMEN‘ O∆ U– Tœ ON≈† YEA“ ç
+ANƒ FINE” O∆ U– Tœ $10,00∞ (1∑ US√ 506)Æ COPYRIGH‘ INFRINGER” MAŸ ç
+ALSO BE SUBJECT TO CIVIL LIABILITY.
+.paä                     IntentionaÏ BlanÎ Page
+.paä

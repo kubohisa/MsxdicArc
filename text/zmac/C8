@@ -1,0 +1,869 @@
+.he                                     Chapter 8 - Linking with ZML
+.fo                                                              # 
+.TC 8. LINKING WITH ZML..........................#
+                      LINKINÇ WITÈ ZML
+
+ZML‹ combineó  relocatablå  objecô moduleó froí inpuô fileó 
+intï absolutå machinå codå iî aî  outpuô file®  Thå  outpuô  filå 
+ió typicallù suitablå  foò  loadinç  foò executioî iî á Ú oò CP/Í 
+system® Á sorteä symboì tablå containinç globaì symboló useä iî 
+thå objecô moduleó caî bå senô tï aî outpuô filå anä displayeä oî 
+thå console® Thå symboì tablå filå ió suitablå foò uså bù 
+symboliã debuggeró likå DSÄ anä ZSID.
+
+ZMÌ runó undeò thå CP/Í oò Ú operatinç systemó iî á computeò 
+thaô useó á Z80¬ Z180¬ oò HD6418° centraì processoò ® 
+
+Á statuó reporô ió displayeä afteò completioî oæ thå link® Thå 
+informatioî displayeä includeó unresolveä oò duplicateä symbols¬ 
+á loaä map¬ anä sizå oæ memorù unuseä bù thå linkinç process® 
+
+Wheî thå sizå oæ unuseä memorù becomeó zerï thå prograí haó 
+becomå toï largå foò thå linkeò tï process® Thå limiô oæ prograí 
+sizå ió usuallù greateò thaî 32K® Iô dependó oî youò totaì TPÁ 
+sizå anä thå numbeò oæ globaì symboló useä iî thå currenô linë 
+operation® ZMÌ wilì issuå aî erroò messagå iî sucè á case® Iæ 
+yoõ arå usinç á Ú system¬ somå additionaì TPÁ spacå maù bå madå 
+availablå bù reconfigurinç thå operatinç system.
+
+.TC    Invocation................................#
+                           INVOCATION
+
+Invocatioî witè '//§ wilì displaù á HELĞ screeî oî youò console.
+
+          ZMÌ /¯          (foò HELĞ screen)
+
+Thå HELĞ screeî showó thå correcô commanä syntax¬ oæ course» iô 
+alsï brieflù describeó thå optionó anä theiò defaults® Yoõ caî 
+changå theså (anä other© defaultó witè thå configuratioî program¬ 
+ZCNFG.
+
+.cp 10
+Á linkinç operatioî maù bå starteä bù typinç á commanä whicè 
+conformó witè thå followinç L8° ¦ ZLINË compatiblå syntax:
+
+          ZMÌ ß [FS=]<filå-list¾ ß [/]ï Û (_|/)o...]
+
+FÓ maù bå á fulì Z³ filespecº  [DUº ü DIR:İ NAMÅ [.TYP]
+
+<filå-list¾ ió FS[/İ [,FS[/]...]
+
+ï ió onå oæ thå followinç Optioî Lettersº C,D,L,M,R,S,Y
+
+
+Notes:
+1.Thió ió á subseô oæ á morå flexiblå syntax¬ describeä later.
+2.Seå thå Glossarù iî Appendiø A± foò á descriptioî oæ thå 
+abbreviationó useä iî syntaø definitions.
+
+.cp 6Š<filå-list¾ ió thå lisô oæ fileó whicè arå linkeä tï producå thå 
+outpuô file® Memberó oæ thå lisô arå separateä bù commas® Memberó 
+whoså forí ió FÓ oò FS¯ oò FS/Ó musô bå iî thå REÌ formaô 
+produceä bù ZMAÃ anä describeä iî Appendiø 3Á (thå Microsofô Reì 
+Format)® FS/K¬ FS/P¬ anä FS/É specifù inpuô fileó whicè arå NOÔ 
+iî REÌ format® ZMÌ doeó noô placå á limiô oî thå numbeò oæ 
+REÌ oò RSØ headeò inpuô fileó useä tï completå thå link® Yoõ maù 
+specifù morå thaî onå PRÌ header¬ buô onlù thå lasô onå nameä 
+wilì bå used® 
+
+Reì Librarù Search„ ­ The'/'or'/S'„ appendeä tï á membeò oæ 
+<filå-list¾ directó ZMÌ tï searcè thaô filå aó á REÌ formaô 
+library¬ extractinç onlù thoså moduleó containinç entrù pointó 
+requireä tï satisfù unresolveä symboì references® Notå thaô iæ 
+thå librarù ió nameä twicå iô wilì bå searcheä twice® Thió 
+compriseó twï passeó througè thå library® Occasionally¬ forwarä 
+externaì declarationó arå unavoidablå iî á reì library® Iî á 
+singlå pass¬ sucè á librarù wilì resulô iî unresolveä symbol(s)® 
+Á seconä pasó wilì resolvå sucè symboló (provideä stilì morå arå 
+noô theî declared!)® Foò example:
+
+     ZMÌ   MYPROG,MYSUBS,MYLIB/S,MYLIB/S
+
+Anotheò waù tï direcô thå linkeò tï searcè á librarù ió bù 
+includinç á .REQUESÔ statemenô iî á sourcå modulå whoså 
+argument(s© arå thå nameó oæ thå reì formaô librarieó tï search® 
+(Seå thå .REQUESÔ pseudï-oğ descriptioî iî thå assembleò manual.)
+Iô ió noô uncommoî wheî linkinç á numbeò oæ generaì purposå REÌ 
+moduleó tï encounteò .REQUESÔ itemó thaô specifù thå samå librarù 
+nameó iî severaì oæ thå modules® Tï avoiä unintendeä multiplå 
+passeó througè eacè library¬ ZMÌ ignoreó redundanô librarù 
+searcè requestó whicè originatå iî .requesô items® 
+
+ZMÌ buildó á lisô oæ inpuô fileó durinç thå commanä linå 
+parse® Wheî .REQUESÔ itemó occuò durinç processinç oæ aî inpuô 
+file¬ thå nameó oæ thå reì librarieó requesteä arå appendeä tï 
+thå list® Onå oæ thå configuratioî optionó allowó yoõ tï changå 
+thió strategù sï thaô thå nameó arå INSERTEÄ iî thå lisô foò 
+linkinç immediatelù afteò completioî oæ thå currenô module» thå 
+inpuô filå lisô changeó dynamically¡ Nestinç ió allowed» á filå 
+inserteä iî thå inpuô filå lisô maù iî turî alsï contaiî á 
+.requesô lisô whicè wilì immediatelù alteò thå filå lisô again¡ 
+(Nestinç ió alsï alloweä wheî fileó arå APPENDEÄ tï thå lisô ­ á 
+littlå easieò tï visualize!)® Wheî .requesteä fileó arå 
+inserted¬ redundanô librarù searcheó arå treateä aó iæ theù werå 
+parô oæ thå originaì commanä line® Eacè invocatioî resultó iî á 
+pasó througè thå library¬ eveî thougè iô maù havå beeî searcheä 
+previously® Thió configuratioî optioî shoulä bå useä witè mucè 
+forethought¡ Multiplå passeó througè librarieó slo÷ dowî thå 
+linkeò iî proportioî tï thå numbeò oæ passes® Rearrangemenô oæ 
+moduleó withiî á librarù usuallù makeó multiplå passeó 
+unneccessary.
+
+.CP 4ŠOutpuô Filå Names„ ­ arå thå samå aó thå namå oæ thå firsô inpuô 
+(rel© filå iî thå commanä strinç unlesó otherwiså implieä iî thå 
+commanä line(s)® 
+
+Iæ á membeò oæ <filå-list¾ ió iî thå forí 'FS=§ oò 'FS/N'¬ theî 
+iô specifieó thå namå anä destinatioî oæ thå objecô outpuô file® 
+Alì partó oæ thå filespeã arå optional® Thå directorù speã 
+defaultó tï thå currenô loggeä directory» thå filå namå defaultó 
+tï thaô oæ thå firsô REÌ file® Similarly¬ á membeò whoså forí ió 
+'FS/M§ oò 'FS/Y§ specifieó thå Symboì tablå file.
+
+                       FILÅ SPECIFICATIONS
+
+Thå syntaø foò á Filå Specificatioî (FS© ió thå samå aó thaô oæ 
+ZMAÃ anä ZCPR3x® Configurablå defaultó arå presenô foò alì 
+filetypes® Theù arå listeä herå foò thå aó-distributeä 
+configuratioî oæ ZML.
+
+Filetypeº  Filå Use:        (inpuô files)
+
+     REÌ  Microsofô reì formaô objecô moduleó anä libraries.
+     HDÒ  Binarù filå tï whicè outpuô objecô ió concatenated.
+
+Filetypeº  Filå Use:        (outpuô files)
+
+     SYÍ  ASCIÉ texô filå oæ Symboló anä symboì values.
+     COÍ  binarù codå imagå suitablå foò loadinç aô 100H
+     BIÎ  binarù codå imagå whoså loaä addresó ió NOÔ 100H
+     PRÌ  PRÌ headeò « codå imagå aô 100H
+     SPÒ  SPÒ headeò « codå imagå aô 000H
+     BPÒ  PRÌ typå headeò « codå imagå NOÔ aô 000È oò 100H
+     RSØ  binarù headeò « anù oæ COM¬ BIN¬ PRL¬ SPR¬ oò BPR
+
+
+Alì defaulô filetypå extensionó arå configurablå witè ZCNFG.
+
+.cp 10
+                          RÅ-EXECUTION
+
+Oncå invoked¬ thå ZPCR³ GÏ commanä caî bå useä (witè á suitablå 
+commanä tail© tï rå-executå thå linkeò iæ nï otheò transienô 
+commandó havå beeî used® Thió capabilitù ió particularlù usefuì 
+wheî á serieó oæ linkageó ió tï bå donå using¬ foò example¬ aî 
+Alias® Timå ió saveä becauså thå linkeò prograí ió noô reloadeä 
+froí masó storagå aô eacè invocation® Durinç rå-executioî thå 
+disë containinç ZMÌ neeä noô eveî bå presenô iî thå system.
+
+.cp 17Š.TC    Relocation Bases, Load Order..............#
+                  RELOCATIOÎ BASEÓ ¦ LOAÄ ORDER
+
+Eacè bytå oæ codå oò datá storagå describeä iî á REÌ inpuô filå 
+ió identifieä aó belonginç tï á nameä Relocatioî Base¬ alsï 
+calleä á Segment® Thå linkeò haó threå maiî tasks:
+
+.lm 8
+.pm 5
+    1. Iô collectó thå code/datá allocateä tï eacè segmenô iî 
+       eacè reì filå anä combineó iô intï onå correspondinç 
+       relocatioî baså (grouğ oæ addresses© iî thå outpuô file.
+
+    2. Iô sortó thå groupó oæ codå comprisinç thå relocatioî 
+       baseó intï á prescribeä ordeò iî thå finaì codå image.
+
+    3. Iô adjustó alì addresó referenceó iî thå codå anä datá 
+       statementó tï accounô foò thå changå iî codå locatioî 
+       induceä bù stepó ± anä 2® Thió procesó ió Relocation.
+.lm 1
+.pm 0
+
+Thå outpuô filå containó thå codå imagå intendeä tï bå loadeä 
+intï memorù bù á loadeò (typicallù iî thå CCP© whoså operatioî ió 
+independenô oæ thå linker® Thå firsô bytå oæ codå maù bå aô aî 
+offseô (defineablå witè thå Ã option¬ anä ° bù default© froí thå 
+starô oæ thå file® Thå layouô oæ thå filå ió thus:
+
+	optionó usedº anù excepô /I,/P,/Ë (noô á PRÌ-type)
+
+	|<...codå image>..ü        ¨ '...§ ió aî offset)
+
+Thå codå imagå compriseó codå froí severaì relocatioî bases¬ alì 
+buô onå oæ whicè maù bå emptù (zerï length)® Thå layouô wilì bå 
+likå this:
+
+        |...<CSEG>...<DSEG><COMMON1,COMMON2,ETC>..|
+
+Thå MAIÎ LOAÄ ADDRESÓ ió thå memorù addresó aô whicè thå firsô 
+bytå oæ thå codå imagå iî thå outpuô filå ió depositeä bù thå 
+Loader® Thå Loaä addresó foò á particulaò segmenô ió thå memorù 
+addresó aô whicè thå firsô bytå oæ thaô segmenô resideó wheî thå 
+filå ió loadeä aô thå Maiî Loaä Address® Thå Relocatioî Address‹ 
+foò á segmenô ió thaô aô whicè thå segmenô wilì executå properly¬ 
+anä ió alsï calleä thå 'executioî address'.
+
+Twï kindó oæ outpuô fileó arå produceä (defaulô filetypes)
+     1© .COÍ ­ wheî thå loaä addresó ió 100È (defaulô condition)
+     2© .BIÎ ­ wheî loaä addresó ió NOÔ 100È (Á oò Ã option)
+
+Iæ thå operatinç systeí followó CP/Í standards¬ theî thå standarä 
+loaä addresó ió 100H® Iî sucè systemó thå loadeò (parô oæ thå 
+CCP© loadó fileó whoså extensioî ió .COÍ aô thaô address® 
+Usually¬ thå Codå Segmenô (CSEG)‹ ió thå firsô codå iî thå imagå 
+anä itó Loaä anä Relocatioî Addresseó coincidå witè thå Maiî Loaä 
+Address® ZCPR3³ anä ZCPR3´ contaiî enhanceä loaderó whicè caî 
+loaä thå codå imagå filå tï otheò addresses® Sucè applicationó 
+arå discusseä iî connectioî witè thå /A¬ /R¬ anä /Ğ options.
+
+.cp 10ŠWheî thå commanä linå nameó morå thaî onå REÌ filå tï bå linked¬ 
+thå codå iî CSEÇ froí eacè REÌ filå ió concatenateä (tï forí thå 
+finaì CSEÇ segment© iî thå ordeò iî whicè theù occuò iî thå inpuô 
+files® DSEÇ ió similarlù concatenated® Commoî segmentó witè thå 
+samå namå arå simplù overlaid» thå resultinç nameä commoî segmenô 
+haó á sizå whicè ió thå largesô oæ itó overlaiä constituents® Yoõ 
+maù includå initializeä datá iî Nameä Commoî segments¬ buô beaò 
+iî minä thaô onlù thå LASÔ linkeä initializeä datá wilì bå valiä 
+becauså oæ thió oveò-writinç procesó durinç linking.
+
+.cp 10
+ASEG¬ iæ present¬ ió thå firsô blocë oæ datá iî thå outpuô filå 
+anä thå addresó oæ thå firsô bytå iî ASEÇ defineó thå Maiî Loaä 
+Address® Thå /Á optioî applieó ONLÙ tï thå relocatablå bases» itó 
+uså wilì assigî thå loaä addresó foò CSEÇ (anä thå others)® Yoõ 
+wilì geô aî 'overlappinç segments§ erroò messagå iæ thå addresó 
+specifieä bù /Á ió noô welì chosen¡ 
+
+Thå ordeò iî whicè nameä commoî  segmentó arå loadeä ió thå ordeò 
+iî whicè theù arå encountereä iî thå REÌ fileó oî whicè thå 
+linkeò operates® Thoså nameä iî thå firsô REÌ filå wilì occuò 
+firsô iî thå outpuô file® Withiî eacè REÌ file¬ thå ordeò oæ 
+occurrencå withiî thå filå ió followed.
+
+.cp 15
+INITIAÌ JUMĞ TÏ PROGRAÍ ENTRY
+
+Wheî thå maiî loaä addresó ió 100È thå linkeò wilì instalì á jumğ 
+instructioî aô 100È tï thå entrù poinô oæ thå prograí iæ sucè aî 
+entrù poinô ió defined® Sucè aî entrù poinô ió defineä iî thå 
+assemblù sourcå filå bù aî expressioî followinç aî 'END§ 
+statement® Thå codå whicè (withouô thå jump© woulä havå loadeä aô 
+100È ió relocateä tï loaä anä executå aô 103È tï makå rooí foò 
+thå inserteä jumğ instruction® Iæ morå thaî onå modulå iî thå 
+linë lisô containó aî expressioî followinç thå ENÄ statement¬ thå 
+linkeò haó nï waù oæ knowinç whicè expressioî tï evaluatå aó thå 
+targeô oæ thå initiaì jump® Sucè á conditioî wilì causå thå linë 
+operatioî tï bå aborteä witè á fataì erroò message® Aî insidiouó 
+sourcå oæ sucè aî erroò occuró wheî thå entrù ió declareä bù aî 
+ENÄ statemenô oæ á modulå withiî á librarù whicè foò otheò 
+reasonó ió declareä twicå oî thå commanä line® Iî sucè á caså thå 
+linkeò seeó TWÏ declarationó oæ thå entrù address¬ onå oî eacè oæ 
+thå requesteä searcheó oæ thå library!
+
+Á typicaì uså foò aî initiaì jumğ ió inclusioî oæ á headeò aô thå 
+beginninç oæ á file¬ beforå thå actuaì starô oæ thå prograí code® 
+Foò example¬ Z3HDR.REÌ mighô contaiî thå ZCPR³ headeò pluó datá 
+foò prograí configuratioî optionó anä MYPRG.REÌ containó thå 
+actuaì prograí codå terminateä witè aî 'ENÄ START§ statement® 
+STARÔ ió thå labeì iî MYPRG.Z8° aô thå starô oæ thå program¬ anä 
+Z3HDR.Z8° doeó noô contaiî aî initiaì jump® Thå linkeò command:
+
+     ZMÌ   MYPRG=Z3HDR,MYPRG
+
+wilì producå á filå MYPRG.COÍ whicè startó witè á jumğ 
+instructioî whoså targeô ió thå codå aô 'START:'® Thió ió á gooä 
+waù tï includå sucè á standarä blocë oæ predefineä code/datá aô Šthå beginninç oæ á program.
+.cğ 20
+.TC    Uninitialized data .......................#
+                    UNINITIALIZEÄ DATÁ AREAS
+
+Uninitializeä datá spacå ió á rangå oæ addresseó iî thå codå 
+imagå thaô resultó froí 'DÓ n§ anä ORÇ statementó iî thå assemblù 
+sourcå foò thå reì files® Iô maù alsï occuò betweeî segmentó wheî 
+thå useò specifieó loaä addresseó foò thå segments® Sucè spacå ió 
+filleä witè somå valuå iî ordeò tï ensurå thaô alì codå anä 
+initializeä (DW¬ DB¬ etc© datá retainó itó correcô addresseó 
+durinç loadinç bù thå OS® Thå defaulô filì valuå iî ZMÌ ió 
+binarù 0® Uninitializeä datá ió storeä iî thå outpuô filå iæ iô 
+ió followed„ bù codå oò initializeä data® Anù uninitializeä datá 
+aô thå ENÄ oæ thå codå imagå ió noô storeä iî thå outpuô file® 
+Thå resulô ió á reductioî oæ filå sizå when¬ foò example¬ á largå 
+I/Ï buffeò ió defineä bù DÓ statementó thaô placå itó addresó aô 
+thå ENÄ oæ thå linkeä code® Knowinç thå loadinç ordeò oæ thå 
+segmentó makeó iô possiblå foò yoõ tï anticipatå whicè segmenô 
+wilì bå LAST® THAÔ ió wherå thå DÓ statementó gï tï definå thå 
+buffer¡ Thió concepô haó beeî describeä aó truncatioî oæ 
+uninitializeä data® Notå thaô thå $MEMRÙ locatioî ió INITIALIZED.
+
+Á convenienô programminç practicå ió tï devotå DSEÇ tï DÓ 
+statementó only® Á Nameä Commoî mighô servå á similaò purpose.
+
+.TC    PRL and SPR files.........................#
+            PRL¬ SPR¬ anä otheò extendeä outpuô files
+
+ZMÌ provideó thå meanó tï generatå SPR¬ PRL¬ RSX¬ anä somå 
+aó-yeô-unnameä typeó oæ objecô files® Theù arå generateä aó á 
+resulô oæ twï commanä linå optionsº /I¬ anä /P® Á thirä option¬ 
+/K¬ ió á synonyí foò /Ğ anä ió presenô foò compatibilitù witè thå 
+syntaø useä iî anotheò linker.
+
+Foò normaì Linë operation¬ á serieó oæ filå specó anä optionó arå 
+presenô oî thå (possiblù extended© commanä line® We'lì refeò tï 
+thió aó thå 'linë list'® Thå outpuô oæ thå linkeò ió á 'codå 
+image§ iî thå outpuô file® Thå linkeò ALWAYÓ produceó thió codå 
+imagå iî accorä witè thå relevanô instructionó iî thå linë list® 
+Thå firsô bytå oæ thå codå imagå ió thå firsô bytå iî thå outpuô 
+filå iî thå absencå oæ I¬ P¬ oò Ë options.
+
+.cp 20ŠThå structurå oæ outpuô fileó produceä usinç thå /É oò /Ğ optionó 
+dependó oî thå choicå oæ options® Threå typeó arå possible:
+
+.lm 5
+    1© <PRÌ header><codå image><bitmap¾ 
+       optionó usedº /Ğ oò /Ë oò FS/Ğ oò FS/K
+
+    2© <RSØ header><PRÌ header><codå image><bitmap¾ 
+       optionó usedº FS/É anä (FS/Ğ oò /Ğ oò FS/Ë oò /K)
+
+    3© <RSØ header><codå image¾ 
+       optionó usedº FS/É oò /I
+.lm 1
+
+Thå prefixeä headeró dï noô affecô thå contentó oæ thå codå 
+image® Froí thå Linkeró poinô oæ view¬ thå Maiî Loaä Addresó ió 
+thå samå aó iæ thå headeò werå noô presenô iî thå outpuô file® 
+Thå loadeò ió expecteä tï movå thå codå imagå tï thå Maiî Loaä 
+Addresó afteò usinç anä discardinç thå headeò portioî oæ thå 
+file.
+
+                         PRÌ typå files
+
+Threå kindó oæ outpuô fileó caî bå generateä witè thå PRÌ 
+options¬ accordinç tï thå valuå assigneä bù thå /A<hex¾ option® 
+Theså three¬ distinguisheä bù theiò filå types¬ are:
+
+     1© .PRÌ ­ (normaì default)¬ maiî loaä addresó ½ 0100H
+     2© .SPÒ ­ Maiî loaä addresó ½ 000° ¨ seô withº /A000° )
+     3© .BPÒ ­ Maiî loaä addresó ió neither„ 000° noò 0100H
+
+Thå PRÌ headeò maù originatå iî twï ways:
+
+     1© /Ğ oò /Ë  ¨ NÏ filespec¡ )
+         Thå headeò ió generateä bù ZML
+
+     2© FS/P¬ FS/Ë ¨ filespeã ió presenô )
+         Thå headeò ió COPIEÄ froí filå FS.
+
+.cp 8
+Iî alì threå PRÌ typå files¬ ZMÌ installó thå lengtè oæ thå 
+codå imagå aó á normaì (Inteì-stylå lo÷-bytå-first© worä iî <PRÌ 
+header¾ relativå locationó ± anä 2® Wheî thå headeò ió createä bù 
+ZMÌ (/Ğ oò /Ë options© alì otheò locationó arå zerï filled® 
+Wheî thå headeò ió copieä froí á file¬ thå otheò locationó 
+reflecô thå filå contents® Sucè headeró typicallù arå specializeä 
+loaderó whicè uså thå datá aô offsetó ± anä ² foò thå loadinç anä 
+ruî-timå relocatioî operations® 
+
+.cp 6
+.ix bitmap structure
+Wheî anù forí oæ thå PRÌ headeò ió included¬ ZMÌ produceó á 
+bitmağ immediatelù followinç thå codå image® Thå bitmağ containó 
+á seô biô foò thå higè bytå oæ eacè relocatablå worä iî thå codå 
+image® Alì otheò bitó arå reseô (0)® Thå lengtè oæ thå bitmağ ió 
+<codå length>/8¬ roundeä uğ tï includå anù remaindeò froí thå 
+integeò division® Bitó iî eacè bytå oæ thå bitmağ datá arå 
+assigneä sï thaô thå Mosô Significanô Biô oæ thå bytå correspondó 
+thå thå LOWESÔ oæ thå eighô addresseó represented® Thå bitmağ ió 
+foò uså bù á ruî-timå relocatinç loader® Thå headeò maù contaiî á Šsmalì loader® DDÔ (froí Digitaì Researcè Inc© ió á PRÌ filå thaô 
+containó sucè á loadeò iî thå firsô page® ZCPR3´ Typå ´ programó 
+arå PRÌ fileó whoså loadeò ió morå compleø anä utilizeó loadeò 
+functionó provideä bù thå CCĞ aó welì aó codå iî thå header.
+
+Wheî á PRÌ-typå filå ió beinç produced¬ thå associateä bitmağ 
+immediatelù followó thå lasô initializeä data® Thió ió thå samå 
+locatioî aó thå truncateä uninitializeä data® Aó á result¬ yoõ 
+woulä bå verù unwiså indeeä tï depenä oî anù particulaò valuå iî 
+thå affecteä DÓ areas!
+
+Standarä PRÌ anä SPÒ fileó arå exactlù ² cpí recordó (25¶ bytes© 
+long® This¬ thå defaulô lengtè produceä bù ZML¬ ió 
+configurablå witè ZCNFG® Iæ yoõ changå thå defaulô length¬ bå 
+awarå thaô thå filå produceä wilì nï longeò bå á Standarä PRÌ oò 
+SPÒ filå becauså oæ thå differenô headeò length® Thå Codå Imagå 
+Lengtè wilì stilì bå aô locationó ± anä 2» anù codå whicè useó 
+thaô lengtè musô alsï bå provideä witè thå lengtè oæ thå header® 
+Wheî thå emptù PRÌ headeò ió produceä bù ZML¬ executablå codå 
+musô bå placeä iî thå headeò spacå iî á separatå operation® 
+Typically¬ thå codå ió separatelù assembleä anä theî overlaiä iî 
+thå headeò usinç MLOAÄ oò á debuggeò likå DSD¬ ZSID¬ Z8E¬ etc® 
+
+Wheî thå FS/Ğ forí ió used¬ thå lengtè oæ thå headeò ió 
+controlleä bù thå lengtè oæ thå sourcå file® Iô ió thå 
+programmeró responsibilitù tï ensurå thaô iô ió exactlù ² 
+records¡ Iæ iô ió longeò (oò shorter)¬ ZMÌ wilì faithfullù 
+reproducå iô iî thå outpuô file¬ includinç installatioî oæ thå 
+lengtè byte® Thå headeò sourcå filå typicallù containó á loadeò 
+codå imagå iî whicè byteó ± anä ² arå expecteä tï bå replaceä bù 
+thå linker® Thå advantagå oæ thió approacè oveò thå /Ğ forí ió 
+eliminatioî oæ posô processinç oæ thå PRÌ filå tï instalì loadeò 
+code® Iæ thå onlù referencå tï thå lengtè oæ thå headeò ió 
+internaì tï thå codå iî thå header¬ theî lengthó otheò thaî thå 
+standarä caî safelù bå used.
+
+.cp 8
+.TC    RSX type files............................#
+                         RSØ Typå Files
+
+Thå RSØ headeò ió COPIEÄ froí filå FS» ZMÌ doeó noô modifù iô 
+iî anù way® Thå CONTENÔ oæ thió filå ió entirelù uğ tï thå 
+programmer® Á restrictioî tï notå foò ALÌ headeò fileó ió imposeä 
+bù thå blocë structurå oæ thå filå systemº Thå headeò filå ió 
+ALWAYÓ aî integraì numbeò oæ 12¸ bytå recordó iî length® 
+
+Wheî thå /É optioî ió declareä (withouô á FS)¬ thå defaulô namå 
+(RSX.HDR© ió assumed® Thå samå namå provideó thå defaulô foò 
+missinç portionó oæ thå FS/Ğ form® Thió defaulô namå ió 
+configurablå witè ZCNFG.
+
+Headeò files‹ (likå RSX.HDR© musô bå lesó thaî 32Ë byteó long® 
+Thió restrictioî ariseó froí memorù uså considerations® 
+
+.paŠ.TC    $MEMRY implementation.....................#
+                          $MEMRÙ SYMBOL
+
+Thå addresó oæ thå nexô freå bytå oæ memorù availablå tï thå 
+prograí iî thå codå imagå caî bå includeä iî thaô prograí iî thå 
+twï bytå fielä labeleä $MEMRY® Foò thió purpose¬ thå nexô freå 
+bytå followó ALÌ SPACÅ ALLOCATEÄ bù thå program® Allocatioî herå 
+includeó alì uninitializeä datá space® $MEMRÙ musô bå declareä 
+publiã iî onå oæ thå REÌ moduleó iî ordeò tï bå recognizeä bù thå 
+linker.
+
+Thå statemenô labeleä $MEMRYº maù bå á DÓ oò D× statement® Thå 
+followinç sourcå codå examplå showó ho÷ $MEMRÙ ió implemented¬ 
+used¬ anä itó valuå madå availablå foò otheò modules.
+
+.lm 8
+                 PUBLIÃ    FREBEG,$MEMRY
+       FREBEGº   LÄ   HL,($MEMRY)
+                 RET
+       ..®       ...
+       ..®       ...
+       $MEMRYº   DÓ   2
+.lm 1
+
+FREBEÇ ió á globaì subroutinå whicè returnó thå addresó oæ thå 
+firsô freå bytå iî memorù iî HL® Iô ió obtaineä froí thå valuå 
+storeä aô $MEMRÙ bù thå linker.
+
+NOTEº Thå $MEMRÙ datá ió INITIALIZEÄ data¬ eveî wheî declareä 
+witè thå DÓ statement¬ becauså iô ió initializeä bù thå linker® 
+Anù uninitializeä datá whicè precedeó $MEMRÙ wilì NOÔ bå 
+truncated® Foò thió reason¬ $MEMRÙ ió besô locateä (iî thå 
+assemblù source© alonç witè otheò initializeä datá oò codå areas.
+
+Wheî á PRÌ typå filå ió beinç generated¬ twï bitó iî thå bitmağ 
+arå allocateä tï thå valuå aô $MEMRY® Sincå thå purposå oæ thå 
+bitmağ ió tï providå identificatioî oæ thå higè bytå oæ eacè 
+relocatablå worä iî thå codå image¬ thå correspondinç biô ió seô 
+foò thå $MEMRÙ value® Somå otheò linkeró dï NOÔ seô thaô biô (Thå 
+valuå aô $MEMRÙ wilì noô bå relocateä bù á loadeò thaô dependó oî 
+thå bitmap)® ZMÌ maù bå configureä tï NOÔ seô thaô biô iî thå 
+bitmap® Thå uså oæ thå valuå aô $MEMRÙ bù thå ruî timå codå wilì 
+bå differenô iî thå twï cases.
+
+.TC    ZML Command Syntax........................#
+                     ZMÌ COMMANÄ SYNTAX
+
+Thå preciså definitioî oæ ZMÌ commanä linå syntaø ió showî iî 
+Tablå ¸-3® Thå maiî aspectó oæ thå syntaø arå discusseä belo÷ anä 
+iî Tableó ¸-± anä ¸-2® Á morå detaileä discussioî oæ optionó anä 
+theiò uså followó thå tables.
+
+ZMÌ allowó multiplå commanä lines® Alì buô thå firsô arå 
+interactiveº theù arå indicateä bù á prompô requestinç morå 
+commanä arguments® Thå firsô is¬ oæ course¬ thå invokinç commanä 
+tail® Itó maximuí lengtè ió determineä bù thå sizå oæ thå commanä 
+buffeò iî youò operatinç system» thió ió usuallù aô leasô 8° 
+characters® Subsequenô commanä lineó (prompô ió ',§ oò '/'© maù 
+bå aó lonç aó 12¸ characteró includinç thå finaì carriagå return.Š
+Therå arå twï typeó oæ argumentó iî á commanä lineº thoså thaô 
+specifù á FileSpeã (FS)¬ anä thoså thaô specifù onlù optioî 
+selectionó (<optn>)® Yoõ caî intermiø thå twï typeó oæ argumentó 
+bù uså oæ thå propeò delimiter® 
+
+FÓ argumentó arå *precededª bù á commá anä maù bå immediatelù 
+followeä bù á modifieò (fo© thaô applieó tï thaô filespec® Thå 
+leadinç commá ió optionaì aô thå starô oæ thå commanä taiì anä aô 
+thå starô oæ aî interactivå commanä linå whoså prompô ió á ','® 
+Thå recognizeä modifieró arå listeä belo÷ iî Tablå ¸-1.
+
+Optioî selections¬ <optn>¬ arå *precededª bù á spacå (anä 
+optionaì '/')® Thå singlå letteò optionó controì linkeò functionó 
+bù turninç theí ofæ oò on® Theså arå thå I,K,L,M,P,S¬ anä Ù 
+options® Wheî anù oæ theså ió precedeä bù á §-'¬ thå functioî ió 
+turneä OFF® Foò example¬ '¯-M§ inhibitó generatioî oæ á symboì 
+tablå listing® Yoõ mighô wisè tï uså thió capabilitù tï supersedå 
+á configureä defaulô condition® Alì sucè optionó arå listeä belo÷ 
+iî Tablå ¸-2.
+
+Iæ á commanä linå endó witè á spacå oò á comma¬ theî ZMÌ 
+assumeó thaô iô ió unfinisheä anä promptó foò additionaì input® Á 
+trailinç commá ió echoeä aó thå prompt» á trailinç spacå ió 
+converteä tï '/§ anä echoeä aó thå prompt® Thå firsô inpuô 
+characteò neeä noô bå á spacå oò commá iæ thå prompô characteò ió 
+alreadù appropriatå foò thå nexô argument® Aô thå prompt¬ á 
+carriagå returî terminateó thå commanä anä startó thå linë 
+operation® Entrù oæ '//§ elicitó helğ anä theî repeató thå inpuô 
+prompt.
+
+Á sequencå oæ intermixeä spaceó anä commaó ió ignoreä excepô foò 
+thå lasô onå iî thå sequence® Multiplå sequentiaì spaceó (oò 
+commas© arå treateä aó onå spacå (oò comma).
+
+.PAŠ.TC    File Spec Options (Table).................#
+                            TABLÅ ¸-1
+                     SUMMARÙ OÆ FÓ MODIFIERS
+
+Thå followinç modifieró maù bå appendeä tï FÓ arguments.
+
+.lm 17
+.pm 1
+         /      FÓ ió á REÌ library® Á delimiteò requireä afteò 
+                thå '/§ tï avoiä otheò interpretations.
+	=	FÓ ió thå outpuô filå foò thå codå image.
+	/S	FÓ ió á REÌ librarù tï bå searched
+	/N	FÓ ió thå outpuô filå foò thå codå image
+	/M	FÓ ió thå namå oæ thå globaì symboì file.
+	/Y	Samå aó /M
+	/P	FÓ ió thå namå oæ á PRL/SPÒ headeò filå tï use.
+	/K	Samå aó /P
+	/I	FÓ ió thå namå oæ aî RSØ stylå headeò tï Insert.
+.lm 1
+.pm 0
+
+Theså modifieró arå mutuallù exclusive® Iæ yoõ appenä morå thaî 
+onå tï á FS¬ onlù thå firsô wilì bå honored® Thå other(s© wilì bå 
+ignored® Thå followinç twï wilì bå recognizeä eveî wheî appendeä 
+tï onå oæ thå abovå FÓ modifiers.
+
+„	/E„	Enä thå commanä strinç anä starô linking
+„	/Q„	Abort® Returî tï operatinç systeí (nothinç done)
+
+.cp 20
+.TC    Options (Table)...........................#
+                            TABLÅ ¸-2
+                   SUMMARÙ OÆ OPTIOÎ FUNCTIONS
+
+<optn>:“		Functioî performed:
+
+A[:]<hex>**„     Setó Maiî loaä addresó (default=100h)
+C[:]<hex>„       Setó CSEÇ loaä addr® (default=enä oæ ASEG)
+D[:]<hex>„       Setó DSEÇ loaä addr® (default=enä oæ CSEG)
+R[:][seg]<hex>„  Setó Relocatioî foò SEÇ (default½ CSEG)
+T[:]<seg>       Treaô SEÇ likå CSEÇ oò DSEÇ insteaä oæ Common
+
+.lm 17
+.pm 1
+E               Commanä linå ió terminateä anä linkinç started® 
+                Thå resô oæ thå commanä linå wilì bå ignored.
+
+Q               QUIT® ABORT® Exiô tï thå Operatinç System.
+
+L       **      Turî OÎ listinç oæ symboì tablå tï Console.
+M       **      Turî OÎ á symboì tablå listinç tï á file.
+Y,S             Samå aó M
+P,K     **      Turî OÎ generatioî oæ PRL/SPÒ outpuô file.
+I       **      Turî OÎ generatioî oæ RSØ typå outpuô file.
+.lm 1
+.pm 0
+
+NOTES:
+   Wheî <o¾ turnó á functioî ON¬ -<o¾ turnó iô OFF
+*ª configurablå optionó whoså defaulô maù bå seô bù ZCNFG.
+.paŠ.TC    Formal Syntax (Table).....................#
+
+                            TABLÅ ¸-3
+                  ZMÌ SYNTAØ SPECIFICATION
+
+Symboló useä iî syntaø definition:
+
+=º	meanó 'ió defineä as'
+fó	=º ZCPR³ stylå filespeã (witè defaults)
+fm	=º filespeã modifier¬ appendeä tï FS
+¼ >„	=º anglå bracketó delimiô syntaø elements
+¨ )„	=º encloseó á requireä componenô oæ thå syntax
+Û ]„	=º elementó encloseä withiî squarå bracketó arå optional
+<hex¾	=º onå tï fouò heø ascié characters.
+ü	=º Disjunction® Onlù ONÅ oæ thå lisô elementó ió implied.
+..®	=º Thió syntaø elemenô maù bå repeated.
+CÒ	=º carriagå return
+SĞ	=º á spacå oò tab
+
+UPPEÒ CASÅ characteró iî thå definitioî arå literaì entrieó froí 
+thå keyboard® Aó typed¬ theù maù bå eitheò uppeò oò loweò case® 
+Commanä linå inpuô ió noô caså sensitive® Commaó anä forwarä 
+slasheó arå alsï literaì keyboarä input® Whitå spacå iî thå 
+syntaø definitioî ió presenô foò readabilitù onlù anä ió noô parô 
+oæ thå syntax.
+
+Invocatioî Commanä taiì =º <arg0>“ [<arg>...İ Û SĞ ü ¬ İ cr
+
+Prompteä  Commanä  linå =º        [<arg>...İ Û SĞ ü ¬ İ cr
+
+<arg0>“	=º [,İ [//İ (CÒ ü fó [fm]© ü (SĞ ü ¯ ü //© (CÒ ü <optn>)
+
+<arg>“	=º  ¬  [//İ (CÒ ü fó [fm]© ü SĞ [¯ ü //İ (CÒ ü <optn>)
+
+<optn>“	=º A<hex¾ ü C<hex¾ ü D<hex¾ ü <r¾ ü T<seg¾ ü <lopts>
+
+<r>     =º R<hex¾ ü R<seg¾ SĞ <hex¾ ü Ò <seg¾ ¬ <hex>
+
+<lopts>“ =º Å ü É ü Ë ü Ì ü Í ü Ğ ü Ñ ü Ó ü Ù 
+
+fm“	=º ¯ ü ½ ü /Å ü /É ü /Ë ü /Ñ ü /Í ü /Î ü /Ğ ü /Ù ü /S
+
+.PAŠ
+.TC    Options, full description.................#
+                             OPTIONS
+
+Aî Optioî beginó witè onå oæ thå characteró showî iî Tablå ¸-2® 
+Eacè optioî iî thå lisô ió precedeä bù aô leasô onå delimiter» 
+thå alloweä delimiteró arå Spacå anä Tab® Á forwarä slasè (/© maù 
+follo÷ thå delimiter¬ anä á '/§ maù bå useä iî placå oæ spacå oò 
+taâ BETWEEÎ optioî items® Syntactically¬ therå arå twï useó foò 
+thå '/'® Thå firsô ió aó á modifieò aô thå enä oæ á filespec» 
+sucè modifieró arå showî iî Tablå ¸-1® Thå seconä ió aó á 
+freestandinç optioî mark® Á delimiteò precedinç á '/§ serveó tï 
+distinguisè betweeî thå twï caseó anä avoiä ambiguouó 
+interpretations® Wheî thå precedinç tokeî ió aî option¬ sucè 
+ambiguitù doeó noô ariså anä thå '/§ ió recognizeä aó á delimiteò 
+aó welì aó optioî specifier.
+
+.cp 6
+Ì ­ Lisô tï consolå option
+
+Thå Ì optioî enableó oò disableó listinç oæ thå fulì Symboì Tablå 
+oî thå console® Ì causeó listinç tï thå console¬ -Ì inhibitó sucè 
+listing® Erroò messagå listingó oæ DUPLICATÅ oò MISSINÇ symboló 
+arå ALWAYÓ displayed.
+
+.cp 11
+M,Y,Ó ­ Symboì Tablå filå option
+
+Thå Í optioî causeó generatioî oæ aî outpuô filå whicè containó 
+globaì symboì nameó froí thå REÌ objecô fileó anä theiò addresseó 
+afteò relocatioî anä linking® Thå -Í optioî inhibitó generatioî 
+oæ thå Symboì Tablå file® Ù ió á synonyí foò M® Ó is¬ iî thió 
+context¬ á synonyí foò M® Iî thå forí FS/S¬ thå Ó haó aî entirelù 
+differenô meaning® Foò thaô reason¬ uså oæ /Ó tï invokå symboì 
+filå generatioî ió noô encouraged® Thå /Ó optioî ió includeä onlù 
+foò thoså whï havå noô yeô forgotteî sucè usagå iî anotheò 
+linker.
+
+.cp 6
+A[:]<hex¾ ­ Maiî Loaä addresó foò ALÌ segments
+
+Thió ió thå maiî load/executå addresó foò thå linkeä codå imagå 
+produceä bù ZML® Itó defaulô valuå ió 100H¬ sï thå Á optioî 
+neeä noô bå invokeä wheî producinç codå intendeä foò executioî aô 
+thaô address® Thå defaulô valuå caî bå changeä witè ZCNFG.
+
+Thå segmentó wilì bå linkeä anä depositeä iî thå outpuô filå iî 
+thå followinç orderº CSEG¬ DSEG¬ BLANË COMMON¬ NAMEÄ COMMON(s)® 
+Thå executioî addresó foò CSEÇ wilì bå thå defaulô valuå (100© oò 
+<hex¾ aó supplieä oî thå commanä line.
+
+Thå valuå specifieä witè A<hex¾ determineó whicè oæ thå threå 
+filetypeó (PRL¬ SPR¬ oò BPR© tï uså foò PRÌ-typå outpuô files.
+
+Thió optioî ió usefuì foò makinç ZCPR33/´ Typå ³ programó wheî 
+thå sourcå haó specifieä DSEÇ oò COMMOÎ segments® (Seå alsï thå 
+/Ò optioî below.)
+
+.cp 8ŠC[:]<hex¾ ­ Codå segmenô locatioî
+
+Thå Ã optioî specifieó thå loaä addresó oæ thå codå segment® Thå 
+loaä addresó ió assumeä tï bå 100È wheî thå Ã optioî ió noô 
+present® Thå executioî addresó foò thå codå segmenô alsï defaultó 
+tï 100H® Thå syntaø foò thå Ã optioî ió Cnnnn¬ wherå nnnî ió á 
+hexadecimaì number.
+
+Thå absolutå codå outpuô filå produceä ió assumeä tï bå loadablå 
+aô 100H® Therefore¬ thå defaulô filå typå wilì bå COM® Sincå thå 
+Ã option‹ causeó thå codå segmenô tï bå locateä aô somå higheò 
+address¬ thå filå ió filleä witè thå appropriatå numbeò oæ nulló 
+(binarù zero© beforå thå starô oæ actuaì code.
+
+.cp 10
+D[:]<hex¾ ­ Datá segmenô locatioî
+
+Thå Ä optioî specifieó thå loaä addresó foò thå datá segment® Thå 
+datá segmenô ió thå concatenateä codå froí thå DSEÇ relocatioî 
+baså iî thå REÌ modules® Wheî thå Ä optioî ió noô present¬ thå 
+datá segmenô loaä addresó immediatelù followó thå lasô bytå oæ 
+thå codå segmentó addresó space® 
+
+Thå executioî addresó ió adjusteä tï bå thå samå aó thå loaä 
+address.
+
+Thå COMMOÎ segment‹ ió loadeä immediatelù followinç thå datá 
+segment¬ anä itó executioî addresó ió adjusteä tï bå thå samå aó 
+itó loaä address® 
+
+R[:][<seg>]<hex¾ ­ Relocatioî oæ Codå segmenô option
+
+Thå Ò optioî specifieó relocatioî oæ segmenô <seg¾ sï thaô itó 
+executioî addresó (<hex>© ió specifieä independentlù froí itó 
+loaä  address®  Iæ <seg¾ ió noô presenô iî thå command¬  CSEÇ  ió 
+assumed® Wheî thå CSEÇ executioî addresó ió noô 100H¬ thå defaulô 
+filå typå foò thå absolutå codå outpuô filå ió changeä tï BIN® 
+Sucè fileó arå normallù noô suitablå foò loadinç anä executioî aô 
+thå usuaì systeí commanä filå addresó oæ 100H® Wheî thå executioî 
+addresó oæ á segmenô ió noô specifieä bù thå Ò option¬ iô ió thå 
+samå aó thå loaä address.
+
+EXAMPLE:
+
+Á Typå ³ prograí foò ZCPR33/3´ ió loadeä aô aî addresó specifieä 
+aô relativå offseô 0BH® Thå worä aô thaô locatioî ió typicallù 
+generateä bù thå assembleò froí á Symboì thaô ió thå labeì foò 
+thå firsô bytå oæ thå code® Thå Environmenô typå bytå aô offseô ¸ 
+is¬ oæ course¬ ³ tï identifù typå ³ processing® Supposå thå namå 
+oæ thå sourcå prograí ió IF.Z8° anä iô haó beeî assembleä tï 
+producå IF.REL® Thå followinç ZMÌ commanä woulä theî producå aî 
+outpuô filå IF.COÍ whicè loadó anä executeó aô 8000H:
+
+     ZMÌ IÆ /R8000
+oò   ZMÌ IÆ /R:8000
+ŠIæ otheò segmentó (DSEG¬ Common© arå present¬ theî thå /Á optioî 
+musô bå useä tï ensurå thaô theiò relocatioî addresseó arå thå 
+samå aó theiò loaä addresses.
+
+T[:]<seg¾ ­ Converô Commoî tï Normaì Relocatioî Base
+
+where	<seg> is CSEG, DSEG, or a Named Common relocation base.
+
+Thå Ô optioî Tagó á relocatablå segmenô aó concatenateä (likå 
+CSEG© ratheò thaî overlaiä (likå Nameä Commoî segments)® Yoõ maù 
+havå aó manù codå (oò data© segmentó aó thå assembleò wilì puô 
+intï thå REÌ stream® Iî thå assemblù source¬ thå baseó arå 
+declareä aó Nameä Commons® Durinç link¬ thoså nameä commonó thaô 
+shoulä reallù bå codå segmentó musô bå Taggeä usinç thió option® 
+CSEÇ anä DSEÇ arå alreadù sï tagged¬ sï foò theså baseó thió 
+optioî ió redundanô anä useless® Aî attempô tï taç ASEÇ wilì geô 
+yoõ aî erroò message.
+
+Thió optioî ió noô needeä iæ thå REÌ moduleó beinç linkeä alreadù 
+contaiî relocatioî baså typå informatioî foò Nameä Bases® Mosô 
+assembleró whicè allo÷ Nameä Baseó identifù theí aó Nameä Common.
+
+Onå mighô wisè tï generatå codå foò severaì bankó oæ á bankeä 
+system® Bù writinç thå sourcå codå aó á Nameä Commoî segment¬ 
+BANK± foò example¬ thå linkeò caî bå tolä tï treaô thió segmenô 
+aó CODÅ (likå CSEG)® Thå Ò optioî ió useä tï independentlù assigî 
+thå relocatioî addresó aó required.
+
+.cp 8
+P,Ë ­ PRL,SPR¬ anä BPÒ Outpuô File
+
+Thå Ğ option‹ (Ë ió á synonym© enableó generatioî oæ aî outpuô 
+filå whicè ió precedeä bù á standarä PRÌ typå headeò anä followeä 
+bù á bitmap® Thå filetypå oæ thå outpuô filå dependó oî thå loaä 
+addresó assigneä tï thå linkeä codå image® Iæ thå loaä addresó ió 
+0000h¬ theî thå filetypå wilì bå .SPR» iæ 0100è iô wilì bå .PRL» 
+anù otheò loaä addresó wilì causå thå filetypå tï bå .BPR® BPÒ ió 
+aî acronyí foò Binarù Pagå Relocatable.
+
+Wheî thå '/P§ optioî ió used¬ ZMÌ generateó á headeò thaô ió 
+exactlù 25¶ byteó iî length® Byteó ± anä ² oæ thå headeò contaiî 
+thå lengtè oæ thå codå image® Bytå ° anä byteó 3...25µ arå filleä 
+witè binarù 00® Theså zerï-filleä byteó reservå spacå foò useò 
+supplieä codå whicè maù bå overlayeä usinç MLOAD¬ á debugger¬ oò 
+bù otheò meanó aô thå programmeró discretion® CP/Mó DDÔ ió á 
+prograí whicè haó beeî createä iî jusô thió way.
+
+.cp 10ŠWheî thå 'FS/P§ forí ió invokeä oî thå commanä line¬ itó missinç 
+partó arå filleä froí thå defaulô PRL.HDÒ anä á filå bù thaô namå 
+ió copieä intï thå firsô byteó oæ thå outpuô file® Durinç thå 
+copù operation¬ byteó ± anä ² arå replaceä witè thå lengtè oæ thå 
+codå imagå whicè follows® Á typicaì headeò filå mighô contaiî á 
+relocatinç loadeò whicè moveó thå codå imagå tï itó finaì 
+destination¬ relocateó thoså byteó (oò words© indicateä bù bitó 
+iî thå bitmap¬ anä theî transferó controì tï thå codå there® Thió 
+ió á typicaì architecturå foò á debuggeò likå DDT¬ ZSID¬ DSD¬ anä 
+mosô others.
+
+Botè formó ¨ /ğ anä FS/p© resulô iî productioî oæ á standarä biô 
+mağ iî thå outpuô file® Thå locatioî oæ thå bitmağ ió determineä 
+froí thå codå lengtè storeä iî byteó ± anä ² oæ thå header.
+
+Aî examplå oæ onå uså oæ PRÌ oò SPÒ fileó follows.
+
+.cp 20ŠEXAMPLE:
+
+Á ZCPR3´ Typå ´ prograí ió loadeä aó higè aó possiblå iî memory¬ 
+jusô belo÷ thå CCP¬ foò execution® Sucè fileó arå PRÌ oò SPÒ 
+types» thå choicå ió thå programmers¬ sincå thå relocatioî oæ thå 
+codå iî thå executablå parô ió performeä bù codå (specifieä bù 
+thå programmer© iî thå header® Á standarä header¬ T4LDR.Z80¬ ió 
+availablå whicè maù bå assembleä oncå tï á binarù object® Leô iô 
+bå nameä T4LDR.BIN® Thå codå iî T4LDÒ assumeó thaô thå codå imagå 
+ió iî PRÌ forí (executablå aô 100H)® Tï makå á copù oæ IF.COÍ 
+thaô loadó aó higè aó possiblå iî memory:
+
+     ZMÌ   IF,T4LDR.BIN/P
+
+Notå that¬ unlikå thå Typå ³ headeò examplå showî undeò thå Ò 
+option¬ iô ió noô necessarù tï instalì thå '4§ aô offseô ¸ iî thå 
+program® That'ó becauså T4LDÒ doeó thaô durinç thå relocatioî 
+process® Thå samå assembleä sourcå caî bå useä foò eitheò typå bù 
+propeò choicå oæ thå linkinç command¡ Typå ´ programó arå 
+discusseä iî THÅ COMPUTEÒ JOURNAL¬ Issuå #32¬ Pageó 1°-17® 
+
+.cp 10ŠÉ ­ Inserô á noî-PRÌ header
+
+Thå É option‹ causeó generatioî oæ aî outpuô filå whicè ió thå 
+concatenatioî oæ á headeò filå anä thå filå produceä bù otheò 
+optioî selections® Thå defaulô filetypå foò sucè aî outpuô filå 
+wilì bå .RSX¬ reflectinç onå uså foò thió kinä oæ filå structure® 
+Twï possiblå outpuô filå organizationó are:
+
+          <RSØ header><codå image>
+          <RSØ header><PRÌ header><codå image><bitmap>
+
+.cp 10
+Wheî thå forí '/I§ ió useä iî thå commanä line¬ á filå nameä 
+RSX.HDÒ ió searcheä foò iî thå defaulô anä alternatå directories® 
+Thaô file¬ iæ found¬ provideó thå exacô imagå foò <RSØ header>® 
+Thå byteó iî thaô filå arå COPIEÄ withouô modificatioî oò anù 
+otheò linkinç actioî tï becomå <RSØ header>® Similarly¬ wheî thå 
+forí FS/É ió invokeä oî thå commanä line¬ thå filå specifieä bù 
+FÓ provideó thå imagå foò <RSØ header>® Thå lengtè oæ thå headeò 
+filå ió noô specifieä beyonä thå facô thaô á ° lengtè filå makeó 
+nï sense¬ anä maximuí filå sizeó determineä bù thå operatinç 
+system® Missinç portionó oæ FÓ arå provideä bù thå defaulô filå 
+namå RSX.HDR® Thió defaulô FN.FÔ caî bå changeä witè ZCNFG.
+
+.TC    Changing Configuration....................#
+              CHANGINÇ THÅ CONFIGURATIOÎ OÆ ZML
+
+Thå I,K,L,M,P,S¬ anä Ù optionó alì havå defaulô valueó (YES/NO)® 
+Uså ZCNFÇ tï seô theí thå waù thaô ió mosô generallù usefuì tï 
+yoõ anä invokå thå optioî iî thå commanä taiì foò exceptionaì 
+cases® Iæ aî optioî ió configureä OÎ (YES)¬ theî iô caî bå turneä 
+ofæ bù includinç itó letteò iî thå commanä linå aó á negateä 
+option® Foò example¬ iæ productioî oæ thå symboì tablå (Í option© 
+ió configureä ON¬ á ¯-Í optioî iî thå commanä taiì wilì inhibiô 
+productioî oæ thå symboì tablå file.
+
+Provisioî haó beeî madå foò Ú-systeí msç buffer‹ anä Systeí Filå 
+numbeò access® Althougè theså defaultó arå actuallù presenô anä 
+configurable¬ theù arå currentlù unuseä bù ZML.
+
+                         ERROÒ MESSAGES
+
+ZMÌ produceó erroò messageó oî thå consolå wheî problemó 
+arise® Thå messageó produceä arå listeä iî appendiø µ aô thå enä 
+oæ thå manuaì foò readù reference.
+
+.paŠ

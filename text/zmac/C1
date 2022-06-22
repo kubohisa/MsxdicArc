@@ -1,0 +1,372 @@
+.he                                         Chapter 1 - Introduction
+.fo                                                              # 
+.pn 1
+.TC 1. INTRODUCTION..............................#
+                          INTRODUCTION
+
+
+ZMAÃ ió á Relocatinç Macrï assembleò foò Ziloç Z180¬ Hitaché 
+HD64180¬ anä Z8° baseä computers® Iô readó texô fileó containinç 
+assemblù languagå statementó anä produceó fileó containinç objecô 
+code¬ printablå listinç oæ thå codå anä source¬ á symboì tablå 
+listing¬ anä aî erroò loç file® Thå objecô codå maù bå iî Inteì 
+HEØ oò iî Microsofô REÌ format® Thå HEØ objecô fileó arå suitablå 
+foò inpuô tï loaderó likå thå CP/Í LOAÄ utilitù oò thå publiã 
+domaiî utilitù MLOAÄ bù Roî Fowler® Thå REÌ objecô fileó arå 
+compatiblå witè ZMÌ anä otheò linkeró thaô accepô Mreì formaô 
+objecô files.
+
+ZMAÃ requireó á minimuí oæ abouô 30Ë-byteó oæ TPÁ memorù tï 
+perforí á usefuì assembly® Largeò availablå memorù permitó thå 
+assemblù oæ mucè largeò anä morå compleø programs.
+
+ZMAÃ wilì operatå iî á CP/Í environment® Iô wilì automaticallù 
+detecô anä makå uså oæ thå expandeä capabilitieó oæ thå morå 
+powerfuì Ú-systeí environmenô foò whicè iô waó designed.
+
+IÆ YOÕ HAVÅ NOÔ DONÅ SÏ ALREADY¬ STOĞ RIGHÔ NO× ANÄ MAKÅ AÔ LEASÔ 
+TWÏ COPIEÓ OÆ THÅ ZMAÃ DISTRIBUTIOÎ DISK¡ WRITÅ PROTECÔ THÅ 
+ORIGINAÌ ANÄ ONÅ OÆ THÅ COPIEÓ ANÄ USÅ THÅ REMAININÇ COPÙ AÓ Á 
+WORKINÇ DISK® INSTALLATIOÎ SHOULÄ BÅ DONÅ OÎ THÅ WORKINÇ COPY(S© 
+ONLY.
+
+.cp 15
+.ix Distribution Files
+DISTRIBUTIOÎ FILES
+
+Yoõ wilì finä thå followinç fileó oî youò ZMAÃ masteò disk:
+
+.lm 23
+.pm 8
+       File           Description
+
+       ZMAC.COM       Thå Assembler
+       ZMLNK.COM      Thå Linker
+       ZCNFG.COM      Configuratioî utilitù foò ZMAÃ ¦ ZMLNK
+       ZMAC.CFG       Configuratioî overlaù useä bù ZCNFG
+       ZMLNK.CFG      Configuratioî overlaù useä bù ZCNFG
+       FILES.DOC      Texô filå containinç á descriptioî oæ anù 
+                      otheò fileó presenô oî thå disk.
+       Z80.HLP        Extensivå Opcodå datá iî á ZCPR³ HELĞ file
+.lm 1
+.pm 0
+
+Z80.HLĞ ió Copyrighteä (C© 198¸ bù Cameroî W® Cotrill.
+
+Otheò fileó witè thå .Z8° filå-typå extensioî arå presenô oî thå 
+distributioî disk® Theså fileó illustratå manù oæ thå structureó 
+anä pseudï-opó provideä bù ZMAC® Thå Publiã Domaiî filå 
+"MUSICBOX¢ bù Eä Cramğ ió aî excellenô examplå oæ thå applicatioî 
+oæ manù oæ thå assembleò instructionó availablå iî ZMAC.
+
+.cp 10ŠYoõ wilì finä thå followinç Publiã Domaiî fileó useful® Theù arå 
+availablå foò downloaä froí Ú-Nodeó anä manù otheò CP/Í orienteä 
+Bulletiî Boarä Systems.
+
+.lm 8
+       MLOAD24.COÍ    HEØ loader
+       XIZÉ-3.LBÒ     Translatå Ziloç ¼-¾ Inteì mnemonics
+       XLATE5.LBÒ     Earlù versioî oæ XIZÉ-3
+       SEQIO22.LIÂ    Macrï library¬ usefuì foò examples
+       Z8E.LBÒ        Screeî orienteä debugger.
+       PROLNK15.LBÒ   Microsofô compatiblå linker
+.lm 1
+
+.cp 8
+Thå followinç usefuì utilitieó arå NOÔ publiã domain® Theù maù bå 
+purchaseä froí youò ZMAC/ZMÌ supplier.
+
+.lm 8
+       ZTOI.COÍ     Converô Ziloç tï Inteì mnemonics
+       ITOZ.COÍ     Converô Inteì tï Ziloç mnemonics
+       ZLIB.COÍ     Librarù Manageò foò REÌ linkeò libraries
+       ZREF.COÍ     Crosó Reæ generatoò foò Z80/HD6418° source.
+       DSD.COÍ      Screeî orienteä Debugger® Thå Best.
+.lm 1
+
+.TC    Installation..............................#
+INSTALLATION
+
+ZMAÃ ió readù tï ruî iî CP/M¬ ZCPR33¬ oò ZCPR3´ systems® Iæ yoõ 
+arå usinç ZCPR3¬ theî yoõ musô uså Z3INS.COÍ tï instalì ZMAC.COM® 
+Z3INÓ ió noô requireä foò ZCPÒ versionó higheò thaî 3.0.
+
+Thå installatioî utilitù ZCNFG.COÍ oî youò workinç disë displayó 
+thå useò selectablå defaulô optionó anä provideó foò interactivå 
+modification® 
+
+Iæ wish¬ invokå ZCNFÇ no÷ tï seå whaô optionó arå currentlù 
+active® Thå prograí ió selæ promptinç anä provideó assistance® 
+Thå defaulô optionó arå thoså whicè arå generallù useful» yoõ 
+shouldn'ô neeä tï changå anù righô now® Exiô ZCNFÇ witè thå 'Q§ 
+commanä sï thaô nothinç ió changed® Afteò becominç familiaò witè 
+ZMAÃ anä thå contentó oæ thió manual¬ yoõ maù wisè tï takå 
+advantagå oæ reconfiguration® Seå chapteò ¹ iî thió manuaì wheî 
+you'rå readù tï seô optionó witè ZCNFG.
+
+ZMAÃ ió readù tï use¡ Iæ yoõ arå aî experienceä assemblù languagå 
+programmer¬ yoõ shoulä reaä thå configuratioî chapteò anä revie÷ 
+thå chapteò oî pseudï-ops® 
+
+Iæ you'rå ne÷ tï Assemblù languagå programming¬ yoõ shoulä reaä 
+thå entirå manuaì anä makå uså oæ aó manù oæ thå Referenceó iî 
+Appendiø A² aó possible® Don'ô bå afraiä tï rå-reaä untiì yoõ 
+understand¡ 
+
+ZMAÃ anä ZMÌ arå likelù tï evolve® Iæ yoõ don'ô botheò tï 
+senä iî thå registratioî form¬ yoõ caî bå certaiî thaô youò namå 
+ió missinç froí thå lisô oæ thoså notifieä oæ ne÷ releases!
+
+.cp 10Š.TC    Invocation................................#
+INVOKINÇ ZMAC
+
+Thå simplesô invocatioî ió tï typå (aô thå systeí prompt):
+
+          ZMAC
+oò        ZMAÃ ¯              <=½ '?§ maù bå useä insteaä oæ '/'
+
+NOTEº '<==§ meanó commentó thaô arå noô parô oæ thå typeä line
+
+Thå resulô wilì bå á HELĞ screeî whicè showó thå commanä formaô 
+anä á summarù oæ thå commanä linå options¬ alonç witè theiò 
+currenô defaulô values® Thå defaulô valueó foò optionó arå 
+importanô information® Theù sho÷ whaô thå assembleò wilì dï iæ 
+yoõ don'ô specifù anù options® Optionó wilì bå discusseä furtheò 
+oî thå followinç pages.
+
+Thå fulì ZMAÃ commanä line‹ syntaø is:
+
+     ZMAÃ ß [DIR:İ FÎ [.TYPİ   [,o...]
+
+.lm 5
+.pm 1
+ _  (underline© meanó thaô á Spacå ió requireä iî thió position® 
+    Thå spaceó iî thå prototypå commanä linå abovå arå presenô 
+    foò readability» theù arå noô parô oæ thå commanä line® 
+
+[]  meanó thaô thå iteí encloseä ió optional.
+
+FN  ió thå namå oæ thå sourcå filå tï bå assembled® Iô ió thå 
+    onlù iteí foò whicè therå ió nï default® 
+
+DIR maù bå á drivå letteò (A¬ B¬ etc© oò á useò areá (0,1,...© oò 
+    thå standarä ZCPÒ combinatioî likå A1¬ C4¬ anä sï on® ZCPR³ 
+    useró wilì recognizå thió forí aó thaô employeä bù ZCPR3» iô 
+    ió identical® Iæ youò systeí supportó nameä directories¬ DIÒ 
+    caî bå á directorù name.
+
+'o' standó foò Option® Commanä linå optionó arå discusseä below® 
+
+...(Ellipses© Thå precedinç iteí maù bå repeateä indefinitely.
+.lm 1
+.pm 0
+
+.CP 10
+Thå commá whicè precedeó eacè optioî markó thå placå wherå onå oò 
+morå delimiteró arå required® Alloweä delimiteró arå Comma¬ '/'¬ 
+Space¬ anä Tab® Thió allowó yoõ tï enteò optionó iî á varietù oæ 
+formats® Alì thå followinç wilì bå properlù interpreted:
+
+     ZMAÃ NAMÅ ï ï ï               <=½ singlå spaceó oò tabs
+     ZMAÃ NAMÅ  ï  ï  ï            <=½ multiplå spaceó anä tabs
+     ZMAÃ NAME/o/ï /ï              <=½ slasheó anä aî extrá space
+     ZMAÃ NAMÅ  /ï ï ï             <=½ Á commoî ZCPR³ form
+     ZMAÃ NAMÅ /o,o,ï              <=½ Á commoî ZCPR³ form
+
+
+.cp 7ŠIæ DIÒ ió noô specified¬ ZMAÃ wilì searcè thå currentlù loggeä 
+directorù foò thå file® Iæ yoõ havå specifieä aî alternatå DUº 
+witè thå ZCNFÇ program¬ thaô directorù wilì alsï bå searcheä foò 
+thå filå noô founä iî thå currenô (oò specified© DIR® Thió searcè 
+oæ aî alternatå directorù ió particularlù usefuì foò findinç 
+fileó referenceä iî thå maiî sourcå filå bù thå .INCLUDÅ pseudï-
+op¬ anä ió furtheò discusseä iî chapteò 5.
+
+Iæ TYĞ ió noô specified¬ á filetypå oæ Z8° ió assumed® ZMAÃ wilì 
+locatå thå filå anä assemblå thå contentó tï producå á FN.REÌ 
+objecô file® 
+
+Iæ erroró occuò durinç thå assembly¬ á filå nameä FN.ERÒ wilì bå 
+produced¬ alonç witè erroò messageó oî thå console.
+
+.cp 6
+ZMAÃ ió rå-executable® Thaô meanó thaô yoõ caî uså thå ZCPR³ 'GO§ 
+commanä (witè aî appropriatå commanä tail© tï assemblå thå nexô 
+sourcå file® Yoõ caî takå advantagå oæ thió propertù iî aî ALIAS¬ 
+Submiô file¬ oò ZEØ scripô wheî yoõ havå multiplå moduleó tï 
+assemble® Thå advantage¬ oæ course¬ ió thaô yoõ savå thå timå 
+requireä tï reloaä ZMAÃ froí disë foò eacè invocation® Thå disë 
+containinç ZMAÃ neeä noô eveî bå presenô foò reinvocation» iô maù 
+foò examplå havå beeî replaceä witè á ne÷ onå containinç spacå 
+foò outpuô fileó froí thå nexô assembly.
+
+.CP 8
+FILESPECS
+
+Wheî referencå ió madå tï á filå namå oî thå commanä linå anä iî 
+thå assemblù source¬ fulì ZCPR³ stylå filespecó arå allowed¬ aó 
+iî thå prototypå commanä linå above® Thå Namå (FN© anä Typå 
+fieldó maù noô contaiî characteró froí thå followinç list:
+
+	spacå <controì char¾ ½ ß º » ¼ ¾ ¬ /
+
+
+DEFAULÔ OUTPUÔ FILÅ GENERATION
+
+ZMAÃ maù bå configureä sï thaô anù oæ thå fouò possiblå outpuô 
+fileó arå produceä withouô declaratioî oî thå commanä line® Iî 
+sucè á case¬ defaulô entitieó arå provideä (alsï subjecô tï 
+configuration© foò alì partó oæ thå filå specification® Anù parô 
+oæ thå filå specificatioî provideä oî thå commanä linå (iî 
+optionó O,P,E¬ anä S© oveò rideó thå defaulô anä resultó iî 
+unconditionaì productioî oæ thaô file.
+
+Thå defaulô filå nameó appeaò iî thå 'defaulô filespec§ columî oæ 
+thå HELĞ screen® Theiò defaulô declaratioî ió indicateä bù 'YES§ 
+oò 'NO§ iî thå columî headeä 'makå it?'.
+
+.CP 15Š.TC    ZCPR3/33/34...............................#
+ZCPR3/33/3´ services
+
+Thå followinç facilitieó arå presenô iæ ZMAÃ ió invokeä undeò aî 
+operatinç systeí thaô includeó ZCPR3® Iæ ZCPR³ haó beeî 
+configureä tï omiô somå systeí modulå (likå thå Nameä Directory¬ 
+foò instance© theî functionó thaô requirå thaô servicå wilì noô 
+work.
+
+ZMAÃ setó thå ZCPR³ prograí erroò flag‹ iæ erroró occuò durinç thå 
+assembly® 
+
+Wheî thå firsô erroò ió encountered¬ ZMAÃ writeó thå followinç 
+datá intï thå Z³ messagå bufferº thå fulì namå oæ thå file¬ thå 
+drivå anä useò numbeò oæ thå file¬ thå linå numbeò withiî thå 
+file¬ anä á singlå letteò erroò codå whicè indicateó thå kinä oæ 
+error® Thå letteò correspondó tï onå oæ thoså iî thå lisô oæ 
+erroò messageó neaò thå enä oæ thió manual® Withiî aî Alias¬ thió 
+informatioî coulä bå extracteä froí thå messagå buffeò anä passeä 
+tï aî editoò likå PMATÅ aó parô oæ á commanä tail.
+
+Warninç messageó dï noô invokå eitheò oæ thå abovå actions¬ buô 
+dï appeaò oî thå .PRÎ listing.
+
+Thå HELĞ screeî accesseó thå Z³ externaì FCÂ tï incorporatå thå 
+namå bù whicè thå prograí waó invoked® (Yoõ caî renamå ZMAÃ tï 
+whateveò suitó youò fancy¬ anä thå helğ screeî wilì follo÷ suit.)
+
+
+.TC    Command Line Options......................#
+COMMANÄ LINÅ OPTIONS
+
+Thå commanä linå optionó arå showî oî thå helğ screen® Therå arå 
+twï typeó oæ optionº thoså thaô takå nï argument¬ anä thoså thaô 
+maù includå á filespeã aó aî argument® Eacè optioî ió precedeä bù 
+aô leasô onå delimiter® Acceptablå delimiteró arå space¬ tab¬ 
+comma¬ anä slasè (/)® 
+
+Thå firsô grouğ oæ optionó arå C¬ L¬ anä H® Thå Ã anä Ì optionó 
+controì thå productioî oæ aî assemblù listinç oî thå Consolå anä 
+Lisô device¬ respectively® Thå È optioî selectó thå kinä oæ codå 
+tï bå produceä iî thå Objecô file® Alì arå toggles® Thå helğ 
+screeî showó thå defaulô conditioî foò eacè option® Beforå 
+configuration¬ Ã anä Ì arå botè 'NO§ (nï listinç tï eitheò 
+device© anä È ió seô foò REÌ objecô code® Iæ thå È optioî ió 
+includeä iî thå optioî list¬ theî aî Inteì HEØ objecô filå wilì 
+bå produced® Ã anä L¬ iæ includeä iî thå optioî list¬ wilì causå 
+thå assemblù listinç tï bå senô tï thå consolå anä lisô devices.
+
+Thå seconä grouğ oæ optionó controló thå production¬ name¬ anä 
+destinatioî oæ outpuô files® Thå destinatioî anä namå arå 
+controlleä bù thå (possiblù null© filespec® Bù default¬ Objecô 
+anä Erroò loç fileó wilì bå produced¬ aó indicateä bù thå 'YES§ 
+iî thå Helğ screen» thå PRÎ anä SYÍ fileó wilì NOÔ bå produced® 
+Optionó O¬ P¬ S¬ anä Å wheî presenô withouô á filespec¬ togglå 
+productioî oæ theiò relateä outpuô files® Thå defaulô destinatioî 
+oæ thoså fileó thaô arå produceä ió thå currentlù loggeä Šdirectory® Herå arå somå examplå commanä lines:
+
+Assumå thaô MYCODE.Z8° ió iî thå currenô directory¬ whicè ió B0:
+
+1)ZMAÃ MYCODÅ                    MYCODE.REÌ ¦ MYCODE.ERR
+2)ZMAÃ MYCODÅ Ï Ğ                MYCODE.PRN¬ MYCODE.ERR
+3)ZMAÃ MYCODÅ Ï Ğ Å              MYCODE.PRN
+4)ZMAÃ MYCODÅ /O,Ğ               Samå aó 2¬ otheò delimiters
+5)ZMAÃ MYCODÅ Oxxxø              XXXX.REL¬ MYCODE.ERR
+6)ZMAÃ MYCODÅ Pwork:tesô         MYCODE.REL¬ WORK:TEST.PRN
+7)ZMAÃ MYCODÅ O2º P3º            B2:MYCODE.REL¬ B3:MYCODE.PRN
+8)ZMAÃ MYCODÅ O.zrì              MYCODE.ZRL¬ MYCODE.ERR
+
+.lm 8
+.pm 1
+Example ± illustrateó aî assemblù invocatioî whicè relieó oî thå 
+       defaultó showî iî thå HELĞ screen.
+
+Exampleó ² anä ³ illustratå ho÷ isolateä optioî letteró TOGGLÅ 
+       filå production® 
+
+Exampleó µ anä ¸ illustratå definitioî oæ aî outpuô filename® 
+
+Exampleó ¶ anä · illustratå unconditionaì productioî oæ outpuô 
+       fileó wheî anù parô oæ thå filespeã ió provided® Thå 
+       appropriatå parô oæ thå defaulô speã ió replaceä bù thaô 
+       provideä oî thå commanä line® 
+.lm 1
+.pm 0
+
+.cp 20
+Singlå letteò optionó C¬ L¬ anä È dï noô reallù requirå á 
+delimiteò beforå thå followinç optioî becauså theù dï noô specifù 
+aî argument® Á delimiteò MUSÔ follo÷ thå O,P,E¬ anä Ó optionó 
+eveî iæ nï argumenô ió present® Sucè á caså occuró wheî á PRÎ 
+filå ió noô produceä bù default¬ anä yoõ wisè tï producå onå foò 
+thå currenô assemblù withouô specifyinç thå filespeã (defaulô du¬ 
+name¬ anä typå wilì bå used)® Thå followinç commandó arå alì 
+properlù interpreted:
+
+ZMAÃ NAMÅ CĞ            <=½ lisô tï consolå anä NAME.PRN
+ZMAÃ NAMÅ CPb3º         <=½ same¬ buô PRÎ goeó tï B3º directory
+ZMAÃ NAMÅ CĞ S.tbì      <=½ alsï makå symboì filå NAME.tbl
+ZMAÃ NAMÅ CP,è          <=½ producå HEØ objecô iæ Objfilå ió ON.
+ZMAÃ NAMÅ CP4:xxx.lst,è <=½ filå XXX.LSÔ iî useò 4¬ defaulô dr.
+
+Thå followinç ió misinterpreteä iæ yoõ wanô optionó Ã anä H:
+
+ZMAÃ NAMÅ PCÈ		<=½ makeó CH.PRN
+
+Anù oæ thå optionó maù bå includeä aó á singlå letter® Wheî á 
+singlå letteò optioî ió useä iô actó aó á toggle® Á seconä 
+occurrencå simplù canceló thå first® Foò thoså optionó whicè takå 
+aî argument¬ thå presencå oæ thå argumenô causeó aî unconditionaì 
+togglå tï thå OÎ statå foò thaô option® i.e¬ iæ á PRÎ filå ió 
+beinç produceä bù defaulô theî á P<filespec¾ doeó NOÔ togglå ofæ 
+productioî oæ thå prî file» iô doeó seô thå namå anä destinatioî 
+oæ thaô filå tï <filespec>® Iî thå samå situation¬ á 'P§ followeä 
+bù á delimiteò woulä canceì generatioî oæ thå PRÎ file.
+ŠCommanä linå optionó arå iî effecô onlù durinç thå currenô 
+assembly®  Theù dï noô becomå defaultó foò futurå assemblies® 
+effecô onlù durinç thå currenô assembly® Permanenô defaultó arå 
+seô bù ZCNFG.
+
+.cp 15
+ASSEMBLÙ STATISTICS
+
+Afteò completioî oæ aî assembly¬ ZMAÃ wilì pauså iî itó consolå 
+outpuô iæ interactivå informatioî oò erroò messageó havå useä thå 
+screen® Thió provideó aî opportunitù tï revie÷ sucè messageó 
+beforå theù scrolì ofæ thå screen® Followinç thió pauså (iæ iô 
+occurs)¬ statisticó abouô thå currenô assemblù arå reported® 
+
+     á counô oæ errors
+     filespeã foò thå inpuô file
+     filespecó foò alì fileó generated
+     thå numbeò oæ lineó assembled
+     thå numbeò oæ macroó defined
+     thå numbeò oæ macrï expansions
+     thå sizå oæ eacè segmenô (ASEG¬ CSEG¬ DSEG¬ BLANË COMMON)
+     freå memorù spacå unuseä bù thå assembly
+
+Thå followinç statisticó arå reporteä onlù iæ theù exist:
+
+     namå anä sizå oæ eacè Nameä Commoî segment
+     totaì sizå oæ codå withiî .PHASÅ ­ .DEPHASÅ blocks
+
+.paŠ                              NOTES
+.paŠ

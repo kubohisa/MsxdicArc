@@ -1,0 +1,690 @@
+.he                                           Chapter 5 - Pseudo-ops
+.fo                                                              # 
+.TC 5. PSEUDO-OPS (Assembler Directives).........#
+           ZMAÃ PSEUDÏ-OPERATIOÎ MNEMONIÃ DEFINITIONS
+
+
+NOTEº Syntaø definitionó contaiî spaceó foò easå oæ readinç whicè 
+arå noô á parô oæ thå syntax® Wherå á spacå ió syntacticallù 
+required¬ iô ió indicateä bù aî '_§ (underscore).
+
+Thå termó Pseudï-operation¬ Pseudï-op¬ anä Assembleò Directivå 
+arå synonymous.
+
+ $INCLUDÅ FÓ                  Synonymsº .IN¬ MACLIB¬ INCLUDE
+         (seå .IÎ foò definition.)
+
+ .180„                         Synonymº .HD64
+
+Disableó noî-fataì warninç messageó foò HD6418° opcodes® Thió ió 
+thå normaì defaulô modå oæ thå assembler® (seå .Z80)
+
+ .ACCEPÔ  {QSTÒ ,ı <symbol>
+
+Thió pseudï-oğ giveó yoõ thå abilitù tï enteò á valuå foò á 
+symboì durinç assemblù oæ á file® Foò example¬ yoõ mighô wisè tï 
+enteò á Date/time¬ á versioî number¬ oò thå logicaì valuå 
+(Yes/No© thaô wilì controì conditionaì assemblù oæ somå partó oæ 
+thå sourcå file® Yoõ mighô havå debuç codå intersperseä iî thå 
+sourcå codå whicè ió tï bå assembleä whilå yoõ arå developinç thå 
+code¬ buô whicè musô bå omitteä foò thå workinç version.
+
+Wheî thå .ACCEPT‹ ....® linå ió encountereä durinç pasó ± oæ thå 
+assembly¬ á prompô wilì appeaò oî youò console® Yoõ responä bù 
+enterinç á valuå oò aî expressioî followeä bù á carriagå return® 
+<symbol¾ ió á namå whicè ió usuallù noô otherwiså defineä iî thå 
+program® Thå defaulô valuå iî sucè á caså ió zero» iæ yoõ responä 
+witè nothinç buô á carriagå return¬ thå assigneä valuå wilì bå 
+binarù zero.
+
+.cp 5
+ .ACCEPÔ ió processeä onlù oncå (durinç pasó 1© sï yoõ won'ô bå 
+askeä foò thå samå inpuô twice® Becauså oæ thió strategy¬ anù 
+variableó useä iî thå expressioî (sucè aó YEÓ anä NO© musô havå 
+beeî defineä wheî thå .ACCEPÔ statemenô ió encountered.
+
+QSTÒ ió aî optionaì prompô messagå whicè wilì bå printeä oî thå 
+console® Iæ yoõ don'ô specifù thå prompt¬ theî á defaulô prompt¬ 
+consistinç oæ thå symboì namå followeä bù á '?'¬ wilì bå used.
+
+Yoõ caî providå á defaulô valuå foò <symbol¾ witè thå SEÔ pseudï-
+op® Sucè á defaulô valuå definitioî musô meeô twï conditionsº 
+first¬ iô musô occuò beforå thå .ACCEPÔ statemenô anä seconä iô 
+musô bå iî á conditionaì assemblù clauså thaô causeó iô tï bå 
+processeä onlù durinç pass1® Foò example:
+
+.CP 12Š          IFP1
+      obsizå    seô  200è      ;defaulô buffeò size
+          ENDIF
+      ....
+      .ACCEPÔ  'changå buffeò sizå froí 200è tï ',obsize
+      ....
+
+wilì producå thå messagå oî thå console:
+ changå buffeò sizå froí 200è tï ?
+anä waiô foò keyboarä input® Iæ yoõ responä witè nothinç buô á 
+carriagå return¬ obsizå wilì stilì havå thå valuå 200h® Iæ yoõ 
+responä witè á numbeò oò expression¬ theî thaô valuå wilì bå 
+assigneä tï obsize.
+
+ .COMMENT‹ <delimiter><anything><delimiter>
+
+Á blocë oæ arbitrarilù formatteä texô maù bå includeä iî thå 
+assemblù listinç witè thió instruction® <delimiter¾ ió anù 
+printablå character® Thå firsô occurrencå oæ thå delimiteò musô 
+bå oî thå samå linå aó thå pseudï-op® Thå terminatinç delimiteò 
+maù appeaò ANÙ PLACÅ iî thå lasô linå oæ thå block» thå blocë 
+wilì bå terminateä aô thå followinç enä-oæ-line® 
+
+ .DEPHASE‹ 
+
+Markó thå enä oæ á phaså block® (Seå alsï .PHASE).
+Afteò occurrencå oæ thå .DEPHASÅ instruction¬ assemblù wilì 
+continuå witè addresseó whicè arå á continuatioî oæ thoså iî 
+effecô wheî thå .PHASÅ blocë waó invoked¬ anä iî thå samå 
+relocatioî baså (ASEG¬ CSEG¬ etc).
+
+ .HD64‹    „                         Synonymº .180
+
+Disableó noî-fataì warninç messageó foò HD6418° opcodes® Thió ió 
+thå normaì defaulô modå oæ thå assembler® (seå .Z80)
+
+ .IF1‹     
+
+Uså thå leasô significanô biô foò evaluatinç expressionó aó TRUÅ 
+oò FALSE® Thió methoä ió compatiblå witè DRÉ usagå iî theiò ASM¬ 
+MAC¬ anä RMAÃ assemblers® Thå choicå betweeî á defaulô oæ ".IF1¢ 
+oò ".IF16¢ ió á configuratioî option.
+
+ .IF16
+
+Uså thå fulì 1¶ bitó oæ aî expressioî valuå tï evaluatå TRUÅ oò 
+FALSE® Thió methoä ió compatiblå witè Microsofô usagå iî itó 
+Macrï-8° assembler® Thå defaulô choicå betweeî .IF± anä .IF1¶ ió 
+á configuratioî option.
+
+.cp 10Š .IÎ      FÓ                  Synonymsº MACLIB¬ $INCLUDE¬ INCLUDE
+
+Causeó thå filå specifieä bù FÓ tï bå includeä iî thå assemblù aô 
+thió point® Thå filå maù contaiî anythinç normallù acceptablå iî 
+thå maiî sourcå file¬ includinç otheò .IÎ statements® INcludå 
+fileó maù bå nesteä ´ deep® Aî ENÄ statemenô WILÌ TERMINATÅ thå 
+assemblù jusô aó iæ iô haä beeî iî thå maiî file® Becauså oæ 
+this¬ ENÄ statementó arå usuallù noô presenô iî INcludeä files.
+
+.cp 6
+ .LALL
+
+Lisô ALÌ macrï lineó durinç macrï expansions® Iæ .XLISÔ ió iî 
+effect¬ oæ course¬ nothinç ió listed® (Seå alsï .SALÌ anä .XALL)
+
+.cp 5
+ .LCTL
+
+Enableó listinç oæ lineó containinç thå followinç (listinç 
+control© pseudï-opsº  (Seå alsï .XCTL)
+
+                PAGÅ    .TITLÅ  .SBTTÌ  .LFCONÄ .SFCOND
+                .XLISÔ  .LISÔ   .LALÌ   .SALÌ   .XALL
+                .LCTÌ   .XCTL
+
+ .LFCOND
+
+Lisô Falså CONDitionaló iî thå assemblù listing® (Seå alsï 
+.SFCOND© Ensureó thaô lineó withiî á conditionaì clauså thaô 
+evaluateó falså wilì bå listeä eveî thougè theù arå noô 
+assembled.
+
+ .LIST
+
+Resumå listinç whicè haó beeî turneä ofæ bù .XLIST
+
+ .PHASE‹   <exp>
+
+Starô á blocë oæ codå whoså executioî addresó ió <exp>¬ wherå 
+<exp¾ ió aî absolutå value® Seå alsï .DEPHASE
+Thå absolutå (ASEG© codå whicè followó thå .PHASÅ directivå ió 
+locateä iî thå codå segmenô (CSEG¬ foò example© iî effecô wheî 
+thå .PHASÅ statemenô ió encountered¬ eveî thougè itó executioî 
+addresó ió elsewhere® .DEPHASÅ markó thå enä oæ thå block® Thå 
+codå iî á PHASÅ blocë musô bå moveä aô ruî timå tï thå addresó 
+specifieä bù <exp¾ iæ iô ió tï bå executed.
+
+ORG¬ ASEG¬ CSEG¬ DSEG¬ anä COMMOÎ  directiveó arå noô alloweä 
+withiî á PHASÅ block.
+
+.cp 10Š .PRINÔ   {<pass>,ı QSTÒ ü STÒ           Synonymº PRINTX
+
+ .PRINTØ  {<pass>,ı QSTÒ ü STÒ           Synonymº PRINT
+
+Displayó á quoteä oò unquoteä strinç oî thå console® Iæ <pass¾ ió 
+presenô (notå thå requireä comma)¬ iô musô bå á numbeò ± oò 2» 
+thå displaù wilì theî occuò onlù durinç pasó ± oò pasó 2¬ 
+respectively.
+
+.cp 10
+ .RADIØ   n
+
+Wherå î ió á decimaì numbeò greateò thaî 1® Setó thå numbeò baså 
+useä foò convertinç numberó froí assemblù sourcå anä thå ACCEPÔ 
+command® Thå currenô radiø ió useä wheneveò á conversioî ió 
+requireä tï oò froí aî ASCIÉ texô context® Thió ió particularlù 
+usefuì iî connectioî witè thå leadinç ¥ characteò whicè causeó 
+numeriã evaluatioî iî á macrï parameteò list® Unlesó otherwiså 
+specifieä bù .RADIX¬ numberó arå considereä tï bå decimaì bù 
+default.
+
+.cp 8
+ .REQUEST‹ FÎ {,FN...}
+
+Transmitó thå name(s© tï thå objecô (normallù .REL© file® Thå 
+linkeò interpretó theí aó librarieó tï bå searcheä foò unresolveä 
+externaì symbols® Foò Microsofô compatibility¬ thå nameó shoulä 
+bå lesó thaî · characteró long® Eacè namå ió thå namå onlù (nï 
+directorù speã oò filenamå type)¬ anä onlù thå firsô ¶ characteró 
+oæ thå namå arå used.
+
+.cp 12
+ .RLIST
+
+Restorå LISÔ controì flagó froí á pusè-dowî stack® Thå .SLISÔ 
+instructioî musô havå beeî previouslù useä tï pusè thå LISÔ 
+controì flags® Thå stacë ió µ leveló deep® Lisô controì flagó arå 
+generateä bù thå followinç  (listinç control© pseudï-ops:
+
+                .LFCONÄ .SFCONÄ .XLISÔ  .LIST
+                .LALÌ   .SALÌ   .XALÌ   .LCTÌ   .XCTL
+
+Thå effecô ió tï restorå thå lisô controì environmenô thaô waó iî 
+effecô wheî thå .SLISÔ instructioî waó encountered® Anù 
+interveninç lisô controì statementó arå canceled.
+
+ .SALL
+
+Suppresó ALÌ macrï listing® Onlù thå macrï invocatioî linå wilì 
+bå displayeä iî thå listing® (Seå alsï .XALÌ anä .LALL)
+
+ .SBTTL‹   û QSTÒ ü TXÔ  oò  [QSTÒ ü TXTİ ı       Synonymº SUBTTL
+
+Specifieó thå SubTitlå linå foò uså oî subsequenô pageó oæ thå 
+assemblù listing® Followó thå samå ruleó aó foò .TITLE.
+
+.cp 6Š .SFCOND
+
+Suppresseó listinç oæ thå statementó whicè follo÷ aî IFxø 
+statemenô thaô evaluateó FALSE¬ untiì thå nexô ELSÅ oò ENDIF® 
+(Seå alsï .LFCOND).
+
+.cp 10
+ .SLIST
+
+Savå thå currenô LISÔ controì flagó oî á pusè-dowî stack® Thå 
+stacë ió µ leveló deep® Thå LISÔ controló maù bå restoreä witè 
+thå .RLISÔ instruction¬ whicè popó thå stack® Lisô controì flagó 
+arå generateä bù thå followinç (listinç control© pseudï-ops:
+
+                .LFCONÄ .SFCONÄ .XLISÔ  .LIST
+                .LALÌ   .SALÌ   .XALÌ   .LCTÌ   .XCTL
+
+Á typicaì uså foò thió instructioî ió beforå aî INCLUDÅ statemenô 
+whicè causeó anotheò filå tï bå included® Sucè á filå maù contaiî 
+lisô controì statementó foò itó owî purposes® Afteò thå INCLUDÅ 
+line¬ aî .RLISÔ wilì restorå listinç controló tï theiò formeò 
+statå regardlesó oæ thå statementó iî thå INCLUDEä file.
+
+.cp 12
+ .TITLÅ   û QSTÒ ü TXÔ  oò  [QSTÒ ü TXTİ ı       Synonymº TITLE
+
+Thå quoteä oò unquoteä strinç ió saveä anä useä aó thå titlå linå 
+oî subsequenô pageó oæ thå listing® Thå openinç anä closinç 
+quoteó arå noô includeä iî thå title¬ buô quoteó withiî thå 
+quoteä strinç arå includeä oncå foò eacè duplicatå occurrencå (á 
+singlå occurrencå woulä terminatå thå string)® Thå quotå 
+characteró maù bå eitheò § oò ".
+
+Iæ nï argumenô followó thå .TITLÅ pseudï-op¬ theî thå titlå linå 
+ió cleareä tï blanks.
+
+ .XALL
+
+eXcludå alì macrï lineó whicè producå nï codå froí thå listing® 
+Subsequently¬ onlù thoså macrï lineó whicè producå codå wilì bå 
+listed.
+
+.cp 8
+ .XCTL
+
+Disablå listinç oæ lineó containinç thå followinç (listinç 
+control© pseudï-opsº (Seå alsï .LCTL)
+
+                PAGÅ    .TITLÅ  .SBTTÌ  .LFCONÄ .SFCOND
+                .XLISÔ  .LISÔ   .LALÌ   .SALÌ   .XALL
+                .LCTÌ   .XCTL
+
+.cp 8Š .XLIST
+
+Suppresó listinç untiì aî .LISÔ instructioî ió encountered® Whilå 
+XLISÔ ió iî effect¬ .TITLÅ  anä .SBTTÌ instructionó arå ignored¬ 
+anä theså headeò lineó remaiî aó theù werå beforå thå .XLISÔ 
+instruction.
+
+.cp 10
+Thå followinç pseudï-opó arå inhibiteä bù .XLIST® Thå effecô ió 
+tï prevenô forí feeds¬ changeó iî thå Titlå oò Subtitlå lines¬ 
+changeó iî Macrï listing¬ changeó iî thå listinç oæ falså 
+conditionals¬ anä changeó iî displaù oæ lineó containinç lisô 
+controì statementó aó á resulô oæ statementó fallinç withiî thå 
+rangå oæ aî .XLISÔ ­ .LISÔ paiò oæ statements.
+
+	PAGÅ	.TITLÅ	.SBTTÌ	.LFCONÄ	.SFCONÄ	
+	.LALÌ	.SALÌ	.XALÌ	.LCTÌ	.XCTL
+
+Witè thå exceptioî oæ .XLISÔ ¦ .LISÔ theså compriså thå (PRN© 
+listinç controì grouğ oæ pseudï-ops.
+
+ .Z80
+
+Thió pseudï-oğ setó thå assembleò tï Z8° codå mode® Anù 
+instructionó uniquå tï thå HD64180/Z18° arå assembleä correctly¬ 
+buô flaggeä aó á noî-fataì error® (Seå .HD64)
+
+.CP 10
+ASEG
+
+Setó locatioî counteò tï thå Absolutå codå segment® Thå defaulô 
+valuå oæ thå locatioî counteò wheî ASEG‹ ió firsô encountereä ió 
+0000h® Iæ thå assembleä codå ió noô intendeä tï executå aô 0¬ 
+theî aî ORÇ statemenô musô follo÷ whicè setó thå executioî 
+address® Usuallù thå ORG‹ statemenô wilì specifù 100È (don'ô 
+forgeô thå 'H'!© aó thå startinç addresó iî á Ú-system¬ buô 
+higheò addresseó maù alsï bå appropriate.
+
+.cp 7
+ASET‹                                         Synonymsº SET,DEFL
+        (Seå thå definitioî aô SET)
+Thió pseudï-oğ mnemoniã ió useä bù assembleró thaô cannoô 
+distinguisè (froí context© betweeî thå SEÔ pseudï-oğ anä thå Z8° 
+SEÔ instruction® ZMAÃ ió ablå tï distinguisè thå contexô anä 
+knowó whicè SEÔ ió intended.
+
+.cp 20ŠCOMMON‹   {[/]<NAME>[/]}
+
+Setó locatioî counteò tï á Nameä Common‹ segment® Iæ <NAME¾ ió 
+absent¬ thå nameä commoî areá defaultó tï BLANK® Iî additioî tï 
+BLANK¬ uğ tï twelvå Nameä Commoî areaó maù bå defineä bù thió 
+pseudï-op.
+
+BLANË common‹ ió assigneä witè 
+            COMMOÎ                              <=½ nï argument
+      oò    COMMOÎ    BLANK
+      oò    COMMOÎ    /BLANK/
+
+Thå argumenô followinç thå COMMOÎ pseudï-oğ ió accepteä witè oò 
+withouô thå delimitinç '/'® Foò nameä common¬ uså á namå oæ youò 
+choicå insteaä oæ 'BLANK'.
+
+Wheî aî attempô ió madå tï invokå morå thaî 1² Nameä Commoî 
+areas¬ á 'T§ erroò ió reported® (Toï manù nameä commons).
+
+CSEG
+
+Setó locatioî counteò tï thå Codå Relativå segment® Thå codå 
+generateä iî CSEÇ segmenô ió relocatablå anä startó witè aî 
+assumeä valuå oæ ° foò thå Locatioî Counter® Aî ORÇ statemenô 
+ADDÓ itó argumenô tï thå currenô locatioî counteò iî thå Codå 
+Segment® Subsequenô codå ió produceä witè thå ne÷ locatioî 
+counteò value® 
+
+CSEÇ ió thå defaulô modå oæ ZMAC® Alì instructionó arå  assembleä 
+iî thå Codå Segmenô untiì aî ASEG¬ DSEG¬ oò COMMOÎ declaratioî ió 
+encountered.
+        
+.CP 10
+DB‹       î {,n....ı                     Synonymsº DEFB¬ DEFM
+
+Definå bytå data® î maù bå á bytå value¬ á quoteä string¬ oò aî 
+expression® Expressionó producå 1¶ biô values® Wheî sucè á valuå 
+ió presenteä iî thå presenô context¬ thå lo÷ ordeò bytå ió useä 
+anä thå higè ordeò bytå ió ignoreä bù default® Thå speciaì 
+operatoò 'HIGH§ caî bå useä tï specifù thaô thå higè ordeò bytå 
+bå useä instead® Refeò tï thå chapteò oî EXPRESSIONÓ foò 
+discussioî oæ HIGH.
+
+DC‹       QSTÒ {,n...ı                   Synonymº DEFC
+
+Definå Characteò Data® î ió bytå datá (typicallù 0dh,0ah)® î maù 
+NOÔ bå anotheò quoteä string® Thå lasô bytå oæ thå datá streaí ió 
+modifieä sï thaô biô · (thå higè bit© ió seô tï 1® (similaò tï 
+thå TDÌ .ASCIÓ pseudï-op)
+
+DEFB‹                                    Synonymsº DB¬ DEFM
+
+Definå Bytå (Seå DÂ foò description)
+
+DEFC‹                                    Synonymº DC
+ŠDefinå Characteró (Seå DÃ foò description)
+
+DEFL‹                                    Synonymsº ASET¬ SET
+
+Definå Labeì (Seå SEÔ foò description)
+
+DEFM‹                                    Synonymsº DB¬ DEFB
+
+Definå Memorù (Seå DÂ foò description)
+
+DEFS‹                                    Synonymº DS
+Definå Storagå (Seå DÓ foò description)
+
+DEFW‹                                    Synonymº DW
+Definå Worä (Seå D× foò description)
+
+.cp 3
+DEFZ‹                                    Synonymº DZ
+Definå Zerï terminateä strinç (Seå DÚ foò description)
+
+.cp 6
+
+DS‹       <exp¾ {,<exp>ı                 Synonymº DEFS
+
+Definå storagå space® Thå firsô argumenô defineó thå lengtè oæ 
+thå spacå iî bytes® Thå seconä (optional© argumenô defineó thå 
+valuå oæ thå bytå witè whicè tï filì thå space.
+
+DSEG
+
+Setó locatioî counteò tï thå Datá Relativå segment® Thå Datá 
+Relativå segmenô followó thå samå ruleó aó thoså foò thå Codå 
+Relativå Segment® Althougè thå namå implieó datá only¬ therå ió 
+nï probleí witè includinç codå (instructions© iî thå DATÁ segmenô 
+jusô aó therå ió nï probleí witè includinç datá statementó iî thå 
+Codå Segment.
+
+.CP 5
+DW‹       nî {,nn...ı                    Synonymº DEFW
+
+Definå worä data® nî ió á 1¶ biô quantity® Iô maù bå aî 
+expression® Multiplå wordó arå defineä bù separatinç theí witè 
+commas® Alì valueó defineä bù D× arå storeä iî standarä Z80/Z18° 
+worä formaô witè thå leasô significanô bytå storeä aô thå loweò 
+address® Notå thaô thió ió truå eveî thougè thå valueó maù bå 
+showî higè bytå firsô iî thå assemblù listing.
+
+DZ‹       î {,n...ı                      Synonymº DEFZ
+
+Definå witè Zero® Samå aó DB¬ excepô á binarù zerï ió appendeä tï 
+thå data® î maù bå aî expression® (similaò tï thå TDÌ .ASCIÚ 
+pseudï-op)
+
+.CP 9ŠELSE
+
+Parô oæ aî IF...ENDIÆ block® Wheî thå ELSÅ ió encountered¬ thå 
+logicaì valuå oæ thå precedinç conditionaì IFxø statemenô ió 
+inverteä anä thå ne÷ valuå ió useä tï controì subsequenô 
+assembly® Aî ELSÅ establisheó á ne÷ flo÷ controì level® Therå maù 
+bå uğ tï ¸ flo÷ controì leveló pendinç (¸ leveló oæ nesting© 
+beforå aî ENDIÆ ió encountered.
+
+.CP 18
+END‹      {<exp>}
+
+Declareó thå enä oæ thå currenô assembly® Thå ENÄ statemenô ió 
+optional» iæ noô present¬ thå assembleò detectó thå  enä-oæ-filå 
+marë anä interpretó iô aó aî ENÄ statement® Iæ thå optionaì 
+argumenô ió present¬ iô ió includeä iî thå objecô filå aó thå 
+prograí startinç address® Thå linkeò wilì uså thió valuå aó thå 
+argumenô oæ á jumğ instructioî whicè iô wilì instalì aô 0100H.
+
+ZMAÃ wilì terminatå eacè pasó oæ thå assemblù aô thå firsô ENÄ 
+statemenô encountered¬ ignorinç anythinç thaô follows® Althougè 
+terminatioî oæ á prograí withiî aî INCLUDÅ filå constituteó 
+questionablå programminç practice¬ ZMAÃ assumeó thaô thå 
+programmeò INTENDÓ sucè á structurå wheî iô occurs® Everythinç 
+followinç thå ENÄ statemenô wilì bå ignored¬ EVEÎ afteò thå 
+INCLUDÅ statemenô iî thå invokinç sourcå code.
+
+ENDIF
+
+Terminateó á conditionaì assemblù block® 
+
+.cp 5
+ENDM
+
+Identifieó thå enä oæ á macrï definition
+
+ENT‹      Symboì {,Symbol...ı      Synonymsº ENTRY¬ GLOBAL¬ PUBLIC
+        (Seå PUBLIÃ foò definition)
+
+ENTRY‹    Symboì {,Symbol...ı      Synonymsº ENT¬ GLOBAL¬ PUBLIC
+        (Seå PUBLIÃ foò definition)
+
+.CP 15
+EQÕ      Syntaxº <symbol¾ ß EQU‹ ß <exp>
+
+Thå EQUatå directivå declareó thaô thå valuå oæ <exp¾ ió assigneä 
+tï thå symboì nameä iî thå firsô field® Thå symboì maù optionallù 
+bå terminateä witè ':§ oò '::'® <exp¾ musô evaluatå tï aî 
+absolutå oò relativå bù thå enä oæ thå firsô pass® Externaló 
+cannoô bå useä iî <exp¾ becauså theù arå noô evaluateä untiì 
+linë-time® 
+
+Á typicaì uså foò EQÕ is:
+
+        FALSÅ   EQÕ     0
+        TRUÅ    EQÕ     NOÔ FALSE
+        YEÓ     EQÕ     TRUE
+Š.CP 8
+EQÕ maù noô bå useä tï redefinå á previouslù defineä symboì 
+unlesó thå redefinitioî ió simplù á duplicatå oæ aî earlieò EQU® 
+It'ó noô uncommoî tï havå sucè constantó aó TRUÅ anä FALSÅ 
+redundantlù defineä iî severaì moduleó whicè maù bå INCLUDeä iî 
+aî assembly® Sucè uså ió accepteä withouô error¬ sincå thå 
+redefinitioî doeó noô changå thå valuå oæ thå symbol.
+
+Redefinitioî oæ á LABEÌ ió noô permitted® Thå resultó oæ sucè á 
+redefinitioî caî bå achieveä bù morå conventionaì means® (Uså 
+anotheò label!)
+
+EXITM
+
+Causeó exiô froí á macrï expansion® Normallù parô oæ á 
+conditionaì block® EXITÍ terminateó thå expansioî wheî iô ió 
+assembled® (seå chapteò 7)
+
+EXT‹      Symboì {,Symbol...ı            Synonymsº EXTERNAL¬ EXTRN
+
+        (Seå EXTERNAÌ foò definition)
+
+.cp 20
+EXTERNAL‹ Symboì {,Symbol...ı            Synonymsº EXTRN¬ EXT
+
+Eacè Symboì iî thå lisô ió passeä viá thå REÌ objecô filå tï thå 
+linkeò foò definitioî aô linë timå froí somå otheò modulå wherå 
+thå symboì haó beeî declareä PUBLIC® Á ZMAÃ configuratioî optioî 
+ió availablå tï excludå thoså symboló froí thå reì filå thaô arå 
+noô otherwiså referenceä iî thå currenô module® Sucè exclusioî ió 
+desireablå iæ thå EXTERNAÌ symboì lisô ió parô oæ á 'boilerplate§ 
+headeò whicè containó symboló noô useä iî thå currenô module® 
+Unreferenceä symboló wilì eliciô aî 'undefineä symbol§ messagå 
+froí thå linkeò iæ theù dï noô occuò iî onå oæ thå otheò moduleó 
+beinç linked® Iæ thå unreferenceä symboì occuró aó aî entrù poinô 
+iî á reì librarù beinç linked¬ theî thå codå containinç thaô 
+symboì wilì bå includeä iî thå finaì linkeä code® Thió ió á waù 
+oæ forcinç inclusioî oæ á blocë oæ codå froí thå librarù eveî 
+thougè iô ió neveò referenceä excepô bù aî EXTERNAÌ statement.
+
+
+EXTRN‹    Symboì {,Symbol...ı            Synonymsº EXTERNAL¬ EXT
+        (Seå EXTERNAÌ foò definition)
+
+.cp 10
+GLOBAL‹   Symboì {,Symbol...}
+
+Declareó á lisô oæ symboló whicè arå shareä witè otheò (external© 
+modules® GLOBAÌ symboló whicè arå defineä iî thå currenô assemblù 
+arå automaticallù markeä 'PUBLIC'» thå PUBLIÃ instructioî neeä 
+noô bå used® Á GLOBAÌ lisô caî bå aî INCLUDEä filå useä witè 
+severaì moduleó tï relievå thå programmeò oæ thå obligatioî tï 
+maintaiî appropriatå PUBLIÃ anä EXTERNAÌ listó iî eacè module.
+
+.CP 19ŠIF‹       <exp¾                TRUÅ iæ <exp¾ evaluateó tï TRUE
+
+Thió anä thå followinç IFxø pseudï-ops‹ controì thå assemblù oæ 
+subsequenô lineó untiì aî ELSÅ oò ENDIÆ statemenô ió encountered® 
+Wheî thå IFxø instructioî evaluateó TRUE¬ theî subsequenô lineó 
+arå includeä iî thå assembly® Wheî thå IFxø ió FALSÅ thå lineó 
+arå noô assembled.
+
+Truenesó ió baseä oî thå valuå oæ itó leasô significanô biô 
+(0=False¬ 1=True)¬ OÒ oî itó totaì (1¶ bit© valuå (0=False¬ 
+otherwiså True)®   Whicè oæ thå twï criteriá ió useä ió 
+determineä bù thå configuratioî optioî (iæ truå baseä on...© 
+whicè maù bå supersedeä iî aî assemblù bù thå .IF± oò .IF1¶ 
+pseudï-ops.
+
+ZMAÃ evaluateó <exp¾ wheî thå IFxø linå ió encountereä durinç 
+assembly® Alì elementó oæ <exp¾ musô havå beeî previouslù 
+defined® 
+
+Aî IF/{ELSE}/ENDIÆ clauså maù bå completelù containeä withiî 
+anotheò IF...ELSE¬ ELSE...ENDIF¬ oò IF...ENDIÆ clause® Thió ió 
+calleä nesting® Conditionaì assemblù oæ thió sorô caî bå nesteä 
+uğ tï ¸ levels® Thaô meanó thaô uğ tï ¸ pendinç IFó oò ELSEó witè 
+unresolveä ENDIFó maù bå iî effect® Sincå macroó maù contaiî 
+IF/ELSE/ENDIÆ clauses¬ carå musô bå takeî thaô macrï expansioî 
+doeó noô causå thå nestinç leveì tï exceeä 8® Nestinç overflo÷ 
+wilì causå aî erroò durinç assembly.
+
+.cp 23
+IF1‹ (Synonymº IFP1©           TRUÅ iæ processinç Pasó 1
+     NOTEº thió ió NOÔ thå samå aó thå .IF± pseudï-op!
+
+IF² (Synonymº IFP2©           TRUÅ iæ processinç Pasó 2
+
+IFÂ     <arg¾                 TRUÅ iæ argumenô ió missing
+     Thå anglå bracketó arå REQUIRED.
+
+IFDEÆ   <symbol¾              TRUÅ iæ <symbol¾ ió defined
+IFÅ     <exp¾                 TRUÅ iæ <exp¾  ½ 0
+IFÆ     <exp¾                 TRUÅ iæ <exp¾ ió FALSE
+IFÇ     <exp¾                 TRUÅ iæ <exp¾  ¾ 0
+IFGÅ    <exp¾                 TRUÅ iæ <exp¾ >½ 0
+IFÌ     <exp¾                 TRUÅ iæ <exp¾  ¼ 0
+IFLÅ    <exp¾                 TRUÅ iæ <exp¾ <½ 0
+IFÎ     <exp¾                 TRUÅ iæ <exp¾ <¾ 0
+
+IFNÂ    <arg¾                 TRUÅ iæ argumenô ió present
+     Thå anglå bracketó arå REQUIRED.
+
+IFNDEÆ  <symbol¾              TRUÅ iæ <symbol¾ ió noô yeô defined
+IFP± (Synonymº IF1©           TRUÅ iæ processinç Pasó 1
+IFP² (Synonymº IF2©           TRUÅ iæ processinç Pasó 2
+IFÔ     <exp¾                 TRUÅ iæ <exp¾ ió TRUÅ (=IÆ <exp>)
+
+.CP 3ŠINCLUDE‹  FÓ                     Synonymsº .IN¬ MACLIB¬ $INCLUDE
+Includå á sourcå file® (seå .IÎ foò definition.)
+
+IRP‹      <identifier>,STÒ {,STR...}
+Indefinitå Repeaô Macrï (seå chapteò 7)
+
+IRPC‹     <identifier>,STR
+Indefinitå Repeaô Characteò Macrï (seå chapteò 7)
+
+LOCAL‹    <identifier¾ û ,<identifier>...}
+
+Declareó locaì (withiî á macro© symbols® Thå spacå allocateä foò 
+locaì labeló ió 12· bytes® Thå cumulativå lengtè oæ thå locaì 
+symboló iî anù onå macrï definitioî maù noô exceeä thió number.
+
+.CP 7
+MACLIB‹   FS
+
+Samå aó .IÎ pseudï-op¬ excepô thaô thió instructioî ió 
+configurablå witè ZCNFÇ tï reaä thå filå onlù oî pass1® Iî sucè á 
+case¬ thå filå maù contaiî nï statementó thaô generatå code® 
+EQU/SEÔ statementó arå OË iî thió context® 
+
+.cp 10
+MACRÏ „ Syntaxº <name¾ MACRO‹ {arç {,arg...}}
+
+Macrï definitioî header® <name¾ musô bå present¬ anä maù bå 
+optionallù terminateä witè á colon® Thå namå giveî tï á macrï ió 
+uniquå tï thå macro¬ anä maù bå thå samå aó á defineä labeì 
+withouô causinç confusioî (tï ZMAC)® Iæ thå namå ió thå samå aó 
+onå oæ thå otheò pseudï-ops¬ theî thå macrï wilì takå precedence® 
+Thå replaceä pseudï-oğ becomeó inaccessible.
+Seå alsï ENDM¬ whicè ió useä tï terminatå á macrï definition.
+
+.CP 9
+NAME‹     QSTÒ ü TXÔ   oò  Û QSTÒ ü TXÔ ]
+
+Thå argumenô provideó thå namå oæ thå currenô module® Thió namå 
+ió useä bù thå linkeò anä thå librarù manageò tï identifù thå 
+codå produceä bù thå currenô assembly® Iæ thå NAMÅ instructioî ió 
+noô used¬ thå namå oæ thå modulå wilì bå thå samå aó thå 
+FileName® Thå seconä forí ió compatiblå witè thå syntaø requireä 
+bù M80º   ['<symbol>']
+
+.cp 8
+ORG‹      <exp>
+
+Useó <exp¾ tï changå thå valuå oæ thå currenô locatioî counter® 
+Wheî thå currenô relocatioî baså ió ASEG¬ thå locatioî valuå ió 
+seô tï <exp>® Foò otheò relocatioî bases¬ thå locatioî counteò ió 
+incrementeä bù thå valuå oæ <exp>.
+
+.cp 10ŠPAGE‹     û <exp¾ {,<exp>ı }
+
+Witè nï arguments¬ thió instructioî causeó á forí feeä tï bå senô 
+tï thå listinç device.
+
+Witè argumentó provided¬ thió pseudï-oğ resetó thå pagå lengtè 
+anä widtè valueó useä tï controì thå assemblù listing® Theså 
+parameteró havå defaulô valueó oæ 6¶ lineó anä 13² characters® 
+Thå defaulô valueó arå configurablå witè ZCNFG.
+
+Wheî thå firsô argumenô ió present¬ iô specifieó thå numbeò oæ 
+lineó peò pagå tï bå useä foò followinç pagination® Thå seconä 
+(optional© argumenô specifieó thå pagå widtè foò thå listing® Iæ 
+thå firsô argumenô ió 0¬ thå currenô defaulô ió retained® Iæ thå 
+seconä argumenô ió lesó thaî 10¬ thå currenô defaulô pagå widtè 
+ió retained.
+
+.cp 8
+PUBLIC‹   Symboì {,Symbol...ı        Synonymsº ENT¬ ENTRY¬ GLOBAL
+
+Thå lisô oæ symboló ió declareä accessiblå foò referencå froí 
+otheò (external© modules® Symboló iî thió lisô MUSÔ bå defineä iî 
+thå currenô module® Occurrencå aó á labeì constituteó sucè á 
+definition® Symboló declareä publiã arå madå availablå foò uså bù 
+otheò modules¬ wherå theù arå declareä EXTERNAL® (Seå EXTRN)
+
+.CP 8
+REPT‹     <exp>
+
+Repeaô Macro® Thå grouğ oæ statementó whicè followó anä ió 
+terminateä bù thå ENDÍ statemenô wilì bå assembleä oveò anä over® 
+Thå numbeò oæ repetitionó ió giveî bù thå valuå oæ <exp>® Alì 
+variableó useä iî thå expressioî musô havå beeî previouslù 
+defined® (nï externaló oò forwarä references)
+(seå chapteò 7)
+
+.cp 10
+SET‹                                     Synonymsº ASET¬ DEFÌ     
+Syntaxº  <symbol¾ ß SEÔ ß <exp>
+
+Defineó thå valuå oæ <symbol¾ tï bå thaô oæ <exp>® Thå symboì ió 
+thå firsô iteí oî thå linå (nï leadinç spaces)¬ anä maù bå 
+terminateä witè á colon® Whitå spacå musô surrounä thå SET
+word® Similaò tï EQU¬ excepô thaô SEÔ maù bå useä tï REDEFINÅ 
+symboló thaô havå beeî previouslù defineä bù SEÔ oò EQÕ (oò theiò 
+synonyms)® Aî erroò wilì bå issueä iæ redefinitioî oæ á LABEÌ ió 
+attempted.
+                
+SUBTTL‹   û QSTÒ ü TXÔ  oò  [QSTÒ ü TXTİ ı       Synonymº .SBTTL
+        (seå .SBTTÌ foò description)
+
+TITLE‹    û QSTÒ ü TXÔ  oò  [QSTÒ ü TXTİ ı       Synonymº .TITLE
+        (Seå .TITLÅ foò description)
+
+.paŠ                             NOTES:
+.PAŠ

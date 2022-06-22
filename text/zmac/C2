@@ -1,0 +1,238 @@
+.he                                Chapter 2 - Assembly Introduction
+.fo                                                              # 
+.TC 2. ASSEMBLER & LINKER INTRODUCTION...........#
+                ASSEMBLÙ PROGRAMMINÇ INTRODUCTION
+
+
+Thió chapteò ió aî overvie÷ oæ thå relatioî betweeî thå machinå 
+codå thaô youò computeò useó anä thå fileó anä programó useä tï 
+generatå thaô code® Thaô relatioî ió discusseä iî termó oæ thå 
+roleó playeä bù aî assembler¬ á linker¬ anä theiò relateä inpuô 
+anä outpuô datá files.
+
+Froí thå viewpoinô oæ aî assembler/linker¬ thå finaì objectivå oæ 
+programming‹ ió tï producå á filå oæ datá suitablå foò loadinç aô 
+á definitå addresó iî computeò memory® Thå CPÕ (á Z80¬ Z180¬ oò 
+HD6418° iî ouò case© can¬ giveî thå address¬ accesó thió datá tï 
+modifù it¬ copù iô tï anotheò address¬ oò uså iô aó instructionó 
+tï controì itó functioî anä dï thå tasë thaô thå computeò useò 
+(oò thå operatinç system© demands® 
+
+Somå oæ thå firsô microcomputeró (Altaiò anä Imsai¬ foò example© 
+haä switcheó oî thå fronô paneì bù meanó oæ whicè á prograí coulä 
+bå manuallù entereä ONÅ BIÔ AÔ Á TIME(!)® Moderî computeró geô 
+programó anä datá froí tape¬ disk¬ oò aî inpuô port® Thå mosô 
+importanô (anä relevanô tï us© organizatioî oæ thaô datá ió aó á 
+FILÅ oî thå storagå medium® Á filå ió logicallù sequentiaì anä 
+containó á definitå numbeò oæ bytes® Therå arå nï 'gaps§ iî thå 
+bytå stream¬ althougè manù oæ thå byteó maù havå undefineä (reaä 
+'random'© values.
+
+Fileó arå generateä bù runninç programó (whicè themselveó starô 
+aó files!)® Aî EDITOÒ ió sucè á program® Sï arå ASSEMBLERS¬ 
+LINKERS¬ anä LOADERS® Thå linkeò anä loadeò (MLOAÄ ió á publiã 
+domaiî loader© perforí similaò functions® Theù converô thå 
+intermediatå codå iî á filå madå bù aî Assembleò intï á binarù 
+codå filå suitablå foò executioî bù thå CPÕ (oncå loadeä intï 
+memorù aô thå righô address)® Thå Assembleò getó itó inpuô froí á 
+plaiî texô filå produceä bù aî editor.
+
+.CP 11
+Thå procesó oæ generatinç anä runninç á prograí ió summarizeä iî 
+thå tablå oî thå nexô page® Iî thaô table¬ thå 'x§ iî thå filå 
+nameó standó foò á namå whicè coulä bå identicaì foò alì thå 
+fileó shown® Therå ió nothinç uniquå abouô thå filetypeó showî iî 
+thå tables» thå typeó showî represenô conventionaì usage® Wå wilì 
+refeò tï thå variouó typeó oæ fileó bù usinç thå filetypeó showî 
+iî thå table® Thå fileó identifieä aó 'plaiî text§ arå discusseä 
+iî chapteò 3® Ouò interesô herå ió iî thå OBJecô fileó produceä 
+bù thå assembleò anä ho÷ theù arå useä bù thå linkeò oò loadeò tï 
+producå absolute„ files® 
+
+.PAŠ.TC    The Assembly/Link Process.................#
+==============================================================
+                 THÅ ASSEMBLÙ ¦ LINKINÇ PROCESS
+
+PROGRAÍ        INPUÔ               OUTPUT
+               
+EDITOÒ         Consolå     «­­­­­­-x.Z8° filå (plaiî text)
+               Keyboarä    ü  «­­­-x.LIÂ filå (plaiî text)
+                           ü  ü   
+ASSEMBLEÒ      x.Z8° file__|ö  ü    x.PRÎ filå (plaiî text)
+ (ZMAC©        x.LIÂ file_____|ö    x.SYÍ filå (plaiî text)
+                                   x.ERÒ filå (plaiî text)
+                           «­­­­­­-x.REÌ filå (Relocatablå obj)
+                           ü  «­­­-x.HEØ filå (Absolutå object)
+                           ü  |
+LINKEÒ         x.REÌ file__|ö  ü    x.COÍ filå (binarù image)
+ (ZML©                        ü    x.BIÎ filå (binarù image)
+                              ü    x.SYÍ filå (plaiî text)
+                              ü 
+LOADEÒ         x.HEØ file_____|ö    x.COÍ filå (binarù image)
+ (MLOAD)
+
+OP® SYSTEÍ     x.COÍ filå          Computeò performó á task
+
+==============================================================
+
+Thå HEØ oò REÌ filå produceä bù thå assembleò ió calleä aî objecô 
+file® Thå codå withiî sucè á filå ió calleä HEØ Objecô code„ oò 
+REÌ Objecô code® Theså termó arå frequentlù abbreviateä tï 
+'objecô code§ oò simplù 'object'® HEØ files‹ contaiî á streaí oæ 
+byteó whicè arå interpreteä bù á HEØ loadeò likå MLOAD.COÍ tï 
+producå á filå suitablå foò loadinç aô á specifiã addresó iî 
+memory® REÌ files‹ arå similarlù interpreteä bù á linkeò likå 
+ZMÌ tï producå á similaò file® Thå filå produceä iî eitheò 
+caså ió calleä Absolute¬ anä thå codå iô containó ió calleä 
+absolutå code.
+
+COÍ files‹ arå produceä bù thå linkeò anä loader® ZMÌ maù alsï 
+producå aî executablå filå oæ typå BIN® COÍ anä BIÎ fileó contaiî 
+codå whicè ió aî exacô memorù image¬ readù foò thå CPÕ tï use® 
+Wheî á filå ió copieä intï memory¬ thå locatioî intï whicè thå 
+firsô bytå ió copieä ió calleä thå Loaä Address® Foò á standarä 
+CP/Í COÍ file¬ thå loaä addresó ió 100H® BIÎ fileó arå loadeä 
+intï memorù aô locationó OTHEÒ thaî 100H® 
+
+Supposå thaô á fairlù simplå prograí ió tï bå written® Alì oæ thå 
+sourcå codå ió iî onå Z8° file® (PRINT.Z8° ió aî example© Therå 
+arå twï wayó tï makå thå finaì COÍ file:
+
+     1)Z8°­­­->(ZMAC©­­->HEØ­­->(MLOAD©­­­­->COM
+     2)Z8°­­­->(ZMAC©­­->REÌ­­->(ZML©­­->COÍ 
+
+Thå resultó wilì bå identical¬ aó welì theù shoulä be!
+
+.CP 8ŠThå linkeò anä loadeò botè producå COÍ files® What'ó thå 
+difference¿ Whù twï methodó foò gettinç thå samå result¿ Thå 
+answeò lieó iî thå naturå oæ thå twï objecô fileó createä bù thå 
+assemblerº thå REÌ anä thå HEØ files® Theså twï fileó arå NOÔ 
+directlù useablå bù thå CPU® Theù contaiî byteó whicè wilì bå 
+translateä tï á memorù image¬ pluó informatioî requireä foò thå 
+translatioî process.
+
+.TC    HEX and REL Object files..................#
+HEØ FILES
+
+Á HEØ filå containó á sequencå oæ records¬ eacè oæ whicè 
+specifieó uğ tï 1¶ byteó oæ codå anä thå addresó allocateä foò 
+thå firsô byte® Iô ió thå tasë oæ thå loadeò (MLOAD¬ foò example© 
+tï extracô thå codå byteó anä loaä theí intï á memorù imagå aô 
+thå specifieä startinç address® Thå initiaì addresó iî thå firsô 
+recorä ió provideä bù aî ORÇ statemenô iî thå Z8° file® Codå ió 
+generateä foò sequentiallù increasinç addresseó untiì anotheò ORÇ 
+statemenô ió encountered® Aô thaô point¬ aî ouô-oæ-sequencå 
+addresó startó á ne÷ HEØ record¬ anä thå loadeò beginó loadinç aô 
+thå ne÷ address® Thió process¬ dependinç oî thå ORÇ statements¬ 
+caî leavå addresó rangeó iî thå absolutå imagå whoså contenô ió 
+undefined® Wheî MLOAÄ (oò thå CP/Í LOAD.COM© ió creatinç á COÍ 
+filå image¬ thoså rangeó arå filleä witè nulls® MLOAÄ allowó á 
+seconä modå oæ operation® Iî thió mode¬ aî existinç COÍ filå ió 
+specifieä oî thå commanä linå iî additioî tï thå HEØ filå tï bå 
+loaded® Thå COÍ filå provideó thå datá foò addresó rangeó lefô 
+unspecifieä bù thå HEØ filå records® Iî thió case¬ thå effecô oæ 
+thå loadinç procesó ió tï replacå byteó iî thå COÍ file® Sucè á 
+procesó ió knowî aó overlaying® Iô provideó á meanó foò patchinç 
+á COÍ filå quicklù anä conveniently® Debuggeró likå DSD¬ ZDM¬ anä 
+DDÔ contaiî á HEØ loadeò whicè accomplisheó thå samå task® 
+
+Thå executioî addresó oæ thå codå produceä froí á HEØ filå ió thå 
+samå aó thå loaä addresó specifieä iî thå firsô record® Alì 
+addresó referenceó iî thå codå werå reduceä tï absolutå numberó 
+durinç assemblù tï producå thå HEØ file® Thió facô distinguisheó 
+HEØ froí REÌ files.
+
+.cp 8
+REÌ FILES
+
+REÌ standó foò RELocatable® Insteaä oæ specifyinç thå exacô 
+locatioî anä valuå oæ everù bytå oæ code¬ thå REÌ filå containó 
+datá whicè identifù thoså byteó whoså valuå dependó oî wherå iî 
+memorù thå finaì codå imagå ió tï bå located® Witè thió scheme¬ 
+iô ió necessarù tï distinguisè betweeî Absolutå anä Relocatablå 
+codå bytes® Thió ió donå bù sortinç thå codå intï logicaì groupó 
+calleä segments® Thå Absolutå segmenô containó thå obvious» thå 
+labeì addresseó iî thaô segmenô arå noô changeä bù thå linker® 
+Foò thå relocatablå segments¬ thoså valueó whicè arå addresseó iî 
+thå segmenô arå identified» theiò valuå iî thå REÌ filå ió theiò 
+OFFSEÔ froí thå starô oæ thå segment® Later¬ wheî thå linkeò ió 
+generatinç thå COÍ image¬ thå startinç addresó oæ thå segmenô ió 
+addeä tï eacè offset® Thió ió relocation® Logically¬ therå ió nï 
+limiô tï thå numbeò oæ possiblå segments® ZMAÃ allowó 1¶ sucè 
+segments¬ oò relocatioî bases.Š
+Certaiî functionó likå consolå I/O¬ readinç anä writinç files¬ 
+makinç BDOÓ functioî calls¬ oò sortinç á lisô arå useä repeatedlù 
+iî assemblù languagå programs® Tï avoiä reinventinç theí eacè 
+timå theù arå needed¬ eacè functioî caî bå writteî aó á calleä 
+routinå iî á separatå file¬ theî assembleä tï producå á REÌ file® 
+Á prograí whicè makeó uså oæ theså functionó theí simplù useó á 
+CALÌ instructioî tï thå appropriatå routinå witè á notatioî thaô 
+thå routinå ió noô present® Durinç linking¬ thoså REÌ fileó arå 
+nameä aó linkeò inpuô alonç witè thå maiî program'ó REÌ file® Thå 
+linkeò combineó thå codå froí thå collectioî oæ REÌ fileó intï 
+onå COÍ file® Herå iô becomeó cleaò whù relocatioî ió important® 
+Thå executioî addresó oæ thoså littlå routineó ió neveò knowî 
+untiì thå linkeò finallù putó alì thå codå together!
+
+Let'ó gï oî tï anotheò kinä oæ situation® Yoõ specifù witè aî ORÇ 
+statemenô iî thå Z8° filå thaô thå codå ió tï starô aô 400H¬ theî 
+assemblå tï makå HEØ anä REÌ fileó anä finallù COÍ files® Iæ yoõ 
+examinå thå filå witè á disë utilitù oò debugger¬ oò eveî thå Z³ 
+'peek§ command¬ yoõ wilì seå thaô thå firsô bytå iî thå filå ió 
+thå codå thaô goeó aô 400H® Thió ió NOÔ logicallù á COÍ filå 
+becauså iô wilì noô executå properlù wheî loadeä aô thå standarä 
+100H¡ Furthermore¬ iæ additionaì codå haä beeî specifieä (bù aî 
+ORÇ statement© aô locatioî 1400H¬ thå filå produceä wilì bå mucè 
+larger» thå unuseä areá betweeî thå enä oæ thå codå aô 40° anä 
+thå starô oæ thå codå aô 140° wilì bå seeî tï bå filleä witè 
+nulls® Thå linkeò produceó thå samå resulô wheî workinç witè á 
+REÌ filå produceä froí Z8° codå iî whicè thå initiaì declaratioî 
+ió ASEÇ (Absolutå Code)® Buô looë whaô happenó iæ thå ASEÇ 
+declaratioî ió noô present..
+
+Thå linkeò assumeó thaô iô ió goinç tï producå á COÍ filå tï bå 
+placeä iî memorù aô locatioî 100È foò execution® Becauså thå ASEG‹ 
+waó lefô ouô oæ thå Z8° filå (thió time)¬ á REÌ filå waó produceä 
+witè thå defaulô Segmenô beinç (relocatable© CSEG® First¬ thå ORÇ 
+statemenô whicè specifieä 400È wilì no÷ bå interpreteä aó aî 
+OFFSEÔ oæ 400H® Similarly¬ thå 1400È wilì bå aî offset® Thå COÍ 
+filå wilì no÷ contaiî 400È nulló beforå thå firsô bytå oæ code¡ 
+Thå actuaì codå wilì no÷ bå relocateä also» iô wilì bå suitablå 
+foò executioî aô locatioî 500È (100È « 400È offset)¬ wherå iô 
+wilì residå iæ thå filå ió loadeä aô 100H® Thå codå aô 1400È wilì 
+bå similarlù relocated¬ anä thå 'empty§ spacå betweeî thå twï 
+codå blockó wilì bå nulì filled.
+
+Therå ió stilì anotheò way® Eliminatå thå 'ORÇ 400H§ froí thå Z8° 
+filå anä reassemblå tï á REÌ file® Wheî performinç thå linkinç 
+operation¬ includå thå optioî oî thå commanä linå /C400® Theî 
+repeaô thå linë witè optioî /R400® Thå firsô wilì producå á COÍ 
+file» thå seconä á BIÎ file® Thå COÍ filå wilì contaiî 300È nulló 
+beforå thå firsô code» thaô codå wilì bå relocateä foò executioî 
+aô 400H¬ thå actuaì addresó wheî thå filå ió loadeä startinç aô 
+thå standarä 100È foò COÍ files® Thå BIÎ filå wilì havå exactlù 
+thå samå code¬ excepô thaô thå leadinç nulló arå absent¡ Thå 
+'hole§ betweeî thå firsô anä seconä blockó oæ codå iî botè fileó 
+ió stilì nulì filled® Š
+
+Wheî ZMAÃ produceó á HEØ objecô file¬ iô ió operatinç iî Absolutå 
+mode» wheî producinç REÌ objecô iô ió iî Relocatablå mode® Alì 
+addresó referenceó iî aî absolutå modå assembly‹ caî bå resolveä 
+(i.e.,assigneä á fixeä numeriã address© baseä oî statementó iî 
+thå sourcå file® Iî Absolutå mode¬ codå ió assembleä intï onlù 
+onå Relocatioî Base¬ ABSOLUTE® Foò thå ABSOLUTÅ relocatioî base¬ 
+thå valuå oæ thå relocatioî constanô ió alwayó 0® Thå effecô ió 
+thaô nï relocatioî oæ ABSOLUTÅ relativå codå takeó place¡ Addresó 
+assignmentó appearinç iî thå assemblù listinç arå absolutå 
+addresses¬ unchangeä bù thå linkeò (REÌ object© oò bù MLOAÄ (HEØ 
+object).
+
+Wheî REÌ objecô ió produceä anä linked¬ á relocatioî constanô ió 
+addeä tï alì relocatablå valueó bù thå linker® Thå valuå oæ thaô 
+constanô ió generallù noô knowî aô assemblù timå (excepô aó noteä 
+abovå foò codå iî ABSOLUTE)® Iô ió assigneä durinç linkinç bù á 
+memorù managemenô algorithí whicè takeó intï accounô anù loaä 
+addresseó defineä oî thå commanä line® 
+
+.paŠ                             NOTES:
+.PAŠ

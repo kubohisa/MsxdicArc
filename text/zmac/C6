@@ -1,0 +1,295 @@
+.he                                           Chapter 6 - Relocation
+.fo                                                              # 
+.TC 6. RELOCATION & RELOCATION BASES.............#
+                 RELOCATIOÎ ANÄ RELOCATIOÎ BASES 
+
+.TC    Relocation................................#
+RELOCATION
+
+Relocatioî provideó thå meanó foò merginç REÌ fileó tï producå 
+onå compositå absolutå file¬ readù foò execution® Durinç thå 
+merge¬ codå maù bå loadeä relativå tï anù oæ severaì relocatioî 
+bases¬ eacè oæ whicè defineó aî uniquå addresó space.
+
+Relocatioî bases‹ arå specifieä iî thå Z8° filå bù invokinç onå oæ 
+thå followinç statements:
+
+       Statemenô:       Relocatioî Baså invoked:
+
+         ASEÇ           Absolutå  (noî relocatablå code)
+         CSEÇ           Codå Relativå ­ ZMACó default
+         DSEÇ           Datá Relative
+         COMMOÎ {NAMEı  Common¬ relativå tï thå nameä base
+
+Onå oæ 1³ COMMOÎ baseó allowed¬ thå default¬ ió nameä BLANK® Thå 
+otheò 1² arå availablå foò definitioî iî thå COMMOÎ statement® 
+(Seå chapteò µ foò thå syntaø anä usagå oæ theså pseudï-ops.)
+
+Aó ZMAÃ processeó sourcå statements¬ byteó oæ codå arå senô tï 
+thå objecô file® Aî internaì counteò ió incrementeä foò eacè bytå 
+generated® Thaô internaì counteò ió calleä á Prograí Counter„ oò 
+Locatioî Counter® Somå sourcå lines¬ likå comments¬ dï noô 
+producå objecô codå sï theù dï noô incremenô thå prograí counter® 
+
+Á Prograí Counteò (PC© containó á 1¶ biô number® Sincå thå PÃ ió 
+seô tï ° aô thå starô oæ assembly¬ itó valuå ió thå relativå 
+addresó oæ thå nexô bytå tï bå senô tï thå objecô file® Iô ió thå 
+valuå displayeä iî thå ADDRESÓ fielä oæ thå assemblù listinç foò 
+thå starô oæ eacè linå thaô produceó codå bytes® Thå phraså 
+'relativå address§ ió usuallù abbreviateä tï 'address'® 
+
+Twï assemblù listinç fragmentó arå showî belo÷ iî listinç ± anä 
+listinç 2® Theù resulteä froí assemblù oæ Z8° sourceó whoså onlù 
+differencå ió thå ORÇ statement¬ whicè seô thå origiî aô ° iî thå 
+firsô caså anä 100È iî thå second® Notå thaô threå 1¶-biô valueó 
+arå referencedº START¬ Z3EADR¬ anä 0FE00H® 
+
+=================================================================
+
+               Listinç 1® Assemblù Origiî aô 0000H
+
+  Addresó      Objecô Codå    Sourcå code
+
+                                       ORÇ     0
+
+   000°        C³ 000Â                 JĞ      START
+   000³        5Á 3³ 4µ 4Å             DÂ      'Z3ENV'
+   000¸        0±                      DÂ      ±      
+   000¹        FE0°            Z3EADRº D×      0FE00È 
+   000Â        2Á 000¹         STARTº  LÄ      HL,(Z3EADR)Š
+
+               Listinç 2® Assemblù Origiî aô 0100H
+
+  Addresó      Objecô Codå    Sourcå code
+
+                                       ORÇ     100H
+
+   010°        C³ 010Â                 JĞ      START
+   010³        5Á 3³ 4µ 4Å             DÂ      'Z3ENV'
+   010¸        0±                      DÂ      ±      
+   010¹        FE0°            Z3EADRº D×      0FE00È 
+   010Â        2Á 010¹         STARTº  LÄ      HL,(Z3EADR)
+
+
+.cp 6
+Thå labeló Z3EADRº anä  STARTº arå assigneä thå currenô valuå oæ 
+thå PÃ aó theiò addresó values® Thoså valueó arå theî useä aó thå 
+'nn§ argumentó foò thå opcodeó iî thå codå field® 0FE00È ió 
+numbeò supplieä bù thå programmer® Iô ió assumeä tï bå á 
+constant¬ anä ió storeä iî thå objecô codå aô addresó 0009H.
+
+Thå executioî address„ oæ thå codå iî listinç ± ió 0000H» thaô foò 
+thå codå iî Listinç ² ió 100H.
+
+Comparinç objecô codå iî thå twï listings¬ iô ió apparenô thaô 
+thå 1¶ biô argumentó iî thå firsô anä fourtè lineó havå changed® 
+Thå amounô bù whicè theù havå changeä ió 100H¬ thå differencå 
+betweeî thå twï executioî addresses® 
+
+Thå implieä procesó jusô illustrateä ió Relocation„ oæ objecô codå 
+iî ordeò tï changå itó executioî address® Relocatioî ió additioî 
+oæ á 1¶ biô number¬ thå Relocatioî Constant¬ tï 'appropriate§ 1¶ 
+biô numberó iî thå objecô code® Thå valuå oæ thå relocatioî 
+constanô ió thå differencå betweeî thå ne÷ anä olä executioî 
+addresses® Thå 'appropriate§ 1¶ biô numberó iî thå objecô codå 
+arå thoså whoså originaì valuå ió aî addresó oò aî addresó 
+expression® Sucè numberó arå relocatable® Theù arå relocatablå 
+becauså oæ thå contexô iî whicè theù arå defineä iî thå sourcå 
+code.
+
+Manù quantitieó arå excludeä froí thå relocatioî procesó becauså 
+theiò functioî oò meaninç ió independenô oæ theiò address® Sucè 
+quantitieó arå absolute® Byteó (aó iî DÂ statements© arå 
+absolute® Thå operatoò portioî oæ opcodeó ió absolute® Bytå datá 
+iî thå operanä portioî oæ opcodeó ió absolute® Á worä ió absolutå 
+iæ iô ió noô relocatable.
+
+Thå objecô codå iî thå exampleó abovå representó thå byteó thaô 
+maù ultimatelù bå loadeä intï memory® Iô containó nï informatioî 
+tï identifù whicè bytes¬ iæ any¬ arå tï bå 'paireä off§ aó wordó 
+(potentiaì addresses)® Thå loadinç oò executioî addresó ió noô 
+stated® Thå codå senô tï thå objecô FILÅ containó sucè additionaì 
+information¬ thå naturå oæ whicè dependó oî whicè typå oæ objecô 
+ió beinç produced.
+Š.cp 6
+HEØ fileó contaiî executioî addresó informatioî iî additioî tï 
+thå objecô code® Sincå thå objecô codå iî HEØ objecô fileó ió 
+absolute¬ thå loaä anä executioî addresseó arå identical® Wheî 
+producinç á HEØ file¬ thå assembleò operateó iî absolutå Mode
+
+.cp 8
+REÌ fileó contaiî relocatabilitù datá iî additioî tï thå objecô 
+code® Relocatablå wordó arå taggeä sï thaô thå linkeò caî perforí 
+anù relocatioî requireä whilå buildinç thå absolutå outpuô file® 
+Thå executioî addresó foò relocatablå codå ió noô establisheä 
+untiì linë time® Wheî producinç á REÌ file¬ thå assembleò ió saiä 
+tï bå iî Relocatablå Mode.
+
+.cp 10
+Á Z8° filå containó á sequencå oæ assemblù languagå lines¬ eacè 
+oæ whicè maù producå objecô codå wheî assembled® Thå objecô codå 
+produceä ió á mixturå oæ twï kindó oæ itemsº codå itemó anä itemó 
+whicè contaiî informatioî abouô thå codå items® Codå Items„ comå 
+froí Z8° opcodå statementó anä datá storagå statementó likå DB¬ 
+DW¬ etc® Informatioî Items„ arå generateä bù thå assembleò iî 
+responså tï certaiî Pseudï-opó anä tï sourcå codå constructó likå 
+thå uså oæ externaì arguments® 
+
+Á Z8° sourcå prograí caî bå symbolicallù vieweä aó á sequencå 
+likå thaô iî thå firsô linå oæ figurå ¶-1¬ wherå alì thå detaiì 
+oæ eacè linå ió suppressed¬ anä onlù thå linå sequencå numberó 
+arå indicateä (L1¬ L2,...)® 
+
+Thå REÌ objecô codå produceä bù assemblù ió noô linå oriented¬ 
+buô thå codå itemó arå iî thå samå sequence® Thå REÌ objecô ió 
+showî schematicallù iî thå seconä linå oæ figurå ¶-1® Here¬ Oø 
+representó Codå Itemó anä É representó itemó oæ informatioî froí 
+thå assembler® Sincå somå sourcå lineó producå nï objecô code¬ 
+thå indeø numberó iî thå Z8° anä REÌ representationó oæ figurå ¶-
+± dï noô necessarilù correspond® Theiò ORDER¬ however¬ ió 
+maintained® 
+
+Thå absolutå codå produceä bù thå linkeò woulä bå arrangeä aó 
+showî oî linå 3¬ assuminç thaô nonå oæ thå Informatioî Itemó havå 
+directeä thå linkeò tï alteò thå codå sequence® Informatioî Itemó 
+wilì typicallù bå useä bù thå linkeò tï alteò thå VALUÅ oæ objecô 
+codå itemó tï producå thå finaì codå representeä iî thå thirä 
+linå oæ figurå ¶-1® Here¬ therå ió correspondencå betweeî O± anä 
+M1....Oî anä Mn® Eacè iteí maù bå onå oò morå bytes.
+
+
+.cp 10
+=================================================================
+
+         Figurå ¶-1® Codå Sequencå durinç Assembly/Link
+
+.lm 5
+    Z8° sourceº         [L1,L2,L3,L4........................Ln]
+    REÌ objectº         [..O1,I1,..O2,O3,..I2,O4....On,In]
+    Machinå codeº       [M1¬ M2¬ ............Mn]
+.lm 1
+
+=================================================================
+
+.cp 10ŠIî thå precedinç discussion¬ nothinç waó saiä abouô addresseó oò 
+memorù allocation® Clearly¬ iæ thå Machinå codå ió tï bå usefuì 
+(anä storeä iî á file)¬ á rangå oæ sequentiaì addresseó musô bå 
+allocateä tï iô correspondinç tï M1¬ ...Mn® Thå firsô addresó 
+(foò M1© ió thå Baså Address® Thå sizå oæ thå prograí ió defined» 
+iô ió thå totaì numbeò oæ byteó allocateä foò thå machinå code® 
+Thå baså address‹ ió assigneä bù thå linker® Thaô baså addresó ió 
+symbolicallù referenceä aó thå Relocatioî Base.
+
+.cp 15
+.TC    Relocation Bases..........................#
+RELOCATIOÎ BASES
+
+Relocatioî bases‹ arå symboliã nameó giveî tï independentlù 
+locateä memorù areas® Sucè areaó mighô bå memorù mappeä I/O¬ ROM¬ 
+shareä COMMOÎ areas¬ oò simplù á discretå datá areá tï simplifù 
+debugging® Eacè oæ theså areaó  ió named® Fouò sucè nameó arå 
+definedº Absolutå (ABS)¬ Codå relative¬ Datá relative¬ anä Blank® 
+Blanë ió thå firsô oæ 1³ possiblå shareä COMMOÎ relocatioî bases® 
+Thå remaininç 1² arå giveî nameó oæ thå programmeró choicå viá 
+thå COMMOÎ statement® Durinç assemblù á separatå prograí counteò 
+ió useä foò eacè relocatioî base¬ sï everù labeì referencå iî á 
+prograí ió relativå tï onå oæ theså bases® Thå actuaì allocatioî 
+anä mappinç oæ relocatioî baseó tï physicaì addresseó ió deferreä 
+tï thå linkinç process.
+
+.cp 12
+Relocatioî baseó arå specifieä iî thå Z8° filå bù invokinç onå oæ 
+thå followinç statements:
+
+       Statementº       Relocatioî Baså invoked:
+
+.lm 10
+         ASEÇ           Absolutå  (noî relocatablå code)
+         CSEÇ           Codå Relativå ­ ZMACó default
+         DSEÇ           Datá Relative
+         COMMOÎ {NAMEı  Common¬ relativå tï thå nameä base
+.lm 1
+
+Seå chapteò µ foò thå syntaø anä usagå oæ theså pseudï-ops.
+
+ASEG¬ CSEG¬ DSEG¬ anä COMMOÎ direcô thå assembleò tï taç thå codå 
+whicè followó aó belonginç tï thå indicateä relocatioî base® ZMAÃ 
+useó thå prograí counteò allocateä tï thaô baså wheî assigninç 
+labeì values® Thå relocatioî baså maù bå changeä aó ofteî aó yoõ 
+wisè bù includinç thå abovå statements® Thå effecô ió thaô therå 
+arå no÷ uğ tï 1¶ logicaì groupó oæ codå senô tï thå objecô file® 
+Thå groupó arå calleä Segments¬ á namå reflecteä iî thå nameó oæ 
+thå pseudï-opó above® Thå concepô ió illustrateä iî Figurå ¶-2® 
+Foò thå Z8° source¬ C1..® anä C2..® stanä foò groupó oæ 
+statementó followinç á CSEÇ directive® D1..® anä D2..® stanä foò 
+groupó oæ statementó followinç á DSEÇ directive® Aó before¬ 
+assemblù produceó objecô codå iî thå samå sequencå aó iô occurreä 
+iî thå source¬ anä 'I§ representó intermingleä informatioî datá 
+thaô identifieó thå relocatioî baså foò eacè bytå oæ code® Thå 
+linkeò sortó ouô thå codå foò eacè segmenô and¬ aó implieä iî thå 
+thirä linå oæ Figurå ¶-2¬ loadó theí intï á contiguouó seô oæ 
+addresses® Relocatablå valueó iî thå codå arå relocateä relativå 
+tï thå starô oæ C± anä D± respectivelù foò thå twï segments.
+Š.cp 10
+=================================================================
+
+        Figurå ¶-2® Segmenô Sequencå durinç Assembly/Link
+
+.lm 5
+    Z8° sourceº         [C1..® D1..® C2..® D2...]
+    REÌ objectº         [I..C1..I.® D1.® I.® C2..I..® D2..I.]
+    Machinå codeº       [C1,C2......D1,D2]
+.lm 1
+
+=================================================================
+
+
+ZMÌ carrieó thió strategù onå steğ furtheò wheî linkinç severaì 
+REÌ modules® Thå moduleó arå linkeä onå aô á timå iî thå ordeò iî 
+whicè theù werå nameä oî thå commanä line® Thå linkinç followó 
+thå strategù showî iî Figurå ¶-2® Segmentó froí eacè modulå arå 
+combineä iî theiò respectivå relocatioî baseó sï thaô alì DATÁ 
+segmentó arå togetheò iî onå addresó range¬ alì CODÅ areaó arå iî 
+anotheò contiguouó range¬ anä sï oî foò thå otheò relocatioî 
+bases® Thå procesó ió illustrateä iî Figurå ¶-3® Notå thaô thå 
+symboló havå beeî abbreviateä somewhaô bù ignorinç mentioî oæ thå 
+Informatioî datá iî thå REÌ fileó anä bù lettinç onå symboì stanä 
+foò thå logicallù singlå segmentó iî eacè REÌ module.
+
+=================================================================
+
+              Figurå ¶-3® Linkinç Multiplå Modules
+
+.lm 11
+          REÌ sourcesº   X.REL¬ Y.REL¬ Z.REL
+          REÌ SEGMENTSº  [CX¬ DX]¬ [CY,DY]¬ [AZ,CZ,DZ]
+          MACHINÅ codeº  [AZ..® CX,CY,CZ..® DX,DY,DZ]
+.lm 1
+
+=================================================================
+
+.paŠDurinç assembly¬ thå ORÇ statemenô produceó differenô resultó foò 
+thå ABSolutå segmenô thaî foò thå otheò (relocatable© segments® 
+Foò thå ABÓ segment¬ 'ORÇ <exp>§ setó thå prograí counteò tï thå 
+valuå oæ thå expression® Foò thå relocatablå segmentó thå samå 
+statemenô INCREMENTÓ thå locatioî counteò bù thå valuå oæ <exp>!
+
+Thå COMMOÎ pseudï-oğ caî specifù onå oæ 1³ nameä commoî bases® 
+Thå firsô haó thå namå BLANK¬ anä ió useä wheî nï namå ió 
+specifieä oò wheî thå namå BLANË oò /BLANK¯ ió specified® Thå 
+remaininç 1² maù bå nameä witè anù ¶ characteò alphá-numeriã namå 
+thaô startó witè á letter® Thå '/§ delimiteró arounä thå namå arå 
+optional® Theù providå foò compatibilitù witè sourcå prepareä foò 
+otheò assembleró whicè requirå them.
+
+Durinç linkinç oæ severaì REÌ modules¬ COMMOÎ areaó arå treateä 
+differentlù thaî thå others® Commoî areaó witè thå samå namå arå 
+alì loadeä tï thå samå address» theù arå overlayed® Aó á result¬ 
+onlù initiaì datá iî thå lasô commoî areá linkeä caî bå assumeä 
+tï bå valid® (Theù arå linkeä iî thå samå sequencå aó theiò ordeò 
+oæ occurrencå iî thå reì modulå lisô oî thå linë commanä line).
+
+Nï relocatioî takeó placå durinç linkinç foò thå ABÓ base® Thus¬ 
+codå froí onå modulå coulä overwritå thaô froí another® 
+
+.paŠ

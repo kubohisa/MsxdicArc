@@ -1,0 +1,164 @@
+.he                                                    Subject Index
+
+                          SUBJECÔ INDEX
+
+180, 37
+
+Absolute code, 10
+Absolute mode assembly, 13
+ABSOLUTE relocation base, 13
+ACCEPT, 37
+Actual arguments, 65
+ACTUAL parameter, 65
+ASEG, 12, 42
+ASET, 42
+
+Base address, 54
+Bitmap structure, 75
+BLANK common, 43
+
+C option, 82
+Character constant, 26
+Code Segment (CSEG), 72
+COM files, 10
+COMMENT, 38
+Comment field, 20
+COMMON, 43
+COMMON segment, 82
+CSEG, 12, 43
+
+DB, 43
+DC, 43
+DEFB, 43
+DEFC, 43
+DEFL, 44
+DEFM, 44
+DEFS, 44
+DEFW, 44
+DEFZ, 44
+DEPHASE, 38
+Distribution Files, 1
+DS, 44
+DSEG, 44
+Dummy Arguments, 65
+Dummy parameter, 65
+DW, 44
+DZ, 44
+
+ELSE, 45
+END, 45
+ENDIF, 45
+ENDM, 45, 59
+ENT, 45
+ENTRY, 45
+EQU, 45
+ERR file, 24
+Error codes, 24, 108ŠExample command lines, 6
+Execution address, 52
+EXITM, 46, 59
+Expression, 25
+Expression rules, 34
+EXT, 46
+EXTERNAL, 46
+EXTRN, 46
+
+GLOBAL, 46
+
+HD64, 38
+Header files, 76
+HELP.COM, 104
+HEX files, 10
+
+I option, 84
+IF, 47
+IF1, 38, 47
+IF16, 38
+IFxx pseudo-ops, 47
+INCLUDE, 48
+Inline Macros, 61
+IRP, 48, 59
+IRPC, 48, 59
+IRPC macro, 63
+
+Label field, 16
+LALL, 39
+LCTL, 39
+LFCOND, 39
+LIST, 39
+LOCAL, 48
+Local (within a macro) symbols, 59
+Location Counter, 28
+
+MACLIB, 48
+MACRO, 48, 57
+Macro definition, 60
+Macro expansion process, 65
+MACRO instruction, 64
+Main Load Address, 72
+Microsoft REL format, 100
+Module, 95
+
+NAME, 48
+Named Common, 43
+Nested macro, 64
+
+Object, 96
+OPA field, 18
+Operator field, 17
+OPR field, 18
+ORG, 42, 48
+ŠP option, 83
+PAGE, 49
+PHASE, 39
+PHASE block, 39
+Precedence rule, 32
+PRINT, 40
+PRINTX, 40
+PRL header, 75
+PRL-type output files, 81
+PRN file, 21, 96
+Program Counter, 28
+Program error flag, 5
+Programming, 9
+PUBLIC, 49
+
+Quoted string, 19
+
+RADIX, 40
+REL bit stream, 100
+REL files, 10
+Relocatable quantity, 35
+Relocatable symbol, 35
+Relocation Address, 72
+Relocation bases, 11, 51, 54
+Repeat Macros, 61
+REPT, 49, 59
+REQUEST, 40
+RLIST, 40
+RSX header, 75
+
+SALL, 40
+SBTTL, 40
+SET, 49
+SFCOND, 41
+SLIST, 41
+Source File, 96
+SUBTTL, 49
+
+TITLE, 41, 49
+Toggle, 96
+
+White space, 96
+
+XALL, 41
+XCTL, 41
+XLIST, 42
+
+Z80, 42
+Z80/Z180/HD64180, 104
+ZCPR/ZRDOS/ZSDOS Interfacing, 98
+ZMAC command line, 3
+ZML, 69
+Z-system msg buffer, 84
+.PAŠ                              NOTES
+.PAŠ

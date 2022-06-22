@@ -1,0 +1,542 @@
+.he                                          Chapter 3. File Formats
+.fo                                                              # 
+.TC 3. FILE FORMATS: Source Files................#
+                  SOURCÅ ¦ OUTPUÔ FILÅ FORMATS
+
+SOURCÅ FILES
+
+ZMAÃ processeó texô fileó typicallù prepareä bù aî Editoò oò Worä 
+Processor® Eacè linå oæ thå filå ió expecteä tï enä witè aî ASCIÉ 
+carriagå returî characteò followeä bù á linå feeä character® Thå 
+filå itselæ usuallù containó thå standarä CP/Í enä-oæ-filå marë 
+(01ah© aô thå enä oæ thå text® Mosô populaò editoró anä worä 
+processoró producå fileó oæ thió type.
+
+Thå sourcå filå maù calì foò inclusioî oæ otheò fileó viá thå 
+INCLUDE¬ MACLIB¬ oò synonymouó statements® Sucè fileó follo÷ thå 
+samå formaô ruleó aó thå filå iî whicè theù arå referenced.
+
+Thå Sourcå ió processeä onå linå aô á time® Somå lines¬ anä 
+portionó oæ manù lines¬ arå ignoreä bù thå assembleò excepô foò 
+inclusioî iî thå outpuô listing® Sucè lineó are:
+
+.lm 8
+.pm 5
+    a) Emptù lines¬ whicè arå composeä oæ nï morå thaî á CRLF.
+    b) Lineó whicè contaiî á semicoloî aó thå firsô printinç 
+       character® Thió ió á speciaì caså oæ thå Commenô Field¬ 
+       discusseä below.
+    c) Lineó whicè begiî witè aî asterisë (*© iî thå firsô 
+       characteò position.
+    d) Lineó whicè follo÷ certaiî assembleò instructionó thaô yoõ 
+       havå includeä iî thå source® Theså instructionó arå 
+       discusseä iî thå chapteò oî pseudï-ops¬ anä arå iî effecô 
+       á speciaì caså oæ Comments.
+.lm 1
+.pm 1
+
+Alì otheò lineó arå processeä bù thå assembler¬ whicè scanó thå 
+linå anä interpretó thå actionó tï bå takeî bù followinç á seô oæ 
+builô-iî rules® Texô whicè cannoô bå unambiguouslù interpreteä bù 
+theså ruleó wilì bå flaggeä aó aî assemblù erroò becauså 
+erroneouó codå woulä almosô certainlù bå produced.
+
+.cp 20ŠHerå ió thå forí oæ aî acceptablå inpuô line:
+
+ «-LABEÌ Field
+ |
+ ü         «-OPÒ Field
+ ü         |
+ ü         ü         «-OPÁ Field
+ ü         ü         |
+ ü         ü         ü         «-COMMENÔ Field
+ ü         ü         ü         |
+ |ö         |ö         |ö         |v
+‚TXÔ       TXÔ       TXÔ      ;STR
+|Ş    |Ş         |Ş         |^
+ü    !_________!_________!_________spaceó oò tabs
+|
+|__________________________________firsô column
+
+TXÔ ió á serieó oæ printablå characteró froí á restricteä 
+characteò set® Therå arå nï spaceó oò tabó iî TXT.
+
+STÒ ió á strinç oæ printablå ASCIÉ characters¬ includinç spaceó 
+anä tabs¬ buô excludinç otheò noî-printinç characters.
+
+Notå thaô thå COMMENÔ fielä ALWAYÓ beginó witè á semicoloî (;).
+
+
+.TC    Label Field...............................#
+LABEÌ FIELD
+
+Thå labeì field‹ maù contaiî onå of:
+
+     a© 'whitå space§ (anù combinatioî oæ spaceó ¦ tabs)
+     b© text¬ likå "SYMBOL"
+     c© text¬ likå "SYMBOL:¢     (notå thå trailinç colon)
+     d© text¬ likå "SYMBOL::¢    (declareó SYMBOÌ public)
+
+Thå labeì fielä maù contaiî leadinç whitå space® Althougè 
+accepted¬ thió ió noô gooä form.
+
+TIPº Thå coloî terminatoró positivelù identifù thå symboì (tï thå 
+assembler© aó á LABEL® Wheî yoõ forgeô thå colon¬ aó iî b© above¬ 
+thå assembleò haó tï worë mucè hardeò tï avoiä misinterpretinç 
+thå symbol® Thaô takeó timå anä slowó dowî thå assemblù process® 
+Uså colonó anä savå time!
+
+Thå characteró whicè maù bå useä iî á SYMBOÌ are:
+     a© Uppeò anä loweò caså Alphabetiã characters
+     b© ¿ ¤ ¥ ® ß @
+     c© Numberó (0..9)¬ excepô that
+     d© thå FIRSÔ CHARACTEÒ maù NOÔ bå á number
+
+Á symboì maù bå aó lonç aó yoõ wish® ZMAC¬ however¬ ignoreó anù 
+characteró pasô 15® Iô ió gooä practicå tï construcô symboló sï 
+thaô theù arå uniquå withiî thå firsô ¶ oò · characteró becauså 
+manù linkeró arå sï constrained.
+ŠThå symboì iî thå labeì fielä ió normallù á LABEL¬ whicè ió á 
+particulaò caså oæ á SYMBOL® Thå LABEÌ ió storeä iî thå 
+assembleró Symboì Tablå foò referencå bù otheò partó oæ thå 
+program.
+
+Thå symboì maù bå thå namå beinç assigneä tï á MACRÏ definition» 
+sucè symboló arå storeä iî á macrï namå table.
+
+Thå symboì maù bå thå targeô oæ á definitioî statemenô likå SEÔ 
+oò EQU® Thå SYMBOÌ alonç witè itó defineä valuå ió storeä iî thå 
+Symboì tablå alonç witè labeì-typå symbols.
+
+
+.TC    The Operator Field........................#
+THÅ OPÒ FIELD
+
+OPÒ ió aî abbreviatioî oæ OPERATOR® Thió fielä ió alsï referreä 
+tï aó thå Operatioî fielä anä thå Operatoò field® Becauså thå 
+worä 'operator§ ió alsï useä iî aî entirelù differenô contexô foò 
+describinç Expressions¬ OPÒ wilì bå useä iî thió manuaì tï 
+describå thå fielä wheî therå ió á possibilitù oæ ambiguity.
+
+Thå OPÒ fielä containó onå oæ thå following:
+     a© Aî OPCODÅ (machinå instructioî code)
+     b© á PSEUDÏ-OĞ (Pseudï-operatioî code)
+     c© á Macrï name
+
+Opcodes:Thå machinå instructioî codeó foò thå Z80¬ Z180¬ anä 
+HD6418° arå listeä iî Appendiø A4® Thå opcodå ió thå initiaì worä 
+oæ thå machinå instruction® Thå balancå (iæ any© oæ thå 
+instructioî ió thå OPÁ field® Á fe÷ typicaì opcodeó are:
+
+     LÄ   halô Exø  calì JÒ   anä  Otimò     TST
+
+Notå thaô upper/loweò caså maù bå useä aó yoõ wish.
+
+Althougè thå assembleò wilì noô bå confuseä iæ yoõ uså opcodeó as
+labels¬ sucè practicå interfereó witè thå claritù oæ programó anä 
+ió considereä baä programminç practicå foò thaô reason.
+
+Pseudï-ops:arå alsï knowî aó Assembleò Directives® Theù providå 
+instructionó whicè direcô thå assemblù process® Mosô dï noô 
+generatå codå iî thå objecô file® Foò example¬ .Z8° ió á pseudï-
+oğ thaô directó thå assembleò tï issuå á warninç iæ noî-Z8° 
+opcodeó arå encountereä iî thå source¬ anä PAGÅ ió á pseudï-oğ 
+thaô causeó thå assembleò tï inserô á forí feeä iî thå listinç 
+(PRN© file® Pseudï-opó arå describeä iî chapteò 5.
+
+Macros:Á Macrï ió á sequencå oæ assemblù languagå statementó 
+defineä iî thå sourcå filå anä assigneä thå namå whicè ió iî thå 
+labeì field® Thå macrï ió invokeä wheî itó namå occupieó thå OPÒ 
+fielä oæ á sourcå line® Invocatioî causeó thå macrï statementó tï 
+bå assembleä aô thió poinô beforå proceedinç tï thå nexô line® 
+Macroó frequentlù contaiî opcodå instructionó anä generatå code® 
+Macroó arå describeä iî chapteò 7.
+Š
+.TC    The Operand Field.........................#
+THÅ OPÁ FIELD
+
+OPÁ ió aî abbreviatioî oæ OPERAND® Botè termó maù bå useä iî thió 
+manual» OPÁ wilì bå useä wheî OPERANÄ mighô introducå ambiguity.
+
+Thå OPÁ field‹ containó thå argumenô lisô (iæ any© associateä witè 
+thå operatioî implieä iî thå Operatioî field® Iæ nï argumenô lisô 
+ió required¬ theî thå fielä ió empty.
+
+Wheî thå OPÒ field‹ containó aî OPCODE¬ thå OPÁ fielä containó thå 
+argumentó implieä iî Appendiø A4® Threå kindó oæ argumenô maù bå 
+requiredº Registeò names¬ ¸-biô data¬ anä 1¶-biô data.
+
+Registeò names„ are:
+
+     Á Â Ã Ä Å È Ì É Ò             (¸ biô registers)
+     AÆ BÃ DÅ HÌ IØ IÙ SĞ AF§      (1¶ biô registers)
+
+Registeò nameó arå reserveä wordó witè respecô tï thå OPÁ field® 
+.cp 12
+Wheî á cpõ Registeò Namå occuró iî thå OPÁ field¬ anä yoõ havå 
+useä thaô namå aó á labeì (iî thå labeì field)¬ ZMAÃ ió faceä 
+witè aî ambiguitù whicè cannoô bå resolveä bù thå contexô oæ thå 
+symbol® Ió thió tï bå interpreteä aó á Registeò Namå oò aó á 
+Symbol¿ Foò example¬ consideò thå followinç codå fragment:
+
+           Â   EQÕ  23H
+               ...
+               ...
+               LÄ   A,B
+               ...
+
+Ió thió tï bå interpreteä aó 'loaä Á witè thå contentó oæ 
+registeò B§ oò aó 'loaä Á witè thå valuå oæ symboì Â (=23h)'?
+
+Becauså oæ sucè possiblå ambiguities¬ yoõ shoulä noô uså registeò 
+nameó iî thå labeì field® ZMAÃ wilì detecô sucè usagå anä issuå 
+aî erroò message.
+
+Macrï nameó arå storeä anä useä differentlù thaî otheò symbols® 
+Becauså oæ this¬ therå ió nï restrictioî oî thå nameó yoõ assigî 
+tï macros® Registeò nameó caî bå useä aó macrï nameó withouô 
+ambiguitù aó faò aó ZMAÃ ió concerned.
+
+.cp 8
+¸ anä 1¶ biô datareferenceó caî bå representeä bù numbers¬ 
+symbols¬ oò expressions® Aî expressioî ió aî algebrá-likå formulá 
+composeä oæ numbers¬ symbols¬ anä arithmetic/logicaì operators® Á 
+onå oò twï characteò quoteä strinç maù compriså thå ¸ oò 1¶ biô 
+data¬ respectively® Aî erroò wilì bå reporteä iæ inappropriatå 
+registeò referenceó oò datá valueó foò á particulaò opcodå arå 
+present.
+
+Registeò nameó arå noô useä iî expressions® Instructionó 
+involvinç thå IØ oò IÙ registeró accepô aî argumenô oæ thå forí 
+(IX+<exp>)¬ whicè lookó likå aî expression® <exp¾ itselæ cannoô Šcontaiî á registeò name® Thå reasonº thå assembleò ió noô ablå tï 
+assigî á valuå foò thå contentó oæ á registeò iî thå generaì 
+case» thaô quantitù onlù becomeó reaì wheî thå actuaì codå ió 
+beinç executed.
+
+Wheî thå OPÒ fielä containó á Macrï oò Pseudï-op¬ thå OPÁ fielä 
+maù contaiî ASCIÉ text¬ quoteä strings¬ numbers¬ symbols¬ oò 
+expressions® Thå exacô requirementó depenä oî thå needó oæ thå 
+macrï oò pseudï-op.
+
+Thå OPÁ fielä maù bå empty® Wheî present¬ however¬ iô ió alwayó 
+precedeä bù á noî-emptù OPÒ field® Theù gï together.
+
+.cp 18
+ASCIÉ texô anä quoteä strings„ arå discusseä iî thå followinç 
+paragraphs® Numbers¬ symbols,„ anä expressions„ arå discusseä iî 
+Chapteò 4.
+
+Aî ASCIÉ STRINÇ ió á sequencå oæ printablå ASCIÉ characteró iî 
+whicè spaceó anä tabó (whitå space© maù bå included® Wheî á 
+strinç ió parô oæ aî assemblù sourcå line¬ somå oæ theså samå 
+characteró wilì occuò whicè arå noô intendeä tï bå parô oæ thå 
+string® Somå methoä oæ delimitinç thå strinç musô bå useä tï 
+ensurå thaô onlù thå desireä characteró arå presenô iî thå codå 
+beinç produced® Mosô commonly¬ stringó arå encloseä iî quoteó ("© 
+oò singlå apostropheó (')® Herå arå somå examples:
+
+     dâ   'Thió ió á string'
+     dâ   "Thió ió á string"
+     dâ   "there'ó morå thaî onå way.."
+     dâ   § "quoteó caî bå iî thå string¬ too¢ '
+
+Wheî yoõ neeä tï includå thå delimiteò aó parô oæ thå texô iî thå 
+string¬ yoõ caî dï so» jusô includå iô twice® Herå arå somå 
+exampleó oæ quoteä strings¬ alonç witè thå strinç oæ characteró 
+thaô arå actuallù includeä iî thå codå beinç generated:
+
+     dâ   'xxxx''yyyy§  ;produceó xxxx'yyyy
+     dâ   "foo""bar¢    ;produceó foo"bar
+
+Notå thaô thå delimiteró thaô begiî anä enä thå quoteä strinç arå 
+noô stored® 
+
+Iî thå chapteò oî Pseudï-ops¬ yoõ wilì observå severaì typeó oæ 
+stringó iî thå syntaø definitions® Thå Glossarù (Appendiø A1© 
+containó definitionó oæ theså terms® Thå distinctioî betweeî theí 
+ió baseä oî thå typå oæ delimiteró thaô maù bå used¬ anä oî thå 
+characteró alloweä iî thå string® Iî manù cases¬ ZMAÃ wilì 
+properlù interpreô á texô strinç witè nï delimiters® Thå varietù 
+oæ strinç handlinç permitó ZMAÃ tï utilizå sourcå codå writteî 
+foò manù otheò assembleró whicè uså differenô delimitinç 
+conventions® Thå followinç termó arå useä iî thió manuaì wheî iô 
+ió necessarù tï bå precise® Mosô oæ thå timå thå terí 'string§ 
+wilì bå useä wheî distinctioî ió noô needeä anä wilì usuallù 
+implù á quoteä string.
+Š.PM 1
+.LM 13
+    TXT     á sequencå oæ printablå characters® Nï spaces¬ tabs.
+
+    QTXT    TXÔ encloseä withiî singlå oò doublå quotes.
+
+    STR     á sequencå oæ printablå characteró includinç spaceó ¦ 
+            tabs
+
+    QSTR   a STÒ  encloseä witè apostrophå oò  quotå  characters® 
+            Thå quotå characteò maù bå includeä iî thå STÒ iæ  iô 
+            ió  immediatelù precedeä bù thå samå  character®  Thå 
+            characteò whicè precedeó thå strinç musô bå thå  samå 
+            aó thaô whicè terminateó it» thå otheò oæ thå paiò ió 
+            treateä  aó á normaì printablå characteò  withiî  thå 
+            string.
+.LM 1
+
+.cp 5
+Iî ZMAC¬ thå NAME¬ .TITLE¬ anä .SBTTÌ assembleò instructionó 
+(describeä iî Chapteò 5© providå á relaxeä seô oæ ruleó foò thå 
+inpuô oæ texô information® Iî theså cases¬ eveî thå terminatinç 
+delimiteò maù bå omitted¡ Herå arå thå Argumenô interpretatioî 
+ruleó foò thoså cases:
+
+.LM 7
+   1) Thå terminaì quotå foò quoteä stringó ió optional
+   2) Foò  unquoteä  stringó anä quoteä  stringó  whoså  terminaì 
+      quotå  ió  absent¬ thå enä-oæ-linå defineó thå enä  oæ  thå 
+      string.
+   3) Stringó  toï lonç foò theiò intendeä uså arå  truncateä  tï 
+      thå  maximuí useablå lengtè (currentlù · chaò foò NAME¬  6° 
+      foò TITLE¬ SBTTL)
+.LM 1
+
+Thå syntaø foò NAME¬ .TITLE¬ ¦ .SBTTÌ argumentó ió verù 
+forgiving® Thå onlù erroò messagå issueä wilì bå iæ therå ió aî 
+argumenô missing® Otherwise¬ ZMAÃ doeó it'ó besô tï uså whaô yoõ 
+havå supplieä iî thå source® Aî unquoteä strinç ió literallù thå 
+balancå oæ thå line¬ terminateä onlù bù á controì characteò 
+(excepô tab)® Á quoteä strinç wilì properlù interpreô doublå 
+occurrenceó oæ thå quotå characteò (§ oò ")¬ anä á controì 
+characteò wilì substitutå foò thå normallù requireä endinç quote® 
+
+.cp 10
+.TC    The Comment Field.........................#
+THÅ COMMENÔ FIELD
+
+Thå commenô field‹ ió completelù optional® Iæ present¬ iô ió 
+precedeä witè ';'® Thå assembleò viewó thå semicoloî aó á logicaì 
+enä-oæ-linå anä ignoreó alì thaô followó uğ tï thå starô oæ thå 
+nexô line® Withiî á Macrï definition¬ thå commenô fielä ió 
+retaineä sï thaô iô wilì bå includeä durinç lateò macrï 
+expansion® Iæ thaô ió noô desired¬ theî twï semicolonó caî bå 
+useä aô thå starô oæ thå commenô field» thå commenô wilì theî bå 
+ignoreä iî thió caså also.
+
+Spaces¬ tabs¬ anä anù printablå characteró maù bå presenô iî thå 
+commenô field.
+
+Á commenô fielä maù bå thå onlù fielä presenô iî thå line® Iô maù 
+bå precedeä bù whitå spacå anä thereforå starô whereveò yoõ wish.
+Š.PA
+.TC    FILE FORMATS: Output Files................#
+OUTPUÔ FILES
+
+ZMAÃ produceó froí zerï tï fouò files¬ dependinç oî defaulô anä 
+commanä linå optioî selections® Iî thå absencå oæ oveò-ridinç 
+commanä linå optioî choices¬ thå nameó oæ thå fileó wilì bå 
+<xxx>.REL¬ <xxx>.PRN¬ <xxx>.SYM¬ anä <xxx>.ERR» <xxx¾ ió thå namå 
+portioî oæ thå filå beinç assembled® Theså defaulô filetypeó caî 
+bå 'permanently§ changeä witè thå ZCNFÇ utility® Iî thió manual¬ 
+thå fileó wilì bå referreä tï bù thå abovå defaulô types.
+
+.TC    The Assembly Listing......................#
+PRÎ (Assemblù Listing© file
+
+Thå PRÎ file‹ containó á representatioî oæ thå codå produced¬ á 
+copù oæ thå sourcå lines¬ anä informatioî abouô thå codå anä 
+sourcå file(s)® Thå PRÎ listinç maù bå senô tï anù combinatioî oæ 
+á file¬ thå console¬ anä thå lisô devicå (printer© bù judiciouó 
+selectioî oæ commanä linå anä configuratioî options® Thå formaô 
+oæ thå PRÎ listinç ió controlleä bù manù oæ thå optionó iî thå 
+ZCNFÇ utility® PRÎ outpuô caî bå matcheä tï thå printeò useä anä 
+thå programmeró preferences® Theså threå providå overalì controì 
+oæ pagination:
+
+.lm 8
+.pm 5
+    a)forí feeä oò nï forí feeä aô starô oæ listing
+    b)forí feeä oò nï forí feeä aô enä oæ thå listing
+    c)conditionaì forí feeä aô enä oæ listinç tï ensurå thaô thå 
+       NEXÔ listinç wilì starô oî thå samå orientatioî witè 
+       respecô tï faî-folä paper® Thió ió calleä 'pagå parity'.
+.lm 1
+.pm 1
+
+ZCNFÇ optionó permiô settinç defaulô pagå lengtè anä widtè tï 
+matcè printeò capabilities» oò thå valueó froí thå Z³ environmenô 
+caî bå useä aó defaults® Otheò detailó oæ thå listinç formaô maù 
+similarlù bå controlled» mosô arå describeä below® Alì optionó 
+arå describeä iî Chapteò ¹ (Configuration).
+
+Á samplå PRÎ listinç appearó oî thå nexô page¬ editeä somewhaô 
+foò purposeó oæ illustration® Itemó iî anglå bracketó arå noteó 
+thaô havå beeî editeä in® Aó yoõ maù surmiså bù thå linå numbers¬ 
+mucè oæ thå listinç haó beeî lefô out.
+
+.paŠNotå thå prograí namå printeä jusô belo÷ thå pagå number® Everù 
+pagå oæ thå listinç containó thå namå oæ thå currenô maiî sourcå 
+filå iî thå samå location.
+
+=================================================================
+
+                 FIGURÅ ³-1® SAMPLÅ PRÎ LISTING
+
+ZMAÃ Relocatinç Macrï Assembleò ö 0.¸                 pagå    1
+<TITLÅ froí .titlå pseudï-oğ goeó here¾            TESÔ    .Z80
+<Subtitlå wilì bå printeä here>
+                             
+     ±                     ;Programº test.z80
+
+    7±   0000§ C³ 000B§            JĞ      START
+
+    8´   0011§ ED7³ 0064¢  MAIN:º  lä      (stak)¬ sğ ;savå foò c
+
+    9·                             dseg
+
+    9¹   0000¢ 000°        wbaddr:º        d÷      0
+|Ş    |Ş   |Ş     |Ş           |Ş                                 |^
+ü    ü   ü     ü           ü                                 |
+Å Line«  Addò  Codå fielä  |______Copù oæ Sourcå Line________|
+      |^
+„      |___markeò foò INCLUDEä anä MACLIÂ fileó 
+
+=================================================================
+
+Thå lasô fe÷ lineó abovå poinô ouô thå maiî featureó oæ á linå oæ 
+thå PRÎ assemblù listing® 
+
+.pm 0
+E
+.lm 5
+    indicateó thå locatioî oæ thå erroò codå wheî thå linå 
+    containó aî error.
+.lm 1
+
+Line
+.lm 5
+    defineó thå linå numbeò field® Witè ZCNFÇ onå caî movå thå 
+    linå numbeò tï thå righô oæ thå codå field¬ eliminatå linå 
+    numbers¬ oò alteò thå numberinç method® (Seå Chapteò 9)
+.lm 1
+
++
+.lm 5
+    ió á markeò whicè occupieó thió positioî wheî codå ió beinç 
+    assembleä froí aî INCLUDÅ file.
+.lm 1
+
+Addr
+.lm 5
+    ió thå ´ heø characteò addresó oæ thå currenô code® Thió ió á 
+    1¶ biô number® Iî thió example¬ thå numbeò ió printeä Lo÷ 
+    bytå first® ZCNFÇ allowó selectioî oæ eitheò Lo÷ oò Higè bytå 
+    first.
+.lm 1
+
+.CP 7ŠCode field„
+.lm 5
+    containó thå hexadecimaì equivalenô oæ thå codå beinç 
+    generateä anä senô tï thå REÌ oò HEØ objecô file® Á trailinç 
+    spacå separateó thå opcodå (iæ present© froí anù arguments® 
+    Wheî á 1¶ biô argumenô iî present¬ iô maù bå listeä Lo÷ oò 
+    Higè bytå first» thå choicå ió madå iî ZCNFG.
+.lm 1
+
+.cp 12
+Copy oæ Sourcå filå line
+.lm 5
+    Becauså oæ alì thå informatioî presenteä iî thå listing¬ thå 
+    lengtè oæ eacè linå oæ thå listinç wilì frequentlù exceeä thå 
+    8° columî limiô foò smalì printeró anä CRÔ screens® Thå PAGÅ 
+    pseudï-oğ allowó aî argumenô whicè defineó thå alloweä lengtè 
+    oæ á PRÎ line® ZCNFÇ allowó thå samå parameteò tï bå seô aó á 
+    default® Iî eitheò case¬ thå linå wilì bå truncateä oî thå 
+    righô iæ iô exceedó thå maximuí linå limit® Linå 8´ iî thå 
+    samplå listinç abovå ió sucè á truncateä line® ZMAÃ setó thå 
+    defaulô pagå lengtè anä widtè tï thaô storeä iî youò Z³ 
+    environmenô iæ sï instructeä bù ZCNFG.
+.lm 1
+
+Relocatioî Baså Mark
+.lm 5
+    Tï thå righô oæ eacè 1¶ biô quantity¬ spacå ió provideä foò 
+    aî indicatioî oæ thå Relocatioî Baså (ASEG¬ CSEG¬ DSEG¬ oò 
+    COMMON)® Absencå oæ á marë therå indicateó aî absolutå value¬ 
+    aî apostrophå ('© meanó Codå relative¬ á quotå ("© meanó Datá 
+    relative¬ anä aî asterisë (*© indicateó á BLANË oò Nameä 
+    Commoî relativå value.
+.lm 1
+
+
+.cp 20
+.TC    The Symbol Table Listing..................#
+SYÍ (Symboì Table:© file
+
+Thå SYMboì tablå listinç ió normallù appendeä tï thå PRÎ listing® 
+Thå 'S§ commanä linå option¬ however¬ toggleó generatioî oæ á 
+separatå symboì tablå file® Thå formaô oæ thaô filå ió suitablå 
+foò uså witè debuggeró likå DSD¬ SID¬ anä ZSID® Aî examplå oæ á 
+typicaì symboì tablå listinç aó appendeä tï á PRÎ listinç ió 
+showî below.
+
+
+ZMAÃ Relocatinç Macrï Assembleò ö 0.¸                   pagå    3
+                                                     TESÔ    .Z80
+***ª Symboì tablå ***ª                                      
+$MEMRÙ          006¶ EXIÔ            002° LOCBUÆ          0002
+MAIÎ            001± STAË            006´ STARÔ           000B
+WBADDÒ          000° Z3EADÒ          000¹ Z3INIÔ          000F
+
+
+.paŠ.TC    The Error Logging File....................#
+ERÒ (Erroò Logging:© file
+
+Wheî thå 'E§ optioî ió oî (eitheò bù defaulô oò aó á resulô oæ á 
+commanä linå invocation)¬ erroò datá ió senô tï á loç filå whoså 
+namå ió thå samå aó thaô oæ thå sourcå file® Iæ nï erroró occur¬ 
+theî thå ERÒ filå ió noô produced® Iô woulä bå á nulì file® Thå 
+datá iî thå loç filå wilì bå iî á fixeä formaô anä wilì includå 
+Filå Name¬ Linå Number¬ Columî Number¬ anä erroò type® Thå datá 
+ió plaiî texô sï thaô thå filå caî bå useä aó inpuô tï aî editor® 
+Thå firsô linå startó witè á '*§ iî columî 1® Thå '*§ caî bå useä 
+bù thå editoò tï skiğ lineó thaô dï noô contaiî erroò data.
+
+Thå examplå belo÷ ió parô oæ aî ERÒ file‹ whicè resulteä froí 
+assemblù oæ á prograí containinç intentionaì errors.
+
+                      SAMPLÅ ERROÒ LOÇ FILE
+
+          ª FILÅ SPEÃ      LINÅ  COÌ CODE
+B6:ZILOG2.Z8°      6¸       Ë 
+B6:ZILOG2.Z8°      6¹       Ë 
+B6:ZILOG2.Z8°     10¶       Ï 
+C3:ZILOGM.LIÂ     19±       Å 
+C3:ZILOGM.LIÂ     19¸       Ó 
+B6:ZILOG2.Z8°      3µ       Ä 
+B6:ZILOG2.Z8°      3¹       Ä 
+B6:ZILOG2.Z8°      6¸       Ë 
+
+Notå thaô thå filespeã iî thå fourtè anä fiftè lineó ió differenô 
+thaî thå others» thió ió aî INCLUDEä (oò MACLIB© file® Thå linå 
+numberó showî herå arå linå numberó withiî thaô file® Iî otheò 
+words¬ linå numberinç startó oveò agaiî foò EACÈ includeä file® 
+ZMAÃ keepó tracë oæ linå numberó iî eacè file® Wheî aî 'include§ 
+filå haó beeî completed¬ linå numberinç iî thå parenô filå pickó 
+uğ wherå iô lefô off® Thå resultº yoõ caî gï tï linå 19¸ iî thå 
+zilogm.liâ filå (witè youò editor© tï fiø thå error® Somå editoró 
+(likå PMATE© permiô á builô-iî macrï whicè wilì automatå thå 
+processº loaä thå ERÒ filå theî uså thå filå speã anä linå numbeò 
+tï gï tï thå linå iî error® Onå caveatº ZMAÃ countó lineó 
+startinç witè '1'® Iæ youò editoò countó startinç witè '0'¬ yoõ 
+wilì havå tï makå allowancå foò thió fact.
+
+Thå lasô threå lineó sho÷ linå numberó thaô arå apparentlù noô iî 
+sequence® Thaô ió becauså somå erroró arå detecteä iî Pasó 1¬ 
+somå iî Pasó 2¬ anä somå iî botè passes® Thå sixtè anä seventè 
+lineó arå exampleó oæ erroró detecteä iî Pasó 2® Thå lasô ió aî 
+examplå oæ onå detecteä iî botè passes.
+
+Thå columî markeä COÌ ió reserveä foò futurå implementation.
+
+Thå lasô columî containó thå erroò codeº aî indicatioî oæ thå 
+naturå oæ thå error® Erroò codes‹ arå listeä iî Appendiø A5.
+
+.PAŠ
